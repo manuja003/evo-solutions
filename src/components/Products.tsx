@@ -46,14 +46,17 @@ const products = [
 const ProductCard = ({ product, index }: { product: typeof products[0]; index: number }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
+  const Wrapper = product.link.startsWith("/") ? Link : "a";
+  const linkProps = product.link.startsWith("/") ? { to: product.link } : { href: product.link };
 
   return (
+    <Wrapper {...(linkProps as any)} className="block">
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="glass-card p-8 group cursor-pointer relative overflow-hidden"
+      className="glass-card p-8 group cursor-pointer relative overflow-hidden h-full"
     >
       {/* Gradient accent top */}
       <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${product.color} opacity-0 group-hover:opacity-100 transition-opacity`} />
