@@ -21,6 +21,7 @@ const products = [
     description: "End-to-end course management with student dashboards, progress tracking, and online examinations.",
     features: ["Course Management", "Student Dashboard", "Progress Tracking", "Online Exams"],
     color: "from-accent to-accent/60",
+    link: "/products/lms",
   },
   {
     icon: Landmark,
