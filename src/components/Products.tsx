@@ -30,6 +30,7 @@ const products = [
     description: "Secure account management, transactions processing, and loan management with enterprise-grade security.",
     features: ["Account Management", "Transactions", "Loan Management", "Security Features"],
     color: "from-primary to-accent",
+    link: "/products/banking",
   },
   {
     icon: Code2,
