@@ -39,6 +39,7 @@ const products = [
     description: "Business websites, enterprise systems, UI/UX design, and seamless system integration built to your specs.",
     features: ["Business Websites", "Enterprise Systems", "UI/UX Design", "System Integration"],
     color: "from-accent to-primary",
+    link: "#contact",
   },
 ];
 
