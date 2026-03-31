@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Monitor, GraduationCap, Landmark, Code2, ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const products = [
   {
