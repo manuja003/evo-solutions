@@ -12,6 +12,7 @@ const products = [
     description: "Complete POS, billing, inventory, and order management with real-time analytics for restaurants of any size.",
     features: ["Billing / POS", "Inventory Management", "Order Tracking", "Reports & Analytics"],
     color: "from-primary to-primary/60",
+    link: "/products/evores",
   },
   {
     icon: GraduationCap,
