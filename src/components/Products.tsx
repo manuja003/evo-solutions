@@ -46,11 +46,8 @@ const products = [
 const ProductCard = ({ product, index }: { product: typeof products[0]; index: number }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
-  const Wrapper = product.link.startsWith("/") ? Link : "a";
-  const linkProps = product.link.startsWith("/") ? { to: product.link } : { href: product.link };
 
-  return (
-    <Wrapper {...(linkProps as any)} className="block">
+  const content = (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
@@ -58,20 +55,16 @@ const ProductCard = ({ product, index }: { product: typeof products[0]; index: n
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="glass-card p-8 group cursor-pointer relative overflow-hidden h-full"
     >
-      {/* Gradient accent top */}
       <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${product.color} opacity-0 group-hover:opacity-100 transition-opacity`} />
-
       <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${product.color} flex items-center justify-center mb-6`}>
         <product.icon size={28} className="text-primary-foreground" />
       </div>
-
       <div className="flex items-start justify-between mb-2">
         <h3 className="text-xl font-heading font-bold text-foreground">{product.name}</h3>
         <ArrowUpRight size={20} className="text-muted-foreground group-hover:text-primary transition-colors" />
       </div>
       <p className="text-sm text-primary font-medium mb-3">{product.tagline}</p>
       <p className="text-muted-foreground text-sm mb-6 leading-relaxed">{product.description}</p>
-
       <div className="flex flex-wrap gap-2">
         {product.features.map((f) => (
           <span key={f} className="text-xs bg-secondary text-secondary-foreground px-3 py-1 rounded-full font-medium">
@@ -81,6 +74,11 @@ const ProductCard = ({ product, index }: { product: typeof products[0]; index: n
       </div>
     </motion.div>
   );
+
+  if (product.link.startsWith("/")) {
+    return <Link to={product.link} className="block">{content}</Link>;
+  }
+  return <a href={product.link} className="block">{content}</a>;
 };
 
 const Products = () => {
