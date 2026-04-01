@@ -1,25 +1,38 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Products", href: "#products" },
-  { label: "Solutions", href: "#solutions" },
-  { label: "Process", href: "#process" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "home" },
+  { label: "Products", href: "products" },
+  { label: "Solutions", href: "solutions" },
+  { label: "Process", href: "process" },
+  { label: "Testimonials", href: "testimonials" },
+  { label: "Contact", href: "contact" },
 ];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const handleNavClick = (sectionId: string) => {
+    setMobileOpen(false);
+    if (location.pathname !== "/") {
+      navigate(`/#${sectionId}`);
+    } else {
+      const el = document.getElementById(sectionId);
+      el?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <nav
@@ -30,28 +43,28 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4">
-        <a href="#home" className="flex items-center gap-2">
+        <button onClick={() => handleNavClick("home")} className="flex items-center gap-2">
           <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
             <span className="text-primary-foreground font-heading font-bold text-lg">E</span>
           </div>
           <span className="font-heading font-bold text-xl tracking-tight">
             EVO <span className="text-gradient-primary">Solutions</span>
           </span>
-        </a>
+        </button>
 
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
+            <button
               key={link.href}
-              href={link.href}
+              onClick={() => handleNavClick(link.href)}
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
               {link.label}
-            </a>
+            </button>
           ))}
-          <a href="#contact" className="btn-primary-glow text-sm">
+          <button onClick={() => handleNavClick("contact")} className="btn-primary-glow text-sm">
             Request Demo
-          </a>
+          </button>
         </div>
 
         <button
@@ -72,18 +85,17 @@ const Navbar = () => {
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-3">
               {navLinks.map((link) => (
-                <a
+                <button
                   key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground py-2"
+                  onClick={() => handleNavClick(link.href)}
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground py-2 text-left"
                 >
                   {link.label}
-                </a>
+                </button>
               ))}
-              <a href="#contact" className="btn-primary-glow text-sm text-center mt-2">
+              <button onClick={() => handleNavClick("contact")} className="btn-primary-glow text-sm text-center mt-2">
                 Request Demo
-              </a>
+              </button>
             </div>
           </motion.div>
         )}
