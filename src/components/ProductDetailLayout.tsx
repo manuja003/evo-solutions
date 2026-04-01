@@ -50,74 +50,100 @@ const ProductDetailLayout = ({
     <div className="min-h-screen">
       <Navbar />
 
-      {/* Hero */}
+      {/* Hero — Solutions-style dark section */}
       <section className="section-dark pt-32 pb-20 relative overflow-hidden">
-        <div className={`absolute top-1/4 right-1/4 w-96 h-96 rounded-full blur-[150px] opacity-20`} style={{ background: `var(--gradient-primary)` }} />
+        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f97316' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }} />
         <div className="container mx-auto px-4 relative z-10">
           <Link to="/#products" className="inline-flex items-center gap-2 text-sm text-surface-dark-foreground/50 hover:text-primary transition-colors mb-8">
             <ArrowLeft size={16} /> Back to Products
           </Link>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${color} flex items-center justify-center mb-6`}>
-                {icon}
+          {/* Solutions-style card hero */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="glass-card !bg-surface-dark-foreground/5 border-surface-dark-foreground/10 p-8 sm:p-10"
+          >
+            <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${color} flex items-center justify-center`}>
+                    {icon}
+                  </div>
+                  <div>
+                    <span className="text-xs text-primary font-semibold uppercase tracking-wider">{tagline}</span>
+                    <h1 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-surface-dark-foreground">{name}</h1>
+                  </div>
+                </div>
+                <p className="text-surface-dark-foreground/60 text-lg leading-relaxed mb-8 max-w-lg">{description}</p>
+                <div className="flex flex-wrap gap-4">
+                  <a href="#demo-form" className="btn-primary-glow flex items-center gap-2">Request Demo</a>
+                  <button className="flex items-center gap-2 border-2 border-surface-dark-foreground/20 text-surface-dark-foreground font-semibold rounded-xl px-8 py-3 hover:border-primary/50 transition-colors">
+                    <Play size={18} /> Watch Video
+                  </button>
+                </div>
               </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-surface-dark-foreground mb-4">
-                {name}
-              </h1>
-              <p className="text-xl text-primary font-medium mb-4">{tagline}</p>
-              <p className="text-surface-dark-foreground/60 text-lg leading-relaxed mb-8 max-w-lg">{description}</p>
-              <div className="flex flex-wrap gap-4">
-                <a href="#demo-form" className="btn-primary-glow flex items-center gap-2">Request Demo</a>
-                <button className="flex items-center gap-2 border-2 border-surface-dark-foreground/20 text-surface-dark-foreground font-semibold rounded-xl px-8 py-3 hover:border-surface-dark-foreground/40 transition-colors">
-                  <Play size={18} /> Watch Video
-                </button>
-              </div>
-            </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
-              <img
-                src={screenshots[0]}
-                alt={screenshotAlts[0]}
-                className="rounded-2xl shadow-2xl w-full"
-                width={1280}
-                height={720}
-              />
-            </motion.div>
-          </div>
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="lg:max-w-md xl:max-w-lg flex-shrink-0"
+              >
+                <img
+                  src={screenshots[0]}
+                  alt={screenshotAlts[0]}
+                  className="rounded-xl shadow-2xl w-full"
+                  width={1280}
+                  height={720}
+                />
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-24 bg-muted/30">
-        <div className="container mx-auto px-4">
+      {/* Features — Solutions-style stacked cards */}
+      <section className="section-dark py-24 relative overflow-hidden">
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
             <span className="text-sm font-semibold text-primary uppercase tracking-widest">Key Features</span>
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold mt-3">
-              Everything You Need
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mt-3 mb-4">
+              Everything You <span className="text-gradient-primary">Need</span>
             </h2>
+            <p className="text-surface-dark-foreground/60 max-w-2xl mx-auto">
+              Powerful capabilities designed to transform your business operations.
+            </p>
           </motion.div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+
+          <div className="space-y-6 max-w-5xl mx-auto">
             {features.map((f, i) => (
               <motion.div
                 key={f.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="glass-card p-6"
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="glass-card !bg-surface-dark-foreground/5 border-surface-dark-foreground/10 p-6 sm:p-8"
               >
-                <h3 className="font-heading font-bold text-foreground mb-2">{f.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{f.description}</p>
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center shrink-0 mt-1">
+                    <Check size={18} className="text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading font-bold text-lg text-surface-dark-foreground mb-2">{f.title}</h3>
+                    <p className="text-surface-dark-foreground/60 leading-relaxed">{f.description}</p>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Benefits */}
-      <section className="py-24">
+      {/* Benefits — Solutions-style with stats feel */}
+      <section className="py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center max-w-5xl mx-auto">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
@@ -137,7 +163,6 @@ const ProductDetailLayout = ({
               </ul>
             </motion.div>
 
-            {/* Screenshot gallery */}
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <img
                 src={screenshots[activeScreenshot]}
@@ -165,9 +190,9 @@ const ProductDetailLayout = ({
         </div>
       </section>
 
-      {/* Demo Request Form */}
+      {/* Demo Request Form — Solutions-style dark */}
       <section id="demo-form" className="py-24 section-dark relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[150px]" />
+        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f97316' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }} />
         <div className="container mx-auto px-4 relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-xl mx-auto text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-heading font-bold text-surface-dark-foreground mb-4">
@@ -181,7 +206,7 @@ const ProductDetailLayout = ({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             onSubmit={handleSubmit}
-            className="max-w-xl mx-auto space-y-4"
+            className="max-w-xl mx-auto glass-card !bg-surface-dark-foreground/5 border-surface-dark-foreground/10 p-8 space-y-4"
           >
             <div className="grid sm:grid-cols-2 gap-4">
               <input type="text" placeholder="Full Name" required className="w-full px-4 py-3 rounded-xl bg-surface-dark-foreground/5 border border-surface-dark-foreground/10 text-surface-dark-foreground placeholder:text-surface-dark-foreground/30 focus:outline-none focus:border-primary/50 transition-colors" />
