@@ -35,65 +35,69 @@ const Navbar = () => {
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/80 backdrop-blur-lg border-b border-border/50 shadow-sm"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4">
-        <button onClick={() => handleNavClick("home")} className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-heading font-bold text-lg">E</span>
-          </div>
-          <span className="font-heading font-bold text-xl tracking-tight">
-            EVO <span className="text-gradient-primary">Solutions</span>
-          </span>
-        </button>
+    <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-4 px-4 sm:px-6 pointer-events-none">
+      <div 
+        className={`pointer-events-auto mx-auto max-w-7xl rounded-full transition-all duration-700 ${
+          scrolled
+            ? "bg-black/60 backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.4)] py-3 px-8"
+            : "bg-transparent py-6 px-4"
+        }`}
+      >
+        <div className="flex items-center justify-between">
+          <button onClick={() => handleNavClick("home")} className="flex items-center gap-3 group">
+            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-lg shadow-primary/30 transition-transform duration-300 group-hover:scale-110">
+              <span className="text-primary-foreground font-heading font-bold text-lg">E</span>
+            </div>
+            <span className={`font-heading font-bold text-xl tracking-tight transition-opacity duration-300 ${scrolled ? 'opacity-100' : 'opacity-100'}`}>
+              EVO <span className="text-gradient-primary">Solutions</span>
+            </span>
+          </button>
 
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <button
-              key={link.href}
-              onClick={() => handleNavClick(link.href)}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {link.label}
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <button
+                key={link.href}
+                onClick={() => handleNavClick(link.href)}
+                className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors hover:-translate-y-0.5 transform duration-200"
+              >
+                {link.label}
+              </button>
+            ))}
+            <button onClick={() => handleNavClick("contact")} className="btn-primary-glow text-sm shadow-xl shadow-primary/20 hover:shadow-primary/40">
+              Request Demo
             </button>
-          ))}
-          <button onClick={() => handleNavClick("contact")} className="btn-primary-glow text-sm">
-            Request Demo
+          </div>
+
+          <button
+            className="md:hidden text-foreground w-10 h-10 flex items-center justify-center rounded-full bg-foreground/5 hover:bg-foreground/10 transition-colors"
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
-
-        <button
-          className="md:hidden text-foreground"
-          onClick={() => setMobileOpen(!mobileOpen)}
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
       </div>
 
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border"
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="pointer-events-auto md:hidden absolute top-24 left-4 right-4 bg-black/80 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl overflow-hidden"
           >
-            <div className="container mx-auto px-4 py-4 flex flex-col gap-3">
+            <div className="flex flex-col p-6 gap-2">
               {navLinks.map((link) => (
                 <button
                   key={link.href}
                   onClick={() => handleNavClick(link.href)}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground py-2 text-left"
+                  className="text-base font-medium text-foreground/80 hover:bg-primary/5 hover:text-primary rounded-xl px-4 py-3 text-left transition-colors"
                 >
                   {link.label}
                 </button>
               ))}
-              <button onClick={() => handleNavClick("contact")} className="btn-primary-glow text-sm text-center mt-2">
+              <div className="h-px bg-border my-2" />
+              <button onClick={() => handleNavClick("contact")} className="btn-primary-glow w-full text-center mt-2">
                 Request Demo
               </button>
             </div>

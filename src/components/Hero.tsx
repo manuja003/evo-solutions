@@ -3,85 +3,117 @@ import { ArrowRight, Play } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Gradient background — no image */}
-      <div className="absolute inset-0 section-dark" />
+    <section id="home" className="relative min-h-[100vh] flex items-center pt-32 pb-20 overflow-hidden bg-transparent">
+      {/* Global Background is handled by BackgroundOrbs */}
 
-      {/* Subtle grid pattern */}
-      <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f97316' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }} />
-
-      {/* Glow orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] animate-pulse_glow" />
-      <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-accent/15 rounded-full blur-[100px] animate-pulse_glow" />
-      <div className="absolute top-1/2 right-1/6 w-64 h-64 bg-primary/10 rounded-full blur-[100px]" />
-
-      <div className="container mx-auto px-4 relative z-10 pt-20">
-        <div className="max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 mb-6"
-          >
-            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-sm font-medium text-surface-dark-foreground/80">Trusted by 500+ businesses worldwide</span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl sm:text-5xl lg:text-7xl font-heading font-bold leading-tight text-surface-dark-foreground mb-6"
-          >
-            We don't just build software —{" "}
-            <span className="text-gradient-primary">we build solutions</span>{" "}
-            that grow your business.
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg sm:text-xl text-surface-dark-foreground/60 mb-10 max-w-xl"
-          >
-            Scalable, custom software systems designed to transform how you operate — from restaurants to banks.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.45 }}
-            className="flex flex-wrap gap-4"
-          >
-            <a href="#products" className="btn-primary-glow flex items-center gap-2 text-base">
-              View Products <ArrowRight size={18} />
-            </a>
-            <a
-              href="#contact"
-              className="flex items-center gap-2 border-2 border-surface-dark-foreground/20 text-surface-dark-foreground font-semibold rounded-xl px-8 py-3 hover:border-primary/50 transition-colors"
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-16 items-center">
+          <div className="lg:col-span-7 xl:col-span-8">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-5 py-2 mb-10 shadow-sm"
             >
-              <Play size={18} /> Watch Demo
-            </a>
-          </motion.div>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-wrap gap-8 mt-16 pt-8 border-t border-surface-dark-foreground/10"
-          >
-            {[
-              { value: "500+", label: "Clients Served" },
-              { value: "99.9%", label: "Uptime Guarantee" },
-              { value: "40%", label: "Avg. Cost Reduction" },
-              { value: "24/7", label: "Support Available" },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <div className="text-2xl sm:text-3xl font-heading font-bold text-primary">{stat.value}</div>
-                <div className="text-sm text-surface-dark-foreground/50">{stat.label}</div>
+              <div className="flex -space-x-2">
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-secondary flex items-center justify-center overflow-hidden">
+                    <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt="User" />
+                  </div>
+                ))}
               </div>
-            ))}
+              <span className="text-sm font-bold text-foreground/80 tracking-tight">Trusted by 500+ Industry Leaders</span>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="text-4xl sm:text-6xl lg:text-7xl font-heading font-black leading-[0.95] text-foreground mb-10 tracking-tighter"
+            >
+              Architecting the <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_auto] animate-gradient-shift">Digital Future.</span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-xl sm:text-2xl text-muted-foreground mb-12 max-w-2xl leading-relaxed"
+            >
+              We engineer premium software ecosystems that simplify complexity and empower your business to scale effortlessly.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-wrap gap-6"
+            >
+              <a href="#products" className="btn-primary-glow text-lg px-10 py-5 shadow-2xl shadow-primary/20">
+                Explore Our Systems
+              </a>
+              <button className="flex items-center gap-3 px-8 py-5 rounded-2xl border-2 border-border font-bold hover:border-primary/50 transition-all group">
+                <div className="w-10 h-10 rounded-full bg-foreground/5 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                  <Play size={18} className="fill-current" />
+                </div>
+                Watch Showcase
+              </button>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="lg:col-span-5 xl:col-span-4 relative hidden lg:block"
+          >
+            {/* Visual element representing "Architecture/System" */}
+            <div className="relative z-10 glass-card !p-1 bg-white/20 border-white/40 shadow-2xl shadow-primary/10 rounded-[3rem] rotate-3 hover:rotate-0 transition-transform duration-700">
+               <div className="bg-white/5 rounded-[2.5rem] p-10 text-foreground aspect-square flex flex-col justify-between overflow-hidden relative border border-white/10">
+                  <div className="absolute top-0 right-0 w-40 h-40 bg-primary/20 rounded-full blur-3xl" />
+                  <div className="text-6xl font-heading font-black">99.9%</div>
+                  <div className="space-y-4">
+                    <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                       <motion.div initial={{ width: 0 }} animate={{ width: "99.9%" }} transition={{ duration: 2, delay: 1 }} className="h-full bg-primary" />
+                    </div>
+                    <div className="text-xl font-bold opacity-60">System Stability Guaranteed</div>
+                  </div>
+               </div>
+            </div>
+            
+            {/* Floating cards */}
+            <motion.div 
+               animate={{ y: [0, -15, 0] }} 
+               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} 
+               className="absolute -top-12 -left-12 glass-card !p-6 shadow-xl shadow-black/5 rounded-3xl z-20 border-white"
+            >
+               <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-accent flex items-center justify-center text-white shadow-lg shadow-accent/20">
+                     <Play size={20} />
+                  </div>
+                  <div>
+                     <div className="font-bold text-foreground">Live Tracking</div>
+                     <div className="text-xs text-muted-foreground">Active Sessions: 1,280</div>
+                  </div>
+               </div>
+            </motion.div>
+
+            <motion.div 
+               animate={{ y: [0, 15, 0] }} 
+               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }} 
+               className="absolute -bottom-10 -right-8 glass-card !p-6 shadow-xl shadow-black/5 rounded-3xl z-20 border-white"
+            >
+               <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20">
+                     <ArrowRight size={20} />
+                  </div>
+                  <div>
+                     <div className="font-bold text-foreground">Revenue Boost</div>
+                     <div className="text-xs text-muted-foreground">+42% This Quarter</div>
+                  </div>
+               </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

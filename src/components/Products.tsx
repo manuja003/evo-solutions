@@ -52,22 +52,30 @@ const ProductCard = ({ product, index }: { product: typeof products[0]; index: n
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="glass-card p-8 group cursor-pointer relative overflow-hidden h-full"
+      transition={{ duration: 0.7, delay: index * 0.1, ease: "easeOut" }}
+      whileHover={{ y: -12, transition: { duration: 0.4 } }}
+      className="glass-card !bg-white/5 p-10 group cursor-pointer relative overflow-hidden h-full flex flex-col hover:!bg-white/10 transition-all duration-500 border-white/10 shadow-2xl shadow-black/20"
     >
-      <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${product.color} opacity-0 group-hover:opacity-100 transition-opacity`} />
-      <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${product.color} flex items-center justify-center mb-6`}>
-        <product.icon size={28} className="text-primary-foreground" />
+      <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${product.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+      
+      <div className={`w-16 h-16 rounded-[1.25rem] bg-gradient-to-br ${product.color} flex items-center justify-center mb-8 shadow-lg shadow-black/10 group-hover:rotate-6 transition-transform duration-500`}>
+        <product.icon size={32} className="text-white" />
       </div>
-      <div className="flex items-start justify-between mb-2">
-        <h3 className="text-xl font-heading font-bold text-foreground">{product.name}</h3>
-        <ArrowUpRight size={20} className="text-muted-foreground group-hover:text-primary transition-colors" />
+
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="text-3xl font-heading font-black text-foreground tracking-tight group-hover:text-primary transition-colors duration-300">{product.name}</h3>
+        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary opacity-60 group-hover:opacity-100 group-hover:bg-primary group-hover:text-white transition-all duration-500 transform -translate-x-2 group-hover:translate-x-0 group-hover:shadow-lg group-hover:shadow-primary/30">
+          <span className="text-[10px] font-black uppercase tracking-widest hidden sm:block">Explore System</span>
+          <ArrowUpRight size={18} strokeWidth={3} />
+        </div>
       </div>
-      <p className="text-sm text-primary font-medium mb-3">{product.tagline}</p>
-      <p className="text-muted-foreground text-sm mb-6 leading-relaxed">{product.description}</p>
-      <div className="flex flex-wrap gap-2">
+
+      <p className="text-sm font-bold uppercase tracking-[0.2em] text-primary/60 mb-4">{product.tagline}</p>
+      <p className="text-muted-foreground text-lg mb-10 leading-relaxed font-medium">{product.description}</p>
+      
+      <div className="mt-auto flex flex-wrap gap-3">
         {product.features.map((f) => (
-          <span key={f} className="text-xs bg-secondary text-secondary-foreground px-3 py-1 rounded-full font-medium">
+          <span key={f} className="text-xs bg-white/10 text-foreground px-4 py-1.5 rounded-full font-bold border border-white/10 shadow-sm transition-colors group-hover:border-primary/30">
             {f}
           </span>
         ))}
@@ -75,37 +83,58 @@ const ProductCard = ({ product, index }: { product: typeof products[0]; index: n
     </motion.div>
   );
 
+  const wrapperClass = "block h-full no-underline transition-none";
   if (product.link.startsWith("/")) {
-    return <Link to={product.link} className="block">{content}</Link>;
+    return (
+      <Link 
+        to={product.link} 
+        className={wrapperClass} 
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
+        {content}
+      </Link>
+    );
   }
-  return <a href={product.link} className="block">{content}</a>;
+  return (
+    <a 
+      href={product.link} 
+      className={wrapperClass} 
+      target="_blank" 
+      rel="noopener noreferrer"
+    >
+      {content}
+    </a>
+  );
 };
 
 const Products = () => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
+  const inView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <section id="products" className="py-24 sm:py-32 bg-muted/30">
-      <div className="container mx-auto px-4">
+    <section id="products" className="py-32 relative overflow-hidden bg-transparent">
+      {/* Global Background is handled by BackgroundOrbs */}
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center mb-24"
         >
-          <span className="text-sm font-semibold text-primary uppercase tracking-widest">Our Products</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mt-3 mb-4">
-            Powerful Systems for{" "}
-            <span className="text-gradient-primary">Every Industry</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary mb-6 font-bold uppercase tracking-widest text-xs">
+             Our Ecosystem
+          </div>
+          <h2 className="text-4xl md:text-5xl font-heading font-extrabold mb-8 tracking-tight">
+            Specialized <span className="text-gradient-primary">Solutions.</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            From restaurant management to banking solutions — we deliver enterprise-grade software that scales with your business.
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Enterprise-ready platforms designed to modernize your core operations and accelerate digital growth.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-10 max-w-7xl mx-auto">
           {products.map((p, i) => (
             <ProductCard key={p.name} product={p} index={i} />
           ))}

@@ -16,38 +16,50 @@ const Process = () => {
   const inView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <section id="process" className="py-24 sm:py-32 bg-muted/30">
-      <div className="container mx-auto px-4">
+    <section id="process" className="py-32 relative overflow-hidden bg-transparent">
+      {/* Global Background is handled by BackgroundOrbs */}
+      <div className="absolute bottom-[20%] -right-[10%] w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px]" />
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-16"
+          className="text-center mb-24"
         >
-          <span className="text-sm font-semibold text-primary uppercase tracking-widest">Our Process</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mt-3 mb-4">
-            From Idea to <span className="text-gradient-primary">Launch</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary mb-6 font-bold uppercase tracking-widest text-xs">
+             Our Methodology
+          </div>
+          <h2 className="text-5xl md:text-6xl font-heading font-bold mb-8 tracking-tight">
+            From Blueprint to <span className="text-gradient-primary">Brilliance.</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            A proven 6-step development process that ensures quality, speed, and alignment with your goals.
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            A precise, architecture-first development cycle designed for reliability and speed.
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto relative">
+          {/* Connecting line for desktop */}
+          <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-border/50 to-transparent -translate-y-1/2 z-0" />
+          
           {steps.map((step, i) => (
             <motion.div
               key={step.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: 0.1 + i * 0.08 }}
-              className="glass-card p-6 text-center group"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={inView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="glass-card p-10 text-center group relative z-10 hover:!bg-white/10"
             >
-              <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
-                <step.icon size={26} className="text-primary" />
+              <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-foreground text-background flex items-center justify-center font-bold text-lg shadow-xl shadow-black/10 group-hover:bg-primary transition-colors">
+                {i + 1}
               </div>
-              <div className="text-xs font-bold text-primary mb-1">Step {i + 1}</div>
-              <h3 className="font-heading font-bold text-foreground mb-2">{step.title}</h3>
-              <p className="text-sm text-muted-foreground">{step.description}</p>
+              
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform">
+                <step.icon size={32} className="text-primary" />
+              </div>
+              
+              <h3 className="text-2xl font-heading font-bold text-foreground mb-4">{step.title}</h3>
+              <p className="text-muted-foreground leading-relaxed text-lg">{step.description}</p>
             </motion.div>
           ))}
         </div>

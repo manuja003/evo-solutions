@@ -11,6 +11,7 @@ import EvoResPage from "./pages/EvoResPage.tsx";
 import LMSPage from "./pages/LMSPage.tsx";
 import BankingPage from "./pages/BankingPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import BackgroundOrbs from "@/components/BackgroundOrbs";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
+        <BackgroundOrbs />
         <AnimatedRoutes />
       </BrowserRouter>
     </TooltipProvider>

@@ -15,31 +15,34 @@ const TechStack = () => {
   const inView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <section className="py-24 sm:py-32">
-      <div className="container mx-auto px-4">
+    <section className="py-32 relative overflow-hidden">
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <span className="text-sm font-semibold text-primary uppercase tracking-widest">Technology Stack</span>
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mt-3 mb-4">
-            Built with <span className="text-gradient-primary">Modern Tech</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary mb-6 font-bold uppercase tracking-widest text-xs">
+             Our Core Tech
+          </div>
+          <h2 className="text-4xl md:text-6xl font-heading font-bold mb-8 tracking-tight">
+            Built with <span className="text-gradient-primary">Modern Excellence.</span>
           </h2>
         </motion.div>
 
-        <div className="flex flex-wrap justify-center gap-4 max-w-3xl mx-auto">
+        <div className="flex flex-wrap justify-center gap-6 max-w-5xl mx-auto">
           {techs.map((t, i) => (
             <motion.div
               key={t.name}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.3, delay: i * 0.05 }}
-              className="glass-card px-6 py-4 text-center"
+              transition={{ duration: 0.4, delay: i * 0.05 }}
+              whileHover={{ y: -5, scale: 1.05 }}
+              className="glass-card !bg-white/5 px-10 py-6 text-center border-white/10 shadow-xl shadow-black/20"
             >
-              <div className="font-heading font-bold text-foreground">{t.name}</div>
-              <div className="text-xs text-muted-foreground">{t.category}</div>
+              <div className="text-2xl font-heading font-bold text-foreground mb-1">{t.name}</div>
+              <div className="text-xs font-bold uppercase tracking-widest text-primary/60">{t.category}</div>
             </motion.div>
           ))}
         </div>
