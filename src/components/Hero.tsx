@@ -50,7 +50,7 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="flex flex-wrap gap-6"
             >
-              <a href="#products" className="btn-primary-glow text-lg px-10 py-5 shadow-2xl shadow-primary/20">
+              <a href="#products" className="btn-primary-glow text-lg px-10 py-5">
                 Explore Our Systems
               </a>
               <button className="flex items-center gap-3 px-8 py-5 rounded-2xl border-2 border-border font-bold hover:border-primary/50 transition-all group">
@@ -82,13 +82,9 @@ const Hero = () => {
                   </div>
                 </div>
 
-                {/* <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] group-hover:opacity-[0.08] transition-opacity pointer-events-none">
-                  <Award size={180} className="text-primary" />
-                </div> */}
-
                 <div className="flex justify-center items-center relative z-10 py-6">
-                  <div className="w-24 h-24 rounded-2xl bg-primary/10 flex items-center justify-center/20 shadow-lg shadow-primary/10 group-hover:scale-110 transition-all duration-500">
-                    <Award size={180} className="text-primary" />
+                  <div className="w-24 h-24 rounded-2xl bg-primary/10 flex items-center justify-center shadow-lg shadow-primary/10 group-hover:scale-110 transition-all duration-500">
+                    <Award size={52} className="text-primary" />
                   </div>
                 </div>
 
@@ -117,7 +113,7 @@ const Hero = () => {
             <motion.div
               animate={{ y: [0, -15, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-12 -left-12 glass-card !p-6 shadow-xl shadow-black/5 rounded-3xl z-20 border-white"
+              className="absolute -top-12 -left-12 glass-card !p-6 shadow-xl shadow-black/40 rounded-3xl z-20 border-white/15"
             >
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-2xl bg-accent flex items-center justify-center text-white shadow-lg shadow-accent/20">
@@ -133,7 +129,7 @@ const Hero = () => {
             <motion.div
               animate={{ y: [0, 15, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -bottom-10 -right-8 glass-card !p-6 shadow-xl shadow-black/5 rounded-3xl z-20 border-white"
+              className="absolute -bottom-10 -right-8 glass-card !p-6 shadow-xl shadow-black/40 rounded-3xl z-20 border-white/15"
             >
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20">
