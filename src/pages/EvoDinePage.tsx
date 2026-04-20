@@ -1,16 +1,16 @@
 import { Monitor } from "lucide-react";
 import ProductDetailLayout from "@/components/ProductDetailLayout";
-import evoresDashboard from "@/assets/evores-dashboard.jpg";
+import evodineDashboard from "@/assets/evodine-dashboard.jpg";
 
-const EvoResPage = () => (
+const EvoDinePage = () => (
   <ProductDetailLayout
-    name="EvoRes"
+    name="EvoDine"
     tagline="Restaurant Management System"
     description="The all-in-one restaurant management platform that streamlines billing, inventory, orders, and analytics — helping you serve more customers with less overhead."
     icon={<Monitor size={32} className="text-primary-foreground" />}
     color="from-primary to-primary/60"
-    screenshots={[evoresDashboard]}
-    screenshotAlts={["EvoRes POS Dashboard"]}
+    screenshots={[evodineDashboard]}
+    screenshotAlts={["EvoDine POS Dashboard"]}
     features={[
       { title: "Smart POS & Billing", description: "Lightning-fast billing with split checks, discounts, tax management, and multiple payment methods." },
       { title: "Inventory Management", description: "Real-time stock tracking with automatic low-stock alerts and supplier management." },
@@ -30,4 +30,4 @@ const EvoResPage = () => (
   />
 );
 
-export default EvoResPage;
+export default EvoDinePage;

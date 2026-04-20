@@ -14,108 +14,96 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-32 relative overflow-hidden bg-transparent">
-      {/* Global Background is handled by BackgroundOrbs */}
-
+    <section id="contact" className="py-40 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-24"
+          transition={{ duration: 0.8 }}
+          className="text-center mb-32"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary mb-6 font-bold uppercase tracking-widest text-xs">
-             Let's Connect
+          <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary mb-10 font-black uppercase tracking-[0.4em] text-[10px] italic">
+             The Strategic Hub
           </div>
-          <h2 className="text-5xl md:text-7xl font-heading font-extrabold mb-10 tracking-tight text-foreground leading-none">
-            Ready to Build Your <br />
-            <span className="text-gradient-primary">Next Big Thing?</span>
+          <h2 className="text-6xl md:text-8xl font-heading font-black mb-10 tracking-tighter italic leading-[0.9]">
+            Architecture <br />
+            <span className="text-primary italic">Showcases.</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Design the future of your business with a tailored enterprise software ecosystem.
+          <p className="text-2xl text-muted-foreground max-w-2xl mx-auto leading-tight font-medium tracking-tight">
+            Watch the world's most elite business systems in action. These blueprints are engineered to dominate markets through absolute architectural precision.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-24 items-start max-w-7xl mx-auto">
-          <div className="space-y-12">
+        <div className="grid lg:grid-cols-2 gap-32 items-start max-w-7xl mx-auto">
+          <div className="space-y-16">
             <motion.div 
-               initial={{ opacity: 0, x: -40 }}
+               initial={{ opacity: 0, x: -60 }}
                animate={inView ? { opacity: 1, x: 0 } : {}}
-               transition={{ duration: 0.8 }}
-               className="space-y-8"
+               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+               className="space-y-12"
             >
                {[
-                 { icon: Mail, label: "Direct inquiry", value: "hello@evosolutions.com", color: "text-primary" },
-                 { icon: Phone, label: "Talk to Sales", value: "+1 (555) 123-4567", color: "text-accent" },
-                 { icon: MapPin, label: "Global HQ", value: "112 Innovation Square, Silicon Valley", color: "text-foreground" },
+                 { icon: Mail, label: "Strategic Inquiry", value: "architect@evosolutions.com", color: "text-primary" },
+                 { icon: Phone, label: "Titan Hotline", value: "+1 (555) 000-EVO", color: "text-accent" },
+                 { icon: MapPin, label: "Global Command", value: "Unit 01, Infinity Tower, Global Heights", color: "text-foreground" },
                ].map((item, i) => (
-                 <div key={i} className="flex items-center gap-8 group">
-                   <div className="w-16 h-16 rounded-[1.5rem] bg-white/5 border border-white/10 flex items-center justify-center shrink-0 shadow-lg shadow-black/5 group-hover:border-primary transition-all duration-500 group-hover:-rotate-6">
-                     <item.icon size={28} className={item.color} />
+                 <div key={i} className="flex items-center gap-10 group">
+                   <div className="w-20 h-20 rounded-3xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 shadow-2xl transition-all duration-700 group-hover:border-primary group-hover:-rotate-[10deg]">
+                     <item.icon size={32} className={item.color} />
                    </div>
                    <div>
-                      <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-1">{item.label}</div>
-                      <div className="text-2xl font-heading font-bold text-foreground">{item.value}</div>
+                      <div className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic mb-2">{item.label}</div>
+                      <div className="text-3xl font-heading font-black text-foreground italic tracking-tighter leading-none">{item.value}</div>
                    </div>
                  </div>
                ))}
             </motion.div>
 
             <motion.div
-               initial={{ opacity: 0, y: 40 }}
+               initial={{ opacity: 0, y: 60 }}
                animate={inView ? { opacity: 1, y: 0 } : {}}
-               transition={{ duration: 0.8, delay: 0.4 }}
-               className="glass-card !bg-foreground p-10 rounded-[2.5rem] text-background relative overflow-hidden"
+               transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+               className="glass-card !bg-foreground p-16 rounded-[3rem] text-background relative overflow-hidden group shadow-2xl"
             >
-               <div className="absolute top-0 right-0 p-8 opacity-10">
-                  <Sparkles size={80} />
+               <div className="absolute top-0 right-0 p-12 opacity-10 group-hover:scale-110 transition-transform duration-1000">
+                  <Sparkles size={120} />
                </div>
-               <h4 className="text-3xl font-heading font-black mb-6">Expert-Led Advisory</h4>
-               <p className="opacity-70 text-lg mb-8">Our architects will review your business model and suggest the optimal tech stack for your specific scale — completely free of charge.</p>
+               <h4 className="text-4xl font-heading font-black mb-8 italic tracking-tighter leading-none">Titan Partnership</h4>
+               <p className="opacity-80 text-xl mb-12 font-medium tracking-tight leading-tight">We don't just build software. We architect the future of your industry. Engage with our senior leadership for a 1-on-1 strategic reconnaissance session.</p>
                <div className="flex gap-4">
-                  <div className="w-2 h-2 rounded-full bg-primary" />
-                  <div className="w-2 h-2 rounded-full bg-accent" />
-                  <div className="w-2 h-2 rounded-full bg-white/20" />
+                  <div className="w-3 h-3 rounded-full bg-primary animate-pulse" />
+                  <div className="w-3 h-3 rounded-full bg-accent" />
+                  <div className="w-3 h-3 rounded-full bg-white/40" />
                </div>
             </motion.div>
           </div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={inView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={{ opacity: 0, scale: 0.95, x: 60 }}
+            animate={inView ? { opacity: 1, scale: 1, x: 0 } : {}}
+            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="grid gap-10"
           >
-            <form onSubmit={handleSubmit} className="glass-card !bg-white/5 p-10 md:p-14 shadow-2xl shadow-primary/5 rounded-[3.5rem] space-y-8">
-              <div className="grid sm:grid-cols-2 gap-8">
-                <div className="space-y-3">
-                  <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-2">Name</label>
-                  <input type="text" placeholder="John Doe" required className="w-full px-6 py-5 rounded-2xl bg-black/[0.03] border-none focus:ring-2 focus:ring-primary/20 transition-all outline-none" />
+            {[
+               { title: "EvoDine: High-Volume Intelligence", duration: "12:45", category: "Hospitality" },
+              { title: "EVOVilla: Yield Maximization", duration: "08:20", category: "Property Ops" },
+              { title: "EvoInventory: Zero-Loss Chain", duration: "10:15", category: "Logistics" },
+              { title: "Strategic R&D: System Integration", duration: "15:30", category: "Architecture" },
+            ].map((video, i) => (
+              <div key={i} className="glass-card !bg-white/[0.03] p-10 rounded-[2.5rem] group cursor-pointer border-white/10 hover:border-primary/40 transition-all duration-700 shadow-2xl h-full flex items-center justify-between overflow-hidden relative">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-1000" />
+                <div className="flex items-center gap-8 relative z-10">
+                  <div className="w-20 h-20 rounded-3xl bg-primary flex items-center justify-center shadow-2xl shadow-primary/30 group-hover:scale-110 transition-transform duration-700">
+                    <Send size={32} className="text-white" />
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-black uppercase tracking-[0.4em] text-primary mb-2 italic">{video.category} • {video.duration}</div>
+                    <h5 className="text-2xl font-heading font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors">{video.title}</h5>
+                  </div>
                 </div>
-                <div className="space-y-3">
-                  <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-2">Email</label>
-                  <input type="email" placeholder="john@company.com" required className="w-full px-6 py-5 rounded-2xl bg-black/[0.03] border-none focus:ring-2 focus:ring-primary/20 transition-all outline-none" />
-                </div>
               </div>
-              
-              <div className="space-y-3">
-                <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-2">Interested In</label>
-                <select className="w-full px-6 py-5 rounded-2xl bg-black/[0.03] border-none focus:ring-2 focus:ring-primary/20 transition-all outline-none cursor-pointer">
-                  <option>EvoRes — Restaurant Management</option>
-                  <option>LMS System — Education Core</option>
-                  <option>Banking Core System</option>
-                  <option>Fully Custom Ecosystem</option>
-                </select>
-              </div>
-
-              <div className="space-y-3">
-                <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-2">The Mission</label>
-                <textarea rows={4} placeholder="Describe the challenges we'll solve together..." className="w-full px-6 py-5 rounded-2xl bg-black/[0.03] border-none focus:ring-2 focus:ring-primary/20 transition-all outline-none resize-none" />
-              </div>
-
-              <button type="submit" className="w-full btn-primary-glow flex items-center justify-center gap-3 py-6 text-xl shadow-2xl shadow-primary/20 group">
-                {submitted ? "✓ Mission Received." : (<>Engage Now <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" /></>)}
-              </button>
-            </form>
+            ))}
           </motion.div>
         </div>
       </div>

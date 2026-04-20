@@ -6,7 +6,7 @@ const testimonials = [
   {
     name: "Sarah Mitchell",
     role: "CEO, GreenBite Restaurants",
-    quote: "EvoRes completely transformed our restaurant operations. Billing is 40% faster and inventory management has never been this seamless.",
+    quote: "EvoDine completely transformed our restaurant operations. Billing is 40% faster and inventory management has never been this seamless.",
     rating: 5,
   },
   {
@@ -28,53 +28,53 @@ const Testimonials = () => {
   const inView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <section id="testimonials" className="py-32 relative overflow-hidden bg-transparent">
-      {/* Global Background is handled by BackgroundOrbs */}
-
+    <section id="testimonials" className="py-40 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-24"
+          transition={{ duration: 0.8 }}
+          className="text-center mb-32"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent mb-6 font-bold uppercase tracking-widest text-xs">
-             Client Stories
+          <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary mb-10 font-black uppercase tracking-[0.4em] text-[10px] italic">
+             Industry Sentiment
           </div>
-          <h2 className="text-3xl md:text-5xl font-heading font-bold mb-8 tracking-tight">
-            Trusted by the <span className="text-gradient-primary">Best.</span>
+          <h2 className="text-6xl md:text-8xl font-heading font-black mb-10 tracking-tighter italic leading-[0.9]">
+            Validated by <br />
+            <span className="text-primary italic">Global Authorities.</span>
           </h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
           {testimonials.map((t, i) => (
             <motion.div
               key={t.name}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
-              whileHover={{ scale: 1.05 }}
-              className="glass-card !bg-white/5 p-8 shadow-2xl shadow-black/20 hover:!bg-white/10 group border-white/10"
+              transition={{ duration: 1, delay: 0.2 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -16 }}
+              className="glass-card !bg-white/[0.03] p-12 shadow-2xl border-white/10 hover:border-primary/40 transition-all duration-700 relative group"
             >
-              <Quote size={48} className="text-white/5 absolute top-10 right-10" />
+              <Quote size={64} className="text-primary/5 absolute top-10 right-10 group-hover:text-primary/10 transition-colors" />
               
-              <div className="flex gap-1.5 mb-8">
+              <div className="flex gap-2 mb-10">
                 {Array.from({ length: t.rating }).map((_, j) => (
-                  <Star key={j} size={18} className="fill-primary text-primary" />
+                  <Star key={j} size={20} className="fill-primary text-primary" />
                 ))}
               </div>
 
-              <p className="text-lg text-muted-foreground leading-relaxed mb-10 flex-grow italic">
+              <p className="text-2xl text-muted-foreground leading-[1.25] mb-16 flex-grow italic font-medium tracking-tight">
                 "{t.quote}"
               </p>
 
-              <div className="flex items-center gap-4 pt-8 border-t border-border/50">
-                <div className="w-14 h-14 rounded-full border-2 border-white bg-secondary overflow-hidden shadow-lg shadow-black/5">
-                  <img src={`https://i.pravatar.cc/100?u=${t.name}`} alt={t.name} />
+              <div className="flex items-center gap-6 pt-10 border-t border-white/5">
+                <div className="w-20 h-20 rounded-3xl border-2 border-primary/20 bg-secondary overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-110">
+                  <img src={`https://i.pravatar.cc/100?u=${t.name}`} alt={t.name} className="w-full h-full object-cover" />
                 </div>
                 <div>
-                  <div className="text-xl font-heading font-bold text-foreground leading-tight">{t.name}</div>
-                  <div className="text-sm font-bold text-primary/60">{t.role}</div>
+                  <div className="text-2xl font-heading font-black text-foreground leading-none mb-1 italic tracking-tighter">{t.name}</div>
+                  <div className="text-[10px] font-black text-primary uppercase tracking-[0.3em]">{t.role}</div>
                 </div>
               </div>
             </motion.div>

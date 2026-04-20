@@ -15,34 +15,35 @@ const TechStack = () => {
   const inView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <section className="py-32 relative overflow-hidden">
+    <section className="py-40 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-16"
+          transition={{ duration: 0.8 }}
+          className="text-center mb-24"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary mb-6 font-bold uppercase tracking-widest text-xs">
-             Our Core Tech
+          <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary mb-10 font-black uppercase tracking-[0.4em] text-[10px] italic">
+             The Systems Stack
           </div>
-          <h2 className="text-4xl md:text-6xl font-heading font-bold mb-8 tracking-tight">
-            Built with <span className="text-gradient-primary">Modern Excellence.</span>
+          <h2 className="text-5xl md:text-7xl font-heading font-black mb-10 tracking-tighter italic">
+            Engineered for <span className="text-primary italic">Absolute Zero Latency.</span>
           </h2>
         </motion.div>
 
-        <div className="flex flex-wrap justify-center gap-6 max-w-5xl mx-auto">
+        <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
           {techs.map((t, i) => (
             <motion.div
               key={t.name}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
-              whileHover={{ y: -5, scale: 1.05 }}
-              className="glass-card !bg-white/5 px-10 py-6 text-center border-white/10 shadow-xl shadow-black/20"
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="glass-card !bg-white/[0.03] px-12 py-8 text-center border-white/10 hover:border-primary/40 transition-all duration-700 shadow-2xl"
             >
-              <div className="text-2xl font-heading font-bold text-foreground mb-1">{t.name}</div>
-              <div className="text-xs font-bold uppercase tracking-widest text-primary/60">{t.category}</div>
+              <div className="text-3xl font-heading font-black text-foreground mb-2 italic tracking-tighter">{t.name}</div>
+              <div className="text-[10px] font-black uppercase tracking-[0.4em] text-primary/60">{t.category}</div>
             </motion.div>
           ))}
         </div>

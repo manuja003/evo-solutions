@@ -6,7 +6,7 @@ const cases = [
   {
     client: "GreenBite Chain",
     problem: "Manual billing processes causing long queues and inventory miscounts across 15 locations.",
-    solution: "Deployed EvoRes across all branches with centralized real-time reporting.",
+    solution: "Deployed EvoDine across all branches with centralized real-time reporting.",
     results: ["40% faster billing", "25% reduction in food waste", "Real-time multi-branch analytics"],
   },
   {
@@ -28,79 +28,80 @@ const CaseStudies = () => {
   const inView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <section id="case-studies" className="py-32 relative overflow-hidden bg-transparent">
-      {/* Global Background is handled by BackgroundOrbs */}
-
+    <section id="case-studies" className="py-40 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-24"
+          transition={{ duration: 0.8 }}
+          className="text-center mb-32"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary mb-6 font-bold uppercase tracking-widest text-xs">
-             Proven Impact
+          <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary mb-10 font-black uppercase tracking-[0.4em] text-[10px] italic">
+             Architecture Proof
           </div>
-          <h2 className="text-4xl md:text-5xl font-heading font-extrabold mb-8 tracking-tight">
-            Our Work in <span className="text-gradient-primary">Numbers.</span>
+          <h2 className="text-4xl md:text-7xl font-heading font-black mb-10 tracking-tighter italic leading-[0.9]">
+            The Impact of <br />
+            <span className="text-primary italic">Precision Engineering.</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Explore how our architecture-driven approach has solved critical bottlenecks for global industry leaders.
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-tight font-medium tracking-tight">
+            Explore how our systems-first philosophy has redefined operational limits for global industry leaders.
           </p>
         </motion.div>
 
-        <div className="space-y-10 max-w-6xl mx-auto">
+        <div className="space-y-16 max-w-7xl mx-auto">
           {cases.map((c, i) => (
             <motion.div
               key={c.client}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 60 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              whileHover={{ y: -8, transition: { duration: 0.4 } }}
-              className="glass-card !bg-white/5 p-10 flex flex-col group relative overflow-hidden h-full border-white/10 shadow-2xl shadow-black/20"
+              transition={{ duration: 1, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -16 }}
+              className="glass-card !bg-white/[0.03] p-16 flex flex-col group relative overflow-hidden h-full border-white/10 hover:border-primary/40 transition-all duration-700"
             >
-              <div className="flex flex-col lg:flex-row gap-16 items-start">
-                <div className="lg:w-1/3">
-                   <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 rounded-2xl bg-foreground text-background flex items-center justify-center shrink-0">
-                         <TrendingUp size={28} />
+              <div className="flex flex-col xl:flex-row gap-20 items-start">
+                <div className="xl:w-1/3">
+                   <div className="flex items-center gap-6 mb-10">
+                      <div className="w-20 h-20 rounded-3xl bg-foreground text-background flex items-center justify-center shrink-0 group-hover:bg-primary transition-all duration-700">
+                         <TrendingUp size={40} />
                       </div>
-                      <h3 className="text-3xl font-heading font-black text-foreground tracking-tighter">{c.client}</h3>
+                      <h3 className="text-4xl font-heading font-black text-foreground tracking-tighter italic">{c.client}</h3>
                    </div>
-                   <div className="space-y-6">
+                   <div className="space-y-10">
                       <div>
-                         <span className="text-xs font-bold uppercase tracking-widest text-primary">The Challenge</span>
-                         <p className="text-muted-foreground text-lg leading-relaxed mt-2">{c.problem}</p>
+                         <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic mb-2 block">The Strategic Barrier</span>
+                         <p className="text-muted-foreground text-lg leading-tight font-medium tracking-tight">{c.problem}</p>
                       </div>
                       <div>
-                         <span className="text-xs font-bold uppercase tracking-widest text-primary">The Solution</span>
-                         <p className="text-muted-foreground text-lg leading-relaxed mt-2">{c.solution}</p>
+                         <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic mb-2 block">Titan Intervention</span>
+                         <p className="text-muted-foreground text-lg leading-tight font-medium tracking-tight">{c.solution}</p>
                       </div>
                    </div>
                 </div>
 
-                <div className="lg:w-2/3 w-full">
-                   <div className="grid sm:grid-cols-3 gap-6 h-full">
+                <div className="xl:w-2/3 w-full">
+                   <div className="grid sm:grid-cols-3 gap-8 h-full">
                       {c.results.map((r, idx) => (
-                        <div key={r} className="glass-card p-8 border-none shadow-xl shadow-black/5 flex flex-col justify-center text-center hover:-translate-y-2 transition-transform">
-                           <div className="text-3xl font-heading font-black text-primary mb-2 line-clamp-1">{r.split(' ')[0]}</div>
-                           <div className="text-sm font-bold text-muted-foreground uppercase tracking-tighter leading-tight">
+                        <div key={r} className="glass-card !bg-white/5 p-10 border-none shadow-2xl flex flex-col justify-center text-center hover:-translate-y-2 transition-all duration-500">
+                           <div className="text-4xl font-black text-primary mb-3 italic leading-none">{r.split(' ')[0]}</div>
+                           <div className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] leading-tight opacity-60">
                               {r.split(' ').slice(1).join(' ')}
                            </div>
                         </div>
                       ))}
                    </div>
                    
-                   {/* Decorative visual representing 'Metric Growth' */}
-                   <div className="mt-10 h-32 w-full bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl relative overflow-hidden flex items-end px-10 gap-2">
-                       {[0.4, 0.7, 0.5, 0.9, 0.6, 0.8, 0.95].map((h, idx) => (
+                   <div className="mt-12 h-40 w-full bg-white/5 rounded-[2rem] relative overflow-hidden flex items-end px-12 gap-3 border border-white/5">
+                       {[0.3, 0.6, 0.4, 0.8, 0.5, 0.7, 0.95].map((h, idx) => (
                          <motion.div 
                            key={idx} 
                            initial={{ height: 0 }} 
                            animate={{ height: `${h * 100}%` }} 
-                           transition={{ duration: 1, delay: idx * 0.1 }} 
-                           className="flex-1 bg-primary/20 rounded-t-xl group-hover:bg-primary/40 transition-colors"
+                           transition={{ duration: 1.5, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }} 
+                           className="flex-1 bg-primary/10 rounded-t-2xl group-hover:bg-primary/30 transition-all duration-700"
                          />
                        ))}
+                       <div className="absolute top-1/2 left-0 w-full h-px bg-white/10 italic text-[8px] font-black tracking-[0.5em] uppercase px-6 opacity-40">System Efficiency Threshold</div>
                    </div>
                 </div>
               </div>
