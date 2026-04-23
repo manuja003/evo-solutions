@@ -1,154 +1,198 @@
-import { useLocation, useNavigate, Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { ArrowRight, Github, Twitter, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const location = useLocation();
-  const navigate = useNavigate();
+  const navigate  = useNavigate();
 
-  const handleNavClick = (sectionId: string) => {
+  const scrollTo = (id: string) => {
     if (location.pathname !== "/") {
-      navigate(`/#${sectionId}`);
+      navigate(`/#${id}`);
     } else {
-      const el = document.getElementById(sectionId);
-      el?.scrollIntoView({ behavior: "smooth" });
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
-    <footer className="relative pt-32 pb-32 overflow-hidden bg-[#010309] border-t border-white/5 font-body">
-      {/* Background Complexity */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(249,115,22,0.05),transparent_70%)] opacity-40" />
-      
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Massive Integrated CTA */}
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-          className="glass-card !p-12 md:p-24 mb-32 group hover:border-primary/30 relative overflow-hidden"
-        >
-          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2" />
-          
-          <div className="grid lg:grid-cols-2 gap-16 items-center relative z-10">
-            <div>
-              <div className="text-[10px] font-black uppercase tracking-[0.5em] text-primary mb-6 italic">Ready for Deployment</div>
-              <h2 className="text-4xl md:text-7xl font-heading font-black text-white mb-8 leading-[0.9] tracking-tighter italic uppercase">
-                Initialize Your <span className="text-primary">Global Dominion</span> Today.
-              </h2>
-              <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-xl font-medium tracking-tight leading-snug">
-                Join the elite network of business titans who have scaled their operations using our mission-critical architectural systems.
-              </p>
-            </div>
-            <div className="flex flex-col gap-6 items-start lg:items-end">
-               <button 
-                onClick={() => handleNavClick("contact")}
-                className="btn-primary-glow px-16 py-10 text-sm w-full md:w-auto scale-110 flex items-center justify-center gap-4 transition-transform hover:scale-115"
-               >
-                  <span className="tracking-[0.3em]">INITIALIZE PROTOCOL</span>
-                  <ArrowRight size={24} />
-               </button>
-               <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest opacity-40">
-                  <span className="w-8 h-px bg-white/20" />
-                  Technical Consultation Available 24/7
-               </div>
-            </div>
-          </div>
-        </motion.div>
+    <footer style={{ background: "var(--ed-bg-dark)", borderTop: "1px solid var(--ed-border)" }}>
+      {/* Top */}
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "64px 24px 48px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 48 }}
+          className="footer-grid-cols">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-20 mb-32">
-          <div className="lg:col-span-5 space-y-12">
-            <div onClick={() => handleNavClick("home")} className="flex items-center gap-5 group cursor-pointer">
-              <div className="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center shadow-2xl shadow-primary/20 group-hover:rotate-[360deg] transition-all duration-1000">
-                <span className="text-white font-heading font-black text-3xl italic">E</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-heading font-black text-4xl tracking-tighter text-white leading-none italic uppercase">
-                  EVO <span className="text-primary font-black">SOLUTIONS</span>
-                </span>
-                <span className="text-[10px] font-black tracking-[0.5em] uppercase opacity-40 italic">Global Architecture</span>
+          {/* Brand */}
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <div style={{
+                width: 40, height: 40, borderRadius: 10,
+                background: "linear-gradient(135deg,#FF6B2B,#E55A1F)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontWeight: 900, fontSize: "1rem", color: "#fff",
+                fontFamily: "var(--font-jakarta)",
+                boxShadow: "0 4px 16px rgba(255,107,43,.3)",
+              }}>E</div>
+              <div>
+                <div style={{ fontFamily: "var(--font-jakarta)", fontWeight: 800, fontSize: "1.2rem", color: "#fff", lineHeight: 1.1 }}>
+                  Evo<span style={{ color: "#FF6B2B" }}>Solutions</span>
+                </div>
+                <div style={{ fontSize: ".6rem", color: "rgba(148,163,184,.4)", fontWeight: 600, letterSpacing: ".12em", textTransform: "uppercase" }}>
+                  TagTeam Engineering
+                </div>
               </div>
             </div>
-            
-            <p className="text-lg text-muted-foreground max-w-md leading-tight font-medium tracking-tight italic">
-              Engineering the future of enterprise value through advanced architectural systems and world-class digital infrastructure.
+            <p style={{ fontSize: ".88rem", color: "var(--ed-text-secondary)", lineHeight: 1.7, maxWidth: 280, marginBottom: 24 }}>
+              Building smart digital products and business solutions that power modern enterprises.
+              A product family by TagTeam Engineering.
             </p>
-
-            <div className="flex gap-6">
-              {[Twitter, Github, Linkedin, Mail].map((Icon, i) => (
-                <button 
-                  key={i}
-                  className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-foreground hover:bg-primary hover:border-primary hover:text-white transition-all duration-500 hover:-translate-y-2 shadow-2xl"
-                >
-                  <Icon size={24} />
-                </button>
+            <div className="footer-social" style={{ display: "flex", gap: 10 }}>
+              {[
+                { label: "LinkedIn", icon: <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>, d: <rect x="2" y="9" width="4" height="12"/> },
+              ].map((_, i) => (
+                <a key={i} href="#" aria-label="Social" style={{ display: "inline-flex" }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                    <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+                  </svg>
+                </a>
               ))}
-            </div>
-          </div>
-
-          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-12 sm:gap-20">
-             <div>
-               <h4 className="text-[10px] font-black uppercase tracking-[0.5em] text-primary mb-10 italic">Systems</h4>
-               <ul className="space-y-6">
-
-                 <li><Link to="/products/evodine" className="text-lg text-muted-foreground hover:text-primary transition-colors font-semibold tracking-tighter italic">EvoDine System</Link></li>
-                 <li><Link to="/products/evovilla" className="text-lg text-muted-foreground hover:text-primary transition-colors font-semibold tracking-tighter italic">EVOVilla Core</Link></li>
-                 <li><Link to="/products/evoinventory" className="text-lg text-muted-foreground hover:text-primary transition-colors font-semibold tracking-tighter italic">EvoInventory Labs</Link></li>
-                 <li><button onClick={() => handleNavClick("products")} className="text-lg text-muted-foreground hover:text-primary transition-colors font-semibold tracking-tighter italic">Strategic R&D</button></li>
-               </ul>
-             </div>
-
-             <div>
-               <h4 className="text-[10px] font-black uppercase tracking-[0.5em] text-primary mb-10 italic">Strategy</h4>
-               <ul className="space-y-6">
-                 <li><button onClick={() => handleNavClick("solutions")} className="text-lg text-muted-foreground hover:text-primary transition-colors font-semibold tracking-tighter italic">Vertical Core</button></li>
-                 <li><button onClick={() => handleNavClick("process")} className="text-lg text-muted-foreground hover:text-primary transition-colors font-semibold tracking-tighter italic">The Blueprint</button></li>
-                 <li><button onClick={() => handleNavClick("testimonials")} className="text-lg text-muted-foreground hover:text-primary transition-colors font-semibold tracking-tighter italic">Industry Proof</button></li>
-                 <li><button onClick={() => handleNavClick("contact")} className="text-lg text-muted-foreground hover:text-primary transition-colors font-semibold tracking-tighter italic">Architecture Series</button></li>
-               </ul>
-             </div>
-
-             <div>
-               <h4 className="text-[10px] font-black uppercase tracking-[0.5em] text-primary mb-10 italic">Command</h4>
-               <ul className="space-y-6">
-                 <li className="flex items-center gap-4 text-sm text-muted-foreground font-semibold tracking-tighter italic">
-                   <Mail size={18} className="text-primary shrink-0" />
-                   <a href="mailto:architect@evosolutions.com" className="hover:text-primary transition-all">architect@evosolutions.com</a>
-                 </li>
-                 <li className="flex items-center gap-4 text-sm text-muted-foreground font-semibold tracking-tighter italic">
-                   <Phone size={18} className="text-primary shrink-0" />
-                   <a href="tel:+15551234567" className="hover:text-primary transition-all">+1 (555) 000-EVO</a>
-                 </li>
-                 <li className="flex items-start gap-4 text-[10px] font-black tracking-widest opacity-40 uppercase">
-                   <MapPin size={18} className="text-primary shrink-0 mt-1" />
-                   <span>Global HQ:<br />Innovation Blvd,<br />Tech City, TC 10101</span>
-                 </li>
-               </ul>
-             </div>
-          </div>
-        </div>
-
-        <div className="pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10">
-          <div className="flex flex-col gap-2">
-            <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground italic">
-              &copy; 2024 EVO SOLUTIONS ARCHITECTURE. ALL RIGHTS RESERVED.
-            </p>
-            <div className="flex gap-4 items-center">
-               <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-               <span className="text-[8px] font-black tracking-[0.3em] opacity-30 text-white uppercase">System Status: Optimal Deployment</span>
-            </div>
-          </div>
-          
-          <div className="flex gap-12">
-            {["Privacy_Protocol", "Terms_of_Authority", "Security_Core"].map((legal) => (
-              <a key={legal} href="#" className="text-[10px] font-black uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors italic">
-                {legal}
+              <a href="mailto:infotagteamengineering@gmail.com" aria-label="Email">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
               </a>
-            ))}
+              <a href="#" aria-label="Twitter">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                </svg>
+              </a>
+              <a href="#" aria-label="Facebook">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          {/* Products */}
+          <div>
+            <h4 style={{ fontFamily: "var(--font-jakarta)", fontSize: ".72rem", fontWeight: 700, color: "var(--ed-orange)", textTransform: "uppercase", letterSpacing: ".12em", marginBottom: 20 }}>
+              Products
+            </h4>
+            <ul style={{ display: "flex", flexDirection: "column", gap: 12, margin: 0, padding: 0, listStyle: "none" }}>
+              {[
+                { label: "EvoDine", to: "/products/evodine" },
+                { label: "EvoPos", to: null, section: "contact" },
+                { label: "EvoReservation", to: null, section: "contact" },
+              ].map((item) => (
+                <li key={item.label}>
+                  {item.to ? (
+                    <Link to={item.to} style={{ fontSize: ".9rem", color: "var(--ed-text-secondary)", fontWeight: 500, textDecoration: "none", transition: "color .2s" }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "#FF6B2B")}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = "var(--ed-text-secondary)")}
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <button onClick={() => item.section && scrollTo(item.section)}
+                      style={{ fontSize: ".9rem", color: "var(--ed-text-secondary)", fontWeight: 500, background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "var(--font-body)", transition: "color .2s" }}
+                      onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.color = "#FF6B2B")}
+                      onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.color = "var(--ed-text-secondary)")}
+                    >
+                      {item.label}
+                    </button>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h4 style={{ fontFamily: "var(--font-jakarta)", fontSize: ".72rem", fontWeight: 700, color: "var(--ed-orange)", textTransform: "uppercase", letterSpacing: ".12em", marginBottom: 20 }}>
+              Company
+            </h4>
+            <ul style={{ display: "flex", flexDirection: "column", gap: 12, margin: 0, padding: 0, listStyle: "none" }}>
+              {[
+                { label: "About Us", section: "about" },
+                { label: "Our Products", section: "products" },
+                { label: "Why Us", section: "why-us" },
+                { label: "Contact", section: "contact" },
+              ].map((item) => (
+                <li key={item.label}>
+                  <button onClick={() => scrollTo(item.section)}
+                    style={{ fontSize: ".9rem", color: "var(--ed-text-secondary)", fontWeight: 500, background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "var(--font-body)", transition: "color .2s" }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.color = "#FF6B2B")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.color = "var(--ed-text-secondary)")}
+                  >
+                    {item.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 style={{ fontFamily: "var(--font-jakarta)", fontSize: ".72rem", fontWeight: 700, color: "var(--ed-orange)", textTransform: "uppercase", letterSpacing: ".12em", marginBottom: 20 }}>
+              Contact
+            </h4>
+            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6B2B" strokeWidth="2" style={{ flexShrink: 0 }}>
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                <a href="mailto:infotagteamengineering@gmail.com"
+                  style={{ fontSize: ".82rem", color: "var(--ed-text-secondary)", textDecoration: "none", wordBreak: "break-word", transition: "color .2s" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#FF6B2B")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--ed-text-secondary)")}
+                >
+                  infotagteamengineering@gmail.com
+                </a>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6B2B" strokeWidth="2" style={{ flexShrink: 0 }}>
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                </svg>
+                <span style={{ fontSize: ".82rem", color: "var(--ed-text-secondary)" }}>
+                  TagTeam Engineering
+                </span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Bottom */}
+      <div style={{ borderTop: "1px solid var(--ed-border)" }}>
+        <div style={{
+          maxWidth: 1200, margin: "0 auto", padding: "20px 24px",
+          display: "flex", justifyContent: "space-between", alignItems: "center",
+          flexWrap: "wrap", gap: 12,
+        }}>
+          <p style={{ fontSize: ".8rem", color: "var(--ed-text-muted)", margin: 0 }}>
+            © 2026 <strong style={{ color: "var(--ed-text-secondary)" }}>EvoSolutions</strong> — A TagTeam Engineering Product. All rights reserved.
+          </p>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: ".78rem", color: "var(--ed-text-muted)" }}>
+            Built with
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#FF6B2B" stroke="none">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+            by TagTeam Engineering
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .footer-grid-cols { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
+        }
+        @media (max-width: 480px) {
+          .footer-grid-cols { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </footer>
   );
 };

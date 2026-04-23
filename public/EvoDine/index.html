@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EvoDine — Advanced Restaurant Management System by EvoSolution</title>
+  <meta name="description" content="EvoDine is a real-time, end-to-end restaurant management platform connecting orders, kitchen, bar, billing, and analytics in one powerful system. Built by EvoSolution — TagTeam Engineering." />
+  <meta name="keywords" content="restaurant management system, POS, kitchen display, order management, cashier billing, restaurant software" />
+  <meta property="og:title" content="EvoDine — Advanced Restaurant Management System" />
+  <meta property="og:description" content="Real-time restaurant management: orders, kitchen, bar, billing & analytics unified." />
+  <link rel="icon" type="image/png" href="icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="preloader-logo">
+      <img src="icon.png" alt="EvoDine" class="preloader-icon" />
+      <span class="preloader-text">Evo<span>Dine</span></span>
+    </div>
+    <div class="preloader-bar"><div class="preloader-fill"></div></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header id="navbar">
+    <nav class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <img src="icon.png" alt="EvoDine Logo" class="nav-logo-img" />
+        <span>Evo<span class="logo-accent">Dine</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#video-showcase">Demo</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#workflow">Workflow</a></li>
+        <li><a href="#why-choose">Benefits</a></li>
+        <li><a href="#screens">Preview</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="#contact" class="btn-outline-nav">Contact Us</a>
+        <a href="#contact" class="btn-primary-nav">Request Demo</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="hero">
+    <canvas id="particleCanvas"></canvas>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <div class="container hero-inner">
+      <div class="hero-content" data-reveal>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Now Live — Real-Time Restaurant Platform
+        </div>
+        <h1 class="hero-title">
+          Run Your Restaurant<br />
+          <span class="gradient-text">Smarter. Faster.</span><br />
+          Effortlessly.
+        </h1>
+        <p class="hero-subtitle">
+          EvoDine unifies order creation, kitchen workflows, bar operations,
+          cashier billing, and live analytics into one seamless real-time
+          platform — purpose-built for modern restaurants.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary btn-lg">
+            <i class="fa-solid fa-calendar-check"></i> Request a Demo
+          </a>
+          <a href="#features" class="btn-ghost btn-lg">
+            <i class="fa-solid fa-play-circle"></i> Explore Features
+          </a>
+        </div>
+        <div class="hero-quick-stats">
+          <div class="qs-item"><strong>7</strong><span>User Roles</span></div>
+          <div class="qs-divider"></div>
+          <div class="qs-item"><strong>Custom</strong><span>KPI Dashboard</span></div>
+          <div class="qs-divider"></div>
+          <div class="qs-item"><strong>&lt;1s</strong><span>Real-Time</span></div>
+          <div class="qs-divider"></div>
+          <div class="qs-item"><strong>6</strong><span>Order Stages</span></div>
+        </div>
+      </div>
+
+      <!-- HERO DASHBOARD MOCKUP -->
+      <div class="hero-mockup" data-reveal data-delay="200">
+        <div class="mockup-glow"></div>
+        <div class="mockup-browser">
+          <div class="browser-topbar">
+            <div class="browser-dots">
+              <span class="bd-red"></span>
+              <span class="bd-yellow"></span>
+              <span class="bd-green"></span>
+            </div>
+            <div class="browser-url">
+              <i class="fa-solid fa-lock" style="font-size:10px;color:#4ade80;"></i>
+              app.evodine.com / dashboard
+            </div>
+          </div>
+          <div class="dash-layout">
+            <div class="dash-sidebar">
+              <div class="ds-logo">ED</div>
+              <div class="ds-nav-item active"><i class="fa-solid fa-gauge"></i></div>
+              <div class="ds-nav-item"><i class="fa-solid fa-receipt"></i></div>
+              <div class="ds-nav-item"><i class="fa-solid fa-kitchen-set"></i></div>
+              <div class="ds-nav-item"><i class="fa-solid fa-cash-register"></i></div>
+              <div class="ds-nav-item"><i class="fa-solid fa-utensils"></i></div>
+            </div>
+            <div class="dash-main">
+              <div class="dash-topbar">
+                <span class="dash-greeting">Dashboard Overview</span>
+                <span class="live-indicator"><span class="live-dot-anim"></span> Live</span>
+              </div>
+              <div class="dash-kpis">
+                <div class="kpi-card kpi-orange">
+                  <div class="kpi-icon"><i class="fa-solid fa-coins"></i></div>
+                  <div class="kpi-val" data-count="48250" data-prefix="Rs.">Rs. 0</div>
+                  <div class="kpi-lbl">Revenue Today</div>
+                  <div class="kpi-delta up">↑ 12%</div>
+                </div>
+                <div class="kpi-card kpi-blue">
+                  <div class="kpi-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+                  <div class="kpi-val" data-count="84">0</div>
+                  <div class="kpi-lbl">Total Orders</div>
+                  <div class="kpi-delta up">↑ 8%</div>
+                </div>
+                <div class="kpi-card kpi-green">
+                  <div class="kpi-icon"><i class="fa-solid fa-chair"></i></div>
+                  <div class="kpi-val" data-count="12">0</div>
+                  <div class="kpi-lbl">Active Tables</div>
+                  <div class="kpi-delta down">↓ 2</div>
+                </div>
+              </div>
+              <div class="dash-orders-mini">
+                <div class="dom-title">Live Orders</div>
+                <div class="order-row" id="orderRow1">
+                  <span class="order-id">#EVO-0847</span>
+                  <span class="order-tbl">Table 04</span>
+                  <span class="status-chip preparing">Preparing</span>
+                </div>
+                <div class="order-row">
+                  <span class="order-id">#EVO-0848</span>
+                  <span class="order-tbl">Table 07</span>
+                  <span class="status-chip ready">Ready</span>
+                </div>
+                <div class="order-row">
+                  <span class="order-id">#EVO-0849</span>
+                  <span class="order-tbl">Table 02</span>
+                  <span class="status-chip checking">Checking</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Floating notification cards -->
+        <div class="float-notif fn-1">
+          <div class="fn-icon"><i class="fa-solid fa-bell"></i></div>
+          <div class="fn-text">
+            <strong>New Order</strong>
+            <span>Table 09 — 3 items</span>
+          </div>
+        </div>
+        <div class="float-notif fn-2">
+          <div class="fn-icon green"><i class="fa-solid fa-check-circle"></i></div>
+          <div class="fn-text">
+            <strong>Order Served</strong>
+            <span>#EVO-0845 complete</span>
+          </div>
+        </div>
+        <div class="float-notif fn-3">
+          <div class="fn-icon blue"><i class="fa-solid fa-chart-line"></i></div>
+          <div class="fn-text">
+            <strong>+Rs. 1,250</strong>
+            <span>New payment received</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll to explore</span>
+      <div class="scroll-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual" data-reveal>
+          <div class="about-card-stack">
+            <div class="about-card ac-1">
+              <div class="ac-icon orange"><i class="fa-solid fa-bolt"></i></div>
+              <div class="ac-content">
+                <strong>Real-Time Sync</strong>
+                <span>All stations update in under 1 second via SignalR WebSocket technology.</span>
+              </div>
+            </div>
+            <div class="about-card ac-2">
+              <div class="ac-icon blue"><i class="fa-solid fa-shield-halved"></i></div>
+              <div class="ac-content">
+                <strong>Role-Based Security</strong>
+                <span>7 distinct roles with granular access control for every department.</span>
+              </div>
+            </div>
+            <div class="about-card ac-3">
+              <div class="ac-icon green"><i class="fa-solid fa-globe"></i></div>
+              <div class="ac-content">
+                <strong>Web-Based Platform</strong>
+                <span>Angular 17 — runs on any browser, any device, on your local network.</span>
+              </div>
+            </div>
+            <div class="about-brand-badge">
+              <img src="icon.png" alt="EvoDine" />
+              <div>
+                <span>Built by</span>
+                <strong>EvoSolution</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-text" data-reveal data-delay="150">
+          <div class="section-eyebrow">About EvoDine</div>
+          <h2 class="section-title">One Platform.<br /><span class="gradient-text">Total Restaurant Control.</span></h2>
+          <p>EvoDine is a modern, web-based restaurant order management platform that connects every department of your restaurant — from the moment a customer sits down to the instant the bill is settled.</p>
+          <p>Built on Angular 17 with Microsoft SignalR real-time technology, EvoDine eliminates paper-based order-taking, reduces communication errors, accelerates order fulfilment, and gives management live operational visibility from a single dashboard.</p>
+          <div class="about-tags">
+            <span><i class="fa-solid fa-check"></i> Digital Order Creation</span>
+            <span><i class="fa-solid fa-check"></i> Real-Time Kitchen Display</span>
+            <span><i class="fa-solid fa-check"></i> Live Dashboard Analytics</span>
+            <span><i class="fa-solid fa-check"></i> Multi-Method Payment</span>
+            <span><i class="fa-solid fa-check"></i> Structured Cancellation Workflow</span>
+            <span><i class="fa-solid fa-check"></i> Full Audit Trail</span>
+          </div>
+          <div class="about-company">
+            <div class="company-info">
+              <img src="icon.png" alt="EvoSolution" class="company-logo" />
+              <div>
+                <strong>EvoSolution</strong>
+                <span>A Product by TagTeam Engineering</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO SHOWCASE SECTION -->
+  <section id="video-showcase">
+    <div class="vs-bg-orb vs-orb-1"></div>
+    <div class="vs-bg-orb vs-orb-2"></div>
+    <div class="vs-grid-lines"></div>
+    <div class="container">
+
+      <div class="vs-header" data-reveal>
+        <div class="section-eyebrow">See It In Motion</div>
+        <h2 class="section-title">Watch EvoDine<br /><span class="gradient-text">Transform Your Restaurant</span></h2>
+        <p class="vs-subtext">A complete platform walkthrough — from the moment an order is created to the instant payment is settled.</p>
+      </div>
+
+      <div class="vs-player-wrap" data-reveal data-delay="150">
+        <!-- Animated glow border ring -->
+        <div class="vs-glow-ring"></div>
+
+        <!-- Video facade — loads iframe only on click for clean UI -->
+        <div class="vs-facade" id="vsFacade" data-video="gJhjFcdUz0M" role="button" tabindex="0" aria-label="Play EvoDine product demo">
+          <img
+            class="vs-thumbnail"
+            src="https://img.youtube.com/vi/gJhjFcdUz0M/maxresdefault.jpg"
+            alt="EvoDine Restaurant Management Platform — Full Demo"
+            onerror="this.style.display='none'"
+          />
+          <div class="vs-overlay"></div>
+
+          <!-- Pulsing play rings -->
+          <div class="vs-play-btn">
+            <div class="vs-play-ring vs-ring-1"></div>
+            <div class="vs-play-ring vs-ring-2"></div>
+            <div class="vs-play-icon">
+              <i class="fa-solid fa-play"></i>
+            </div>
+          </div>
+
+          <!-- Floating info badges -->
+          <div class="vs-badge vs-badge-left">
+            <i class="fa-solid fa-bolt"></i> Full Platform Walkthrough
+          </div>
+          <div class="vs-badge vs-badge-right">
+            <i class="fa-solid fa-circle-play"></i> Click to Play
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature highlights below video -->
+      <div class="vs-highlights" data-reveal data-delay="250">
+        <div class="vs-hl-item">
+          <div class="vs-hl-icon"><i class="fa-solid fa-receipt"></i></div>
+          <span>Order Creation</span>
+        </div>
+        <div class="vs-hl-dot"></div>
+        <div class="vs-hl-item">
+          <div class="vs-hl-icon"><i class="fa-solid fa-fire-burner"></i></div>
+          <span>Kitchen & Bar</span>
+        </div>
+        <div class="vs-hl-dot"></div>
+        <div class="vs-hl-item">
+          <div class="vs-hl-icon"><i class="fa-solid fa-gauge-high"></i></div>
+          <span>Live Dashboard</span>
+        </div>
+        <div class="vs-hl-dot"></div>
+        <div class="vs-hl-item">
+          <div class="vs-hl-icon"><i class="fa-solid fa-cash-register"></i></div>
+          <span>Cashier Billing</span>
+        </div>
+        <div class="vs-hl-dot"></div>
+        <div class="vs-hl-item">
+          <div class="vs-hl-icon"><i class="fa-solid fa-users-gear"></i></div>
+          <span>Role Management</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CORE FEATURES SECTION -->
+  <section id="features">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <div class="section-eyebrow">Core Capabilities</div>
+        <h2 class="section-title">Everything Your Restaurant Needs,<br /><span class="gradient-text">In One System</span></h2>
+        <p class="section-desc">From the first order to the final receipt — EvoDine handles every operational touchpoint with precision and speed.</p>
+      </div>
+      <div class="features-grid">
+
+        <div class="feature-card" data-reveal>
+          <div class="fc-icon-wrap orange">
+            <i class="fa-solid fa-receipt"></i>
+          </div>
+          <h3>Order Management</h3>
+          <p>Digital order creation at tables or counters. Support for Dine In, Takeaway, Delivery, and Package — with add-ons, portions, and special notes.</p>
+          <div class="fc-tag">Stue Order Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="80">
+          <div class="fc-icon-wrap blue">
+            <i class="fa-solid fa-fire-burner"></i>
+          </div>
+          <h3>Kitchen Workflow</h3>
+          <p>Real-time kitchen display showing food orders as they arrive. Chefs track every item through Checking → Queued → Preparing → Ready → Served.</p>
+          <div class="fc-tag">Order Movement</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="160">
+          <div class="fc-icon-wrap orange">
+            <i class="fa-solid fa-martini-glass-citrus"></i>
+          </div>
+          <h3>Bar Workflow</h3>
+          <p>Parallel bar processing completely independent from kitchen. Bar staff see only beverage orders — routing is automatic based on item category.</p>
+          <div class="fc-tag">Order Movement</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="240">
+          <div class="fc-icon-wrap blue">
+            <i class="fa-solid fa-cash-register"></i>
+          </div>
+          <h3>Cashier Billing</h3>
+          <p>Automated billing queue. Orders appear automatically once all items are served. Apply surcharges, print formatted invoices, and process payment instantly.</p>
+          <div class="fc-tag">Cashier Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal>
+          <div class="fc-icon-wrap orange">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <h3>Dashboard Analytics</h3>
+          <p>Management command center with customisable KPI cards, revenue trend charts, peak hour analysis, top items ranking, and payment breakdowns.</p>
+          <div class="fc-tag">Dashboard Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="80">
+          <div class="fc-icon-wrap blue">
+            <i class="fa-solid fa-chair"></i>
+          </div>
+          <h3>Table Management</h3>
+          <p>Register and manage all dining tables with names and seating capacity. Real-time status tracking: Available, Occupied, and Reserved at a glance.</p>
+          <div class="fc-tag">Tables Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="160">
+          <div class="fc-icon-wrap orange">
+            <i class="fa-solid fa-utensils"></i>
+          </div>
+          <h3>Menu &amp; Food Items</h3>
+          <p>Complete menu setup with categories, portion sizes, and per-portion pricing. Combo flags for set meals, food images, and customer-facing descriptions.</p>
+          <div class="fc-tag">Menu Setup</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="240">
+          <div class="fc-icon-wrap blue">
+            <i class="fa-solid fa-circle-plus"></i>
+          </div>
+          <h3>Addons Management</h3>
+          <p>Configure optional extras like sauces, toppings, and premium ingredients with individual unit pricing and category grouping for streamlined ordering.</p>
+          <div class="fc-tag">Menu Setup</div>
+        </div>
+
+        <div class="feature-card" data-reveal>
+          <div class="fc-icon-wrap orange">
+            <i class="fa-solid fa-ban"></i>
+          </div>
+          <h3>Cancellation Control</h3>
+          <p>Formal cancellation workflow requiring manager approval. Staff submit requests with mandatory remarks — no silent cancellations, full audit trail preserved.</p>
+          <div class="fc-tag">Cancellation Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="80">
+          <div class="fc-icon-wrap blue">
+            <i class="fa-solid fa-users-gear"></i>
+          </div>
+          <h3>Role-Based Access</h3>
+          <p>7 distinct user roles — Administrator, Kitchen Head, Chef, Bar Head, Bar Chef, Server, and Cashier — each with precisely defined access scopes.</p>
+          <div class="fc-tag">Security Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="160">
+          <div class="fc-icon-wrap orange">
+            <i class="fa-solid fa-chart-simple"></i>
+          </div>
+          <h3>Reports &amp; Tracking</h3>
+          <p>Revenue tracking, order history, preparation time analytics, category performance, top selling items, and payment method breakdowns across any date range.</p>
+          <div class="fc-tag">Analytics Module</div>
+        </div>
+
+        <div class="feature-card feature-card-cta" data-reveal data-delay="240">
+          <div class="fcc-content">
+            <div class="fcc-icon"><i class="fa-solid fa-rocket"></i></div>
+            <h3>Ready to See It Live?</h3>
+            <p>Schedule a personalised demo and see EvoDine running in action for your restaurant.</p>
+            <a href="#contact" class="btn-primary">Book Your Demo <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- UNIQUE FEATURES / WORKFLOW SECTION -->
+  <section id="workflow">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <div class="section-eyebrow">How It Works</div>
+        <h2 class="section-title">The Complete Order<br /><span class="gradient-text">Lifecycle — Animated</span></h2>
+        <p class="section-desc">Watch how an order flows from creation to payment across every department in real time.</p>
+      </div>
+
+      <!-- ANIMATED WORKFLOW PIPELINE -->
+      <div class="workflow-pipeline" data-reveal>
+        <div class="pipeline-track">
+          <div class="pipeline-progress" id="pipelineProgress"></div>
+        </div>
+        <div class="pipeline-stages">
+          <div class="ps-stage" data-stage="0">
+            <div class="ps-node orange"><i class="fa-solid fa-mobile-screen-button"></i></div>
+            <div class="ps-label">Order<br />Created</div>
+            <div class="ps-actor">Server / Waiter</div>
+          </div>
+          <div class="ps-connector"><i class="fa-solid fa-chevron-right"></i></div>
+          <div class="ps-stage" data-stage="1">
+            <div class="ps-node blue"><i class="fa-solid fa-eye"></i></div>
+            <div class="ps-label">Checking</div>
+            <div class="ps-actor">Kitchen / Bar</div>
+          </div>
+          <div class="ps-connector"><i class="fa-solid fa-chevron-right"></i></div>
+          <div class="ps-stage" data-stage="2">
+            <div class="ps-node orange"><i class="fa-solid fa-list-check"></i></div>
+            <div class="ps-label">Queued</div>
+            <div class="ps-actor">Chef Assigned</div>
+          </div>
+          <div class="ps-connector"><i class="fa-solid fa-chevron-right"></i></div>
+          <div class="ps-stage" data-stage="3">
+            <div class="ps-node blue"><i class="fa-solid fa-fire"></i></div>
+            <div class="ps-label">Preparing</div>
+            <div class="ps-actor">Active Cooking</div>
+          </div>
+          <div class="ps-connector"><i class="fa-solid fa-chevron-right"></i></div>
+          <div class="ps-stage" data-stage="4">
+            <div class="ps-node orange"><i class="fa-solid fa-bell-concierge"></i></div>
+            <div class="ps-label">Ready<br />to Serve</div>
+            <div class="ps-actor">Await Pickup</div>
+          </div>
+          <div class="ps-connector"><i class="fa-solid fa-chevron-right"></i></div>
+          <div class="ps-stage" data-stage="5">
+            <div class="ps-node blue"><i class="fa-solid fa-plate-wheat"></i></div>
+            <div class="ps-label">Served</div>
+            <div class="ps-actor">Delivered</div>
+          </div>
+          <div class="ps-connector"><i class="fa-solid fa-chevron-right"></i></div>
+          <div class="ps-stage" data-stage="6">
+            <div class="ps-node green"><i class="fa-solid fa-cash-register"></i></div>
+            <div class="ps-label">Billing</div>
+            <div class="ps-actor">Cashier Auto</div>
+          </div>
+        </div>
+        <div class="pipeline-realtime">
+          <i class="fa-solid fa-bolt"></i>
+          All stage transitions broadcast to every screen in under <strong>1 second</strong> via SignalR WebSocket
+        </div>
+      </div>
+
+      <!-- UNIQUE FEATURES GRID -->
+      <div class="unique-grid">
+
+        <div class="uf-card" data-reveal>
+          <div class="uf-number">01</div>
+          <div class="uf-icon-wrap">
+            <div class="uf-icon pulse-orange"><i class="fa-solid fa-bolt"></i></div>
+          </div>
+          <h3>Real-Time Order Movement</h3>
+          <p>Every order status change broadcasts to all connected screens within <strong>1 second</strong> — no refresh, no delay, no manual sync needed.</p>
+          <div class="uf-highlight">
+            <span class="uh-val">&lt; 1s</span>
+            <span class="uh-lbl">Update latency</span>
+          </div>
+        </div>
+
+        <div class="uf-card" data-reveal data-delay="100">
+          <div class="uf-number">02</div>
+          <div class="uf-icon-wrap">
+            <div class="uf-icon pulse-blue"><i class="fa-solid fa-code-branch"></i></div>
+          </div>
+          <h3>Parallel Kitchen + Bar Processing</h3>
+          <p>One order, two departments. Food items route to the kitchen; beverages route to the bar — simultaneously and automatically.</p>
+          <div class="uf-parallel">
+            <div class="up-branch orange"><i class="fa-solid fa-fire-burner"></i> Kitchen</div>
+            <div class="up-branch blue"><i class="fa-solid fa-martini-glass-citrus"></i> Bar</div>
+          </div>
+        </div>
+
+        <div class="uf-card" data-reveal data-delay="200">
+          <div class="uf-number">03</div>
+          <div class="uf-icon-wrap">
+            <div class="uf-icon pulse-orange"><i class="fa-solid fa-users-gear"></i></div>
+          </div>
+          <h3>7-Role Permission System</h3>
+          <p>Granular access control ensures each staff member sees exactly what they need — and nothing they shouldn't. Protect operations and data at every level.</p>
+          <div class="role-pills">
+            <span>Admin</span><span>Kitchen Head</span><span>Chef</span>
+            <span>Bar Head</span><span>Bar Chef</span><span>Server</span><span>Cashier</span>
+          </div>
+        </div>
+
+        <div class="uf-card" data-reveal>
+          <div class="uf-number">04</div>
+          <div class="uf-icon-wrap">
+            <div class="uf-icon pulse-blue"><i class="fa-solid fa-credit-card"></i></div>
+          </div>
+          <h3>Multi-Method Payment</h3>
+          <p>Cash, credit card, debit card, or flexible split payments — Cash + Card or Card + Card. Smart fill-remaining logic prevents cashier errors.</p>
+          <div class="payment-methods">
+            <span><i class="fa-solid fa-money-bill-wave"></i> Cash</span>
+            <span><i class="fa-solid fa-credit-card"></i> Credit</span>
+            <span><i class="fa-solid fa-credit-card"></i> Debit</span>
+            <span><i class="fa-solid fa-shuffle"></i> Split</span>
+          </div>
+        </div>
+
+        <div class="uf-card" data-reveal data-delay="100">
+          <div class="uf-number">05</div>
+          <div class="uf-icon-wrap">
+            <div class="uf-icon pulse-orange"><i class="fa-solid fa-gauge-high"></i></div>
+          </div>
+          <h3>Configurable Live Dashboard</h3>
+          <p>Management sees live metrics — revenue, orders, table occupancy, prep time, and more — all with delta comparisons and trend charts. KPI cards are added based on your business needs.</p>
+          <div class="kpi-mini-list">
+            <span>Revenue</span><span>Orders</span><span>Avg Order</span>
+            <span>Active Orders</span><span>Tables</span><span>Prep Time</span>
+            <span class="kpi-tag-custom">+ More on request</span>
+          </div>
+        </div>
+
+        <div class="uf-card" data-reveal data-delay="200">
+          <div class="uf-number">06</div>
+          <div class="uf-icon-wrap">
+            <div class="uf-icon pulse-blue"><i class="fa-solid fa-shield-halved"></i></div>
+          </div>
+          <h3>Structured Cancellation Control</h3>
+          <p>No silent cancellations. Staff submit formal requests with mandatory remarks. Managers approve or reject — every decision timestamped and permanently recorded.</p>
+          <div class="audit-flow">
+            <span>Request</span>
+            <i class="fa-solid fa-arrow-right"></i>
+            <span>Review</span>
+            <i class="fa-solid fa-arrow-right"></i>
+            <span>Decision</span>
+            <i class="fa-solid fa-arrow-right"></i>
+            <span class="audit-recorded">Recorded</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE SECTION -->
+  <section id="why-choose">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <div class="section-eyebrow">Why EvoDine</div>
+        <h2 class="section-title">Built for Restaurants That<br /><span class="gradient-text">Refuse to Stand Still</span></h2>
+        <p class="section-desc">From small cafes to large multi-floor restaurants — EvoDine scales with your ambitions.</p>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-item" data-reveal>
+          <div class="bi-icon orange"><i class="fa-solid fa-gauge-high"></i></div>
+          <h4>Faster Service Speed</h4>
+          <p>Digital orders hit the kitchen in seconds. Staff spend zero time running paper slips — every second counts in a busy restaurant.</p>
+        </div>
+        <div class="benefit-item" data-reveal data-delay="80">
+          <div class="bi-icon blue"><i class="fa-solid fa-circle-check"></i></div>
+          <h4>Eliminated Manual Errors</h4>
+          <p>Written order mistakes, missed items, and verbal miscommunications become history. Every order is precise, complete, and instantly verifiable.</p>
+        </div>
+        <div class="benefit-item" data-reveal data-delay="160">
+          <div class="bi-icon orange"><i class="fa-solid fa-face-smile"></i></div>
+          <h4>Better Customer Experience</h4>
+          <p>Faster delivery, accurate orders, professional printed bills, and seamless payment processing leave every guest with a lasting positive impression.</p>
+        </div>
+        <div class="benefit-item" data-reveal data-delay="240">
+          <div class="bi-icon blue"><i class="fa-solid fa-people-group"></i></div>
+          <h4>Superior Staff Coordination</h4>
+          <p>Kitchen, bar, servers, and cashiers operate from one unified system — roles are clear, responsibilities are defined, and communication is automatic.</p>
+        </div>
+        <div class="benefit-item" data-reveal>
+          <div class="bi-icon orange"><i class="fa-solid fa-sliders"></i></div>
+          <h4>Centralised Control</h4>
+          <p>Manage menu items, pricing, tables, surcharges, and staff roles from one administration panel. Changes propagate instantly to all stations.</p>
+        </div>
+        <div class="benefit-item" data-reveal data-delay="80">
+          <div class="bi-icon blue"><i class="fa-solid fa-scale-balanced"></i></div>
+          <h4>Scales With Your Business</h4>
+          <p>Whether you run a single table café or a multi-department fine dining restaurant — EvoDine's role and module architecture scales to your exact size.</p>
+        </div>
+        <div class="benefit-item" data-reveal data-delay="160">
+          <div class="bi-icon orange"><i class="fa-solid fa-eye"></i></div>
+          <h4>Live Operational Visibility</h4>
+          <p>Managers see everything in real-time: active orders, table status, revenue, peak hours, and preparation times — from any device, anywhere on the network.</p>
+        </div>
+        <div class="benefit-item" data-reveal data-delay="240">
+          <div class="bi-icon blue"><i class="fa-solid fa-lock"></i></div>
+          <h4>Security &amp; Accountability</h4>
+          <p>Role-based access prevents unauthorised actions. Full audit trails on cancellations, approvals, and payment decisions protect your business and staff.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS SECTION -->
+  <section id="stats">
+    <div class="stats-bg-pattern"></div>
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item" data-reveal>
+          <div class="stat-number"><span class="counter" data-target="7">0</span></div>
+          <div class="stat-label">User Roles</div>
+          <div class="stat-desc">Granular access control</div>
+        </div>
+        <div class="stat-item" data-reveal data-delay="100">
+          <div class="stat-number"><span>Custom</span></div>
+          <div class="stat-label">KPI Dashboard</div>
+          <div class="stat-desc">KPIs added per your business needs</div>
+        </div>
+        <div class="stat-item" data-reveal data-delay="200">
+          <div class="stat-number"><span class="counter" data-target="6">0</span></div>
+          <div class="stat-label">Order Stages</div>
+          <div class="stat-desc">Full lifecycle visibility</div>
+        </div>
+        <div class="stat-item" data-reveal data-delay="300">
+          <div class="stat-number"><span>&lt; 1s</span></div>
+          <div class="stat-label">Real-Time Updates</div>
+          <div class="stat-desc">SignalR WebSocket technology</div>
+        </div>
+        <div class="stat-item" data-reveal data-delay="400">
+          <div class="stat-number"><span class="counter" data-target="4">0</span></div>
+          <div class="stat-label">Order Types</div>
+          <div class="stat-desc">Dine In, Takeaway, Delivery, Package</div>
+        </div>
+        <div class="stat-item" data-reveal data-delay="500">
+          <div class="stat-number"><span class="counter" data-target="100">0</span><span>%</span></div>
+          <div class="stat-label">Web-Based</div>
+          <div class="stat-desc">No installation required</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT SCREENS SECTION -->
+  <section id="screens">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <div class="section-eyebrow">Product Preview</div>
+        <h2 class="section-title">See EvoDine<br /><span class="gradient-text">In Action</span></h2>
+        <p class="section-desc">Every module purpose-designed for the real demands of restaurant operations.</p>
+      </div>
+      <div class="screens-tabs" data-reveal>
+        <div class="st-tabs">
+          <button class="st-tab active" data-screen="dashboard">Dashboard</button>
+          <button class="st-tab" data-screen="order">Order</button>
+          <button class="st-tab" data-screen="kitchen">Kitchen</button>
+          <button class="st-tab" data-screen="cashier">Cashier</button>
+          <button class="st-tab" data-screen="menu">Menu Setup</button>
+        </div>
+        <div class="st-content">
+
+          <div class="screen-panel active" id="screen-dashboard">
+            <div class="screen-mockup-frame">
+              <div class="smf-bar">
+                <div class="smf-dots"><span></span><span></span><span></span></div>
+                <div class="smf-url">app.evodine.com/dashboard</div>
+              </div>
+              <div class="smf-screenshot">
+                <img src="Screen%20Shots/Management%20Dashboard.jpg" alt="EvoDine Management Dashboard" />
+              </div>
+            </div>
+            <div class="screen-info">
+              <h3>Management Dashboard</h3>
+              <p>The operational command center. Managers access total revenue, active orders, table occupancy, average preparation time, and revenue trend charts — all refreshing in real time.</p>
+              <ul>
+                <li><i class="fa-solid fa-check-circle"></i> Configurable KPI cards with delta comparisons</li>
+                <li><i class="fa-solid fa-check-circle"></i> Revenue trend &amp; order distribution charts</li>
+                <li><i class="fa-solid fa-check-circle"></i> Peak hours bar chart analysis</li>
+                <li><i class="fa-solid fa-check-circle"></i> Top 8 selling items ranking</li>
+                <li><i class="fa-solid fa-check-circle"></i> Payment method breakdown</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="screen-panel" id="screen-order">
+            <div class="screen-mockup-frame">
+              <div class="smf-bar">
+                <div class="smf-dots"><span></span><span></span><span></span></div>
+                <div class="smf-url">app.evodine.com/order</div>
+              </div>
+              <div class="smf-screenshot">
+                <img src="Screen%20Shots/Order%20Creation%20Module.jpg" alt="EvoDine Order Creation Module" />
+              </div>
+            </div>
+            <div class="screen-info">
+              <h3>Order Creation Module</h3>
+              <p>Servers create digital orders directly at the table. Browse menu by category, select portions, add extras, attach special notes — then submit to instantly notify kitchen and bar.</p>
+              <ul>
+                <li><i class="fa-solid fa-check-circle"></i> Category-based menu browsing</li>
+                <li><i class="fa-solid fa-check-circle"></i> Dine In, Takeaway, Delivery, Package types</li>
+                <li><i class="fa-solid fa-check-circle"></i> Per-item add-ons and special notes</li>
+                <li><i class="fa-solid fa-check-circle"></i> Pay Now or Pay Later options</li>
+                <li><i class="fa-solid fa-check-circle"></i> Add more items to existing orders</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="screen-panel" id="screen-kitchen">
+            <div class="screen-mockup-frame">
+              <div class="smf-bar">
+                <div class="smf-dots"><span></span><span></span><span></span></div>
+                <div class="smf-url">app.evodine.com/order-movement</div>
+              </div>
+              <div class="smf-screenshot">
+                <img src="Screen%20Shots/Kitchen%20%26%20Bar%20Order%20Movement.jpg" alt="EvoDine Kitchen & Bar Order Movement" />
+              </div>
+            </div>
+            <div class="screen-info">
+              <h3>Kitchen &amp; Bar Order Movement</h3>
+              <p>The heart of kitchen and bar operations. Real-time order cards show all items, current stage, and action buttons. Chefs progress each item through the preparation stages with a single click.</p>
+              <ul>
+                <li><i class="fa-solid fa-check-circle"></i> Auto-routed: kitchen vs bar items</li>
+                <li><i class="fa-solid fa-check-circle"></i> One-click stage advancement</li>
+                <li><i class="fa-solid fa-check-circle"></i> Pin up to 3 priority orders</li>
+                <li><i class="fa-solid fa-check-circle"></i> Bulk select and advance items</li>
+                <li><i class="fa-solid fa-check-circle"></i> Table change and add-more features</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="screen-panel" id="screen-cashier">
+            <div class="screen-mockup-frame">
+              <div class="smf-bar">
+                <div class="smf-dots"><span></span><span></span><span></span></div>
+                <div class="smf-url">app.evodine.com/cashier</div>
+              </div>
+              <div class="smf-screenshot">
+                <img src="Screen%20Shots/Cashier%20%26%20Payment%20Processing.jpg" alt="EvoDine Cashier & Payment Processing" />
+              </div>
+            </div>
+            <div class="screen-info">
+              <h3>Cashier &amp; Payment Processing</h3>
+              <p>Orders appear automatically in the cashier queue once every item is served. Cashiers apply charges, print formatted invoices, and process cash, card, or split payments with full validation.</p>
+              <ul>
+                <li><i class="fa-solid fa-check-circle"></i> Auto-populated billing queue</li>
+                <li><i class="fa-solid fa-check-circle"></i> Toggle surcharges (fixed or percentage)</li>
+                <li><i class="fa-solid fa-check-circle"></i> Formatted invoice printing</li>
+                <li><i class="fa-solid fa-check-circle"></i> Cash, credit, debit payment</li>
+                <li><i class="fa-solid fa-check-circle"></i> Split payment (Cash+Card, Card+Card)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="screen-panel" id="screen-menu">
+            <div class="screen-mockup-frame">
+              <div class="smf-bar">
+                <div class="smf-dots"><span></span><span></span><span></span></div>
+                <div class="smf-url">app.evodine.com/admin/menu</div>
+              </div>
+              <div class="smf-screenshot">
+                <img src="Screen%20Shots/Menu%20%26%20Administration%20Setup.jpg" alt="EvoDine Menu & Administration Setup" />
+              </div>
+            </div>
+            <div class="screen-info">
+              <h3>Menu &amp; Administration Setup</h3>
+              <p>The administration panel gives full control over the restaurant's menu structure. Configure categories linked to service types, define portion sizes, set per-portion pricing, and manage addons with individual unit prices.</p>
+              <ul>
+                <li><i class="fa-solid fa-check-circle"></i> Category with order type linking</li>
+                <li><i class="fa-solid fa-check-circle"></i> Multi-portion pricing per item</li>
+                <li><i class="fa-solid fa-check-circle"></i> Food item images and combo flags</li>
+                <li><i class="fa-solid fa-check-circle"></i> Addon management with pricing</li>
+                <li><i class="fa-solid fa-check-circle"></i> Surcharge rules (fixed + percentage)</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS SECTION -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <div class="section-eyebrow">Trusted By Restaurants</div>
+        <h2 class="section-title">What Our Clients<br /><span class="gradient-text">Are Saying</span></h2>
+      </div>
+      <div class="testimonial-slider" data-reveal>
+        <div class="ts-viewport">
+        <div class="ts-track" id="tsTrack">
+
+          <div class="testimonial-card">
+            <div class="tc-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="tc-quote">"EvoDine completely transformed how our kitchen communicates with front-of-house. Order errors dropped to near zero and service times improved dramatically. Our staff adapted within days."</p>
+            <div class="tc-author">
+              <div class="tca-avatar orange">MR</div>
+              <div class="tca-info">
+                <strong>Mohamed R.</strong>
+                <span>Operations Manager — Grand Spice Restaurant</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="tc-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="tc-quote">"The dashboard alone is worth it. I can see exactly what's happening in my restaurant from my office — revenue, occupied tables, and which orders are delayed. Pure clarity."</p>
+            <div class="tc-author">
+              <div class="tca-avatar blue">SL</div>
+              <div class="tca-info">
+                <strong>Sarah L.</strong>
+                <span>Owner — The Coastal Bistro</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="tc-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="tc-quote">"Split payment and the automatic billing queue saved us so much time during dinner rush. The cashier screen is intuitive — even new staff learn it in minutes."</p>
+            <div class="tc-author">
+              <div class="tca-avatar orange">AK</div>
+              <div class="tca-info">
+                <strong>Ahmed K.</strong>
+                <span>Cashier Supervisor — Urban Flame Kitchen</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="tc-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="tc-quote">"As head chef, the kitchen display showing only my assigned orders is exactly what I needed. No more confusion about whose order is whose. Real-time updates keep everyone coordinated."</p>
+            <div class="tc-author">
+              <div class="tca-avatar blue">JP</div>
+              <div class="tca-info">
+                <strong>James P.</strong>
+                <span>Head Chef — Ember &amp; Oak Fine Dining</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="ts-nav">
+          <button class="ts-btn" id="tsPrev"><i class="fa-solid fa-arrow-left"></i></button>
+          <div class="ts-dots" id="tsDots"></div>
+          <button class="ts-btn" id="tsNext"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+        </div><!-- /.ts-viewport -->
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / INQUIRY FORM SECTION -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info" data-reveal>
+          <div class="section-eyebrow">Get In Touch</div>
+          <h2 class="section-title">Let's Get Your<br /><span class="gradient-text">Restaurant Moving</span></h2>
+          <p>Ready to see EvoDine in action? Fill in your details and our team will reach out within one business day to schedule your personalised demo.</p>
+          <div class="contact-details">
+            <div class="cd-item">
+              <div class="cd-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div>
+                <strong>Email Us</strong>
+                <span>infotagteamengineering@gmail.com</span>
+              </div>
+            </div>
+            <div class="cd-item">
+              <div class="cd-icon"><i class="fa-solid fa-building"></i></div>
+              <div>
+                <strong>Built by</strong>
+                <span>EvoSolution — TagTeam Engineering</span>
+              </div>
+            </div>
+            <div class="cd-item">
+              <div class="cd-icon"><i class="fa-solid fa-clock"></i></div>
+              <div>
+                <strong>Response Time</strong>
+                <span>Within 1 business day</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-promise">
+            <div class="cp-item"><i class="fa-solid fa-check"></i> Free personalised demo</div>
+            <div class="cp-item"><i class="fa-solid fa-check"></i> No commitment required</div>
+            <div class="cp-item"><i class="fa-solid fa-check"></i> Expert onboarding support</div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap" data-reveal data-delay="200">
+          <div class="contact-form-card">
+            <div class="cfc-header">
+              <h3>Request a Demo</h3>
+              <p>Complete the form below and we'll be in touch shortly.</p>
+            </div>
+            <form id="contactForm" novalidate>
+              <!-- Honeypot for spam protection -->
+              <input type="text" name="_honey" style="display:none" />
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fullName">Full Name <span class="req">*</span></label>
+                  <input type="text" id="fullName" name="fullName" placeholder="Your full name" autocomplete="name" />
+                  <span class="field-error" id="err-fullName"></span>
+                </div>
+                <div class="form-group">
+                  <label for="company">Restaurant / Company Name <span class="req">*</span></label>
+                  <input type="text" id="company" name="company" placeholder="Your restaurant name" />
+                  <span class="field-error" id="err-company"></span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">Email Address <span class="req">*</span></label>
+                  <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" />
+                  <span class="field-error" id="err-email"></span>
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone Number <span class="req">*</span></label>
+                  <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900" autocomplete="tel" />
+                  <span class="field-error" id="err-phone"></span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="location">Country / City <span class="req">*</span></label>
+                  <input type="text" id="location" name="location" placeholder="e.g. Dubai, UAE" />
+                  <span class="field-error" id="err-location"></span>
+                </div>
+                <div class="form-group">
+                  <label for="demoDate">Preferred Demo Date</label>
+                  <input type="date" id="demoDate" name="demoDate" />
+                </div>
+              </div>
+              <div class="form-group form-group-full">
+                <label for="message">Additional Message</label>
+                <textarea id="message" name="message" rows="4" placeholder="Tell us about your restaurant, team size, or any specific requirements..."></textarea>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn-submit" id="submitBtn">
+                  <span class="btn-text"><i class="fa-solid fa-paper-plane"></i> Submit Request</span>
+                  <span class="btn-loading" style="display:none"><i class="fa-solid fa-spinner fa-spin"></i> Sending...</span>
+                </button>
+              </div>
+              <div class="form-success" id="formSuccess" style="display:none">
+                <div class="fs-icon"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="fs-text">
+                  <strong>Request Submitted!</strong>
+                  <p>Thank you! We'll contact you within 1 business day to schedule your demo.</p>
+                </div>
+              </div>
+              <div class="form-error-msg" id="formError" style="display:none">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span>Something went wrong. Please email us directly at infotagteamengineering@gmail.com</span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="#hero" class="footer-logo">
+              <img src="icon.png" alt="EvoDine" />
+              <span>Evo<span class="logo-accent">Dine</span></span>
+            </a>
+            <p>A modern, real-time restaurant management platform connecting every department — from order to payment — in one unified system.</p>
+            <div class="footer-social">
+              <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Product</h4>
+            <ul>
+              <li><a href="#features">Core Features</a></li>
+              <li><a href="#workflow">How It Works</a></li>
+              <li><a href="#why-choose">Benefits</a></li>
+              <li><a href="#screens">Product Preview</a></li>
+              <li><a href="#contact">Request Demo</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Modules</h4>
+            <ul>
+              <li><a href="#features">Order Management</a></li>
+              <li><a href="#features">Kitchen Display</a></li>
+              <li><a href="#features">Bar Workflow</a></li>
+              <li><a href="#features">Cashier Billing</a></li>
+              <li><a href="#features">Admin Dashboard</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#about">About EvoDine</a></li>
+              <li><a href="#about">EvoSolution</a></li>
+              <li><a href="#contact">Contact Us</a></li>
+              <li><a href="mailto:infotagteamengineering@gmail.com">Support</a></li>
+            </ul>
+            <div class="footer-contact-email">
+              <i class="fa-solid fa-envelope"></i>
+              <a href="mailto:infotagteamengineering@gmail.com">infotagteamengineering@gmail.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="fb-inner">
+          <p>© 2026 <strong>EvoSolution</strong> — A TagTeam Engineering Product. All rights reserved.</p>
+          <div class="fb-built">
+            <span>Built with</span>
+            <i class="fa-solid fa-heart" style="color:#FF6B2B;"></i>
+            <span>by TagTeam Engineering</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <button id="backToTop" aria-label="Back to top">
+    <i class="fa-solid fa-chevron-up"></i>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>

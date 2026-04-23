@@ -1,112 +1,231 @@
-import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { Send, Mail, Phone, MapPin, Sparkles } from "lucide-react";
+import { useState, useRef } from "react";
 
 const Contact = () => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending]     = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setSending(true);
+    setTimeout(() => {
+      setSending(false);
+      setSubmitted(true);
+      formRef.current?.reset();
+      setTimeout(() => setSubmitted(false), 5000);
+    }, 1400);
   };
 
   return (
-    <section id="contact" className="py-40 relative overflow-hidden">
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-32"
-        >
-          <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary mb-10 font-black uppercase tracking-[0.4em] text-[10px] italic">
-             The Strategic Hub
-          </div>
-          <h2 className="text-6xl md:text-8xl font-heading font-black mb-10 tracking-tighter italic leading-[0.9]">
-            Architecture <br />
-            <span className="text-primary italic">Showcases.</span>
-          </h2>
-          <p className="text-2xl text-muted-foreground max-w-2xl mx-auto leading-tight font-medium tracking-tight">
-            Watch the world's most elite business systems in action. These blueprints are engineered to dominate markets through absolute architectural precision.
-          </p>
-        </motion.div>
+    <section
+      id="contact"
+      style={{ padding: "100px 0", position: "relative", overflow: "hidden" }}
+    >
+      {/* Background orb */}
+      <div style={{
+        position: "absolute", width: 700, height: 700,
+        background: "radial-gradient(circle, rgba(255,107,43,.06) 0%, transparent 70%)",
+        bottom: -200, right: -200, borderRadius: "50%", pointerEvents: "none",
+      }} />
 
-        <div className="grid lg:grid-cols-2 gap-32 items-start max-w-7xl mx-auto">
-          <div className="space-y-16">
-            <motion.div 
-               initial={{ opacity: 0, x: -60 }}
-               animate={inView ? { opacity: 1, x: 0 } : {}}
-               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-               className="space-y-12"
-            >
-               {[
-                 { icon: Mail, label: "Strategic Inquiry", value: "architect@evosolutions.com", color: "text-primary" },
-                 { icon: Phone, label: "Titan Hotline", value: "+1 (555) 000-EVO", color: "text-accent" },
-                 { icon: MapPin, label: "Global Command", value: "Unit 01, Infinity Tower, Global Heights", color: "text-foreground" },
-               ].map((item, i) => (
-                 <div key={i} className="flex items-center gap-10 group">
-                   <div className="w-20 h-20 rounded-3xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 shadow-2xl transition-all duration-700 group-hover:border-primary group-hover:-rotate-[10deg]">
-                     <item.icon size={32} className={item.color} />
-                   </div>
-                   <div>
-                      <div className="text-[10px] font-black uppercase tracking-[0.4em] text-primary italic mb-2">{item.label}</div>
-                      <div className="text-3xl font-heading font-black text-foreground italic tracking-tighter leading-none">{item.value}</div>
-                   </div>
-                 </div>
-               ))}
-            </motion.div>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 1 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}
+          className="contact-grid-cols">
 
-            <motion.div
-               initial={{ opacity: 0, y: 60 }}
-               animate={inView ? { opacity: 1, y: 0 } : {}}
-               transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-               className="glass-card !bg-foreground p-16 rounded-[3rem] text-background relative overflow-hidden group shadow-2xl"
-            >
-               <div className="absolute top-0 right-0 p-12 opacity-10 group-hover:scale-110 transition-transform duration-1000">
-                  <Sparkles size={120} />
-               </div>
-               <h4 className="text-4xl font-heading font-black mb-8 italic tracking-tighter leading-none">Titan Partnership</h4>
-               <p className="opacity-80 text-xl mb-12 font-medium tracking-tight leading-tight">We don't just build software. We architect the future of your industry. Engage with our senior leadership for a 1-on-1 strategic reconnaissance session.</p>
-               <div className="flex gap-4">
-                  <div className="w-3 h-3 rounded-full bg-primary animate-pulse" />
-                  <div className="w-3 h-3 rounded-full bg-accent" />
-                  <div className="w-3 h-3 rounded-full bg-white/40" />
-               </div>
-            </motion.div>
-          </div>
+          {/* Left: Contact Info */}
+          <div data-reveal>
+            <div className="section-eyebrow">Get In Touch</div>
+            <h2 className="section-title">
+              Let's Build Something<br />
+              <span className="gradient-text">Remarkable Together</span>
+            </h2>
+            <p style={{ fontSize: "1rem", color: "var(--ed-text-secondary)", lineHeight: 1.75, marginBottom: 36 }}>
+              Ready to see our products in action, or need a custom solution for your business?
+              Fill in your details and our team will reach out within one business day.
+            </p>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, x: 60 }}
-            animate={inView ? { opacity: 1, scale: 1, x: 0 } : {}}
-            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="grid gap-10"
-          >
-            {[
-               { title: "EvoDine: High-Volume Intelligence", duration: "12:45", category: "Hospitality" },
-              { title: "EVOVilla: Yield Maximization", duration: "08:20", category: "Property Ops" },
-              { title: "EvoInventory: Zero-Loss Chain", duration: "10:15", category: "Logistics" },
-              { title: "Strategic R&D: System Integration", duration: "15:30", category: "Architecture" },
-            ].map((video, i) => (
-              <div key={i} className="glass-card !bg-white/[0.03] p-10 rounded-[2.5rem] group cursor-pointer border-white/10 hover:border-primary/40 transition-all duration-700 shadow-2xl h-full flex items-center justify-between overflow-hidden relative">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-1000" />
-                <div className="flex items-center gap-8 relative z-10">
-                  <div className="w-20 h-20 rounded-3xl bg-primary flex items-center justify-center shadow-2xl shadow-primary/30 group-hover:scale-110 transition-transform duration-700">
-                    <Send size={32} className="text-white" />
+            {/* Contact Details */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 18, marginBottom: 36 }}>
+              {[
+                {
+                  icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>,
+                  label: "Email Us",
+                  value: "infotagteamengineering@gmail.com",
+                  href: "mailto:infotagteamengineering@gmail.com",
+                },
+                {
+                  icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>,
+                  label: "WhatsApp / Phone",
+                  value: "Contact via Email for schedule",
+                  href: "mailto:infotagteamengineering@gmail.com",
+                },
+                {
+                  icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>,
+                  label: "Company",
+                  value: "EvoSolutions — A TagTeam Engineering Product",
+                  href: null,
+                },
+                {
+                  icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
+                  label: "Response Time",
+                  value: "Within 1 business day",
+                  href: null,
+                },
+              ].map((item, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 16 }}>
+                  <div style={{
+                    width: 44, height: 44, borderRadius: 12, flexShrink: 0,
+                    background: "var(--ed-orange-soft)",
+                    border: "1px solid rgba(255,107,43,.2)",
+                    color: "var(--ed-orange)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                  }}>
+                    {item.icon}
                   </div>
                   <div>
-                    <div className="text-[10px] font-black uppercase tracking-[0.4em] text-primary mb-2 italic">{video.category} • {video.duration}</div>
-                    <h5 className="text-2xl font-heading font-black text-foreground italic tracking-tighter leading-none group-hover:text-primary transition-colors">{video.title}</h5>
+                    <strong style={{ display: "block", fontSize: ".82rem", fontWeight: 600, color: "var(--ed-text-secondary)", marginBottom: 3, fontFamily: "var(--font-jakarta)" }}>
+                      {item.label}
+                    </strong>
+                    {item.href ? (
+                      <a href={item.href} style={{ fontSize: ".9rem", color: "var(--ed-text-white)", fontWeight: 500, textDecoration: "none" }}
+                        onMouseEnter={(e) => (e.currentTarget.style.color = "#FF6B2B")}
+                        onMouseLeave={(e) => (e.currentTarget.style.color = "var(--ed-text-white)")}
+                      >
+                        {item.value}
+                      </a>
+                    ) : (
+                      <span style={{ fontSize: ".9rem", color: "var(--ed-text-white)", fontWeight: 500 }}>{item.value}</span>
+                    )}
                   </div>
                 </div>
+              ))}
+            </div>
+
+            {/* Promises */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {[
+                "Free product demonstration",
+                "No commitment required",
+                "Expert onboarding support included",
+              ].map((p) => (
+                <div key={p} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                  <div style={{
+                    width: 24, height: 24, borderRadius: 9999,
+                    background: "var(--ed-green-soft)",
+                    color: "var(--ed-green)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    flexShrink: 0,
+                  }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  </div>
+                  <span style={{ fontSize: ".88rem", color: "var(--ed-text-secondary)" }}>{p}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: Form */}
+          <div data-reveal data-delay="200">
+            <div className="contact-form-card">
+              <div style={{ marginBottom: 28 }}>
+                <h3 style={{ fontFamily: "var(--font-jakarta)", fontSize: "1.3rem", fontWeight: 800, color: "var(--ed-text-white)", marginBottom: 6 }}>
+                  Send Us a Message
+                </h3>
+                <p style={{ fontSize: ".88rem", color: "var(--ed-text-secondary)" }}>
+                  Complete the form and we'll be in touch shortly.
+                </p>
               </div>
-            ))}
-          </motion.div>
+
+              {submitted ? (
+                <div style={{
+                  display: "flex", alignItems: "center", gap: 14,
+                  padding: "20px 24px",
+                  background: "var(--ed-green-soft)",
+                  border: "1px solid rgba(34,197,94,.3)",
+                  borderRadius: 14,
+                }}>
+                  <div style={{ color: "var(--ed-green)", flexShrink: 0 }}>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <strong style={{ display: "block", color: "var(--ed-text-white)", fontFamily: "var(--font-jakarta)", marginBottom: 4 }}>
+                      Message Sent!
+                    </strong>
+                    <p style={{ fontSize: ".85rem", color: "var(--ed-text-secondary)", margin: 0 }}>
+                      Thank you! We'll contact you within 1 business day.
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <form ref={formRef} onSubmit={handleSubmit} noValidate>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
+                    <div className="form-group">
+                      <label>Full Name <span style={{ color: "#FF6B2B" }}>*</span></label>
+                      <input type="text" placeholder="Your full name" required />
+                    </div>
+                    <div className="form-group">
+                      <label>Company / Business <span style={{ color: "#FF6B2B" }}>*</span></label>
+                      <input type="text" placeholder="Your company name" required />
+                    </div>
+                  </div>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
+                    <div className="form-group">
+                      <label>Email Address <span style={{ color: "#FF6B2B" }}>*</span></label>
+                      <input type="email" placeholder="your@email.com" required />
+                    </div>
+                    <div className="form-group">
+                      <label>Phone Number</label>
+                      <input type="tel" placeholder="+94 XX XXX XXXX" />
+                    </div>
+                  </div>
+                  <div style={{ marginBottom: 16 }} className="form-group">
+                    <label>Product of Interest</label>
+                    <input type="text" placeholder="e.g. EvoDine, EvoPos, Custom Solution" />
+                  </div>
+                  <div style={{ marginBottom: 24 }} className="form-group">
+                    <label>Message</label>
+                    <textarea rows={4} placeholder="Tell us about your business and what you're looking for..." style={{ resize: "vertical" }} />
+                  </div>
+                  <button
+                    type="submit"
+                    className="btn-primary"
+                    disabled={sending}
+                    style={{ width: "100%", justifyContent: "center", fontSize: "1rem", padding: "14px 24px", opacity: sending ? .7 : 1 }}
+                  >
+                    {sending ? (
+                      <>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ animation: "spin-slow 1s linear infinite" }}>
+                          <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+                        </svg>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                        </svg>
+                        Submit Request
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .contact-grid-cols { grid-template-columns: 1fr !important; gap: 40px !important; }
+        }
+        @keyframes spin-slow { to { transform: rotate(360deg); } }
+      `}</style>
     </section>
   );
 };

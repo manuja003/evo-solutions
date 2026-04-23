@@ -1,180 +1,319 @@
-import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Play, Award, Zap, ShieldCheck } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 const Hero = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  /* Particle canvas */
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const resize = () => { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; };
+    resize();
+    window.addEventListener("resize", resize);
+
+    const particles: { x: number; y: number; vx: number; vy: number; alpha: number; r: number }[] = [];
+    for (let i = 0; i < 60; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        alpha: Math.random() * 0.4 + 0.1,
+        r: Math.random() * 1.5 + 0.5,
+      });
+    }
+
+    let raf: number;
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p) => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,107,43,${p.alpha})`;
+        ctx.fill();
+      });
+      raf = requestAnimationFrame(draw);
+    };
+    draw();
+    return () => { window.removeEventListener("resize", resize); cancelAnimationFrame(raf); };
+  }, []);
+
+  const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+
   return (
-    <section id="home" className="relative min-h-[100vh] flex items-center pt-44 pb-20 overflow-hidden bg-transparent">
-      {/* Global Background is handled by BackgroundOrbs */}
+    <section
+      id="home"
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        padding: "120px 0 80px",
+        position: "relative",
+        overflow: "hidden",
+        background: "var(--ed-bg-deep)",
+      }}
+    >
+      {/* Particle Canvas */}
+      <canvas
+        ref={canvasRef}
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", zIndex: 0 }}
+      />
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-16 items-center">
-          <div className="lg:col-span-7 xl:col-span-8">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-5 py-2 mb-10 shadow-sm"
-            >
-              <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-secondary flex items-center justify-center overflow-hidden">
-                    <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="User" />
+      {/* Orbs */}
+      <div className="hero-orb hero-orb-1" />
+      <div className="hero-orb hero-orb-2" />
+      <div className="hero-orb hero-orb-3" />
+
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 1, width: "100%" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}
+          className="hero-grid">
+
+          {/* Left: Content */}
+          <div data-reveal>
+            {/* Badge */}
+            <div style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              fontSize: ".8rem", fontWeight: 600,
+              color: "var(--ed-text-secondary)",
+              background: "rgba(255,255,255,.05)",
+              border: "1px solid var(--ed-border)",
+              borderRadius: 9999, padding: "7px 16px",
+              marginBottom: 28, backdropFilter: "blur(8px)",
+              fontFamily: "var(--font-jakarta)",
+            }}>
+              <span className="badge-dot" />
+              Powered by TagTeam Engineering
+            </div>
+
+            {/* Headline */}
+            <h1 style={{
+              fontFamily: "var(--font-jakarta)",
+              fontSize: "clamp(2.6rem, 4.5vw, 4.2rem)",
+              fontWeight: 900,
+              lineHeight: 1.08,
+              color: "var(--ed-text-white)",
+              marginBottom: 20,
+              letterSpacing: "-.025em",
+            }}>
+              Smart Digital<br />
+              <span className="gradient-text">Solutions</span> That<br />
+              Drive Growth.
+            </h1>
+
+            {/* Subtitle */}
+            <p style={{
+              fontSize: "1.1rem",
+              color: "var(--ed-text-secondary)",
+              lineHeight: 1.75,
+              marginBottom: 36,
+              maxWidth: 500,
+              fontFamily: "var(--font-body)",
+            }}>
+              EvoSolutions builds premium business software — from restaurant
+              management to property systems — purpose-engineered for the modern
+              digital enterprise.
+            </p>
+
+            {/* CTAs */}
+            <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginBottom: 52 }}>
+              <button onClick={() => scrollTo("products")} className="btn-primary btn-lg">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="m5 12 7-7 7 7M12 5v14"/></svg>
+                View Products
+              </button>
+              <button onClick={() => scrollTo("contact")} className="btn-ghost btn-lg">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Contact Us
+              </button>
+            </div>
+
+            {/* Quick Stats */}
+            <div style={{ display: "flex", alignItems: "center" }}>
+              {[
+                { val: "3+", label: "Products" },
+                { val: "100%", label: "Web-Based" },
+                { val: "24/7", label: "Support" },
+              ].map((s, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "center" }}>
+                  {i > 0 && <div style={{ width: 1, height: 36, background: "var(--ed-border)", margin: "0 4px" }} />}
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "0 20px" }}>
+                    <strong style={{ fontFamily: "var(--font-jakarta)", fontSize: "1.5rem", fontWeight: 800, color: "var(--ed-text-white)" }}>{s.val}</strong>
+                    <span style={{ fontSize: ".7rem", color: "var(--ed-text-muted)", textTransform: "uppercase", letterSpacing: ".08em", fontWeight: 500 }}>{s.label}</span>
                   </div>
-                ))}
-              </div>
-              <span className="text-sm font-bold text-foreground/80 tracking-tight">Trusted by 500+ Industry Leaders</span>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-4xl sm:text-6xl lg:text-8xl font-heading font-black leading-[0.9] text-foreground mb-12 tracking-tighter"
-            >
-              Architect Your <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_auto] animate-gradient-shift">Global Dominion.</span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg sm:text-2xl text-muted-foreground mb-16 max-w-2xl leading-tight font-medium tracking-tight"
-            >
-              We engineer the world's most elite business ecosystems. Mission-critical architecture for the next generation of global market titans.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-wrap gap-8"
-            >
-              <a href="#contact" className="btn-primary-glow flex items-center gap-4">
-                Initialize Architecture
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a href="#products" className="group/btn relative flex items-center gap-6 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-[2rem] pl-4 pr-10 py-4 hover:bg-white/[0.08] hover:border-primary/40 transition-all duration-500 shadow-2xl">
-                <div className="flex -space-x-3">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="w-12 h-12 rounded-[1.2rem] border-4 border-background bg-secondary flex items-center justify-center overflow-hidden transition-transform group-hover/btn:translate-x-1">
-                      <img src={`https://i.pravatar.cc/100?img=${i + 20}`} alt="Architect" />
-                    </div>
-                  ))}
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-xs font-black uppercase tracking-[0.2em] text-white">View Global Systems</span>
-                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary/60">500+ Active Nodes</span>
-                </div>
-                <div className="absolute right-4 opacity-0 group-hover/btn:opacity-100 transition-opacity">
-                  <ArrowUpRight size={18} className="text-primary" strokeWidth={3} />
-                </div>
-              </a>
-            </motion.div>
+              ))}
+            </div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 xl:col-span-4 relative hidden lg:block"
-          >
-            {/* The System Core Visual */}
-            <div className="relative group">
-              {/* Outer Ring Glow */}
-              <div className="absolute -inset-20 bg-primary/20 rounded-full blur-[120px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-              
-              <div className="glass-card !bg-white/[0.03] !p-8 border-white/20 aspect-square flex flex-col justify-between relative z-10 hover:scale-[1.02] transition-all duration-1000">
-                <div className="flex justify-between items-start">
-                  <div className="space-y-1">
-                    <div className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">System Core</div>
-                    <div className="text-4xl font-heading font-black tracking-tighter italic">ACTIVE</div>
-                  </div>
-                  <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center animate-pulse">
-                    <Zap size={24} className="text-primary" />
-                  </div>
-                </div>
+          {/* Right: Browser Mockup */}
+          <div style={{ position: "relative" }} data-reveal data-delay="200" className="hidden lg:block">
+            {/* Glow */}
+            <div style={{
+              position: "absolute", inset: -30,
+              background: "radial-gradient(ellipse at center, rgba(37,99,235,.12) 0%, transparent 70%)",
+              pointerEvents: "none", borderRadius: 30,
+            }} />
 
-                <div className="relative h-40 flex items-center justify-center">
-                  {/* Decorative Architectural Lines */}
-                  {[...Array(3)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 20 + i * 10, repeat: Infinity, ease: "linear" }}
-                      className="absolute border border-white/5 rounded-full"
-                      style={{ width: `${100 + i * 40}%`, height: `${100 + i * 40}%` }}
-                    />
-                  ))}
-                  <div className="w-32 h-32 rounded-3xl bg-gradient-to-br from-primary to-accent p-1 shadow-2xl shadow-primary/20 relative z-20">
-                    <div className="w-full h-full bg-black rounded-[1.4rem] flex items-center justify-center">
-                      <Award size={48} className="text-primary animate-pulse" />
-                    </div>
-                  </div>
+            <div className="mockup-browser">
+              <div className="browser-topbar">
+                <div className="browser-dots">
+                  <span className="bd-red" /><span className="bd-yellow" /><span className="bd-green" />
                 </div>
-
-                <div className="space-y-8">
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-end">
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] opacity-40 italic">Velocity Delta</span>
-                      <span className="text-xl font-heading font-black text-primary">+99.9%</span>
-                    </div>
-                    <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
-                      <motion.div 
-                        initial={{ width: 0 }} 
-                        animate={{ width: "99.9%" }} 
-                        transition={{ duration: 3, delay: 1 }} 
-                        className="h-full bg-gradient-to-r from-primary to-accent" 
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                      <div className="text-[8px] font-black uppercase tracking-widest opacity-40 mb-1">Scale Index</div>
-                      <div className="text-lg font-black tracking-tighter">GLOBAL</div>
-                    </div>
-                    <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                      <div className="text-[8px] font-black uppercase tracking-widest opacity-40 mb-1">Threat Level</div>
-                      <div className="text-lg font-black tracking-tighter">ZERO</div>
-                    </div>
-                  </div>
+                <div className="browser-url">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth="2.5" style={{ marginRight: 4 }}><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  app.evosolutions.com / dashboard
                 </div>
               </div>
 
-              {/* High-Impact Floaties */}
-              <motion.div
-                animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-16 -left-12 glass-card !p-5 !rounded-2xl border-white/30 z-20 shadow-2xl"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center text-white">
-                    <ShieldCheck size={20} />
-                  </div>
-                  <div className="text-xs font-black tracking-widest uppercase">Protocol Secured</div>
+              {/* Dashboard Interior */}
+              <div style={{ display: "flex", height: 340 }}>
+                {/* Sidebar */}
+                <div style={{
+                  width: 48, background: "rgba(4,12,24,.8)",
+                  borderRight: "1px solid var(--ed-border)",
+                  display: "flex", flexDirection: "column",
+                  alignItems: "center", padding: "12px 0", gap: 6,
+                }}>
+                  <div style={{
+                    width: 28, height: 28, borderRadius: 7,
+                    background: "linear-gradient(135deg,#FF6B2B,#E55A1F)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: ".65rem", fontWeight: 800, color: "#fff", marginBottom: 8,
+                    fontFamily: "var(--font-jakarta)",
+                  }}>ES</div>
+                  {[
+                    <path key="g" d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>,
+                    <><rect key="r1" x="9" y="9" width="6" height="6"/><path key="p1" d="M9 3H5a2 2 0 0 0-2 2v4m6 0h6m0 0h4a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-4m0 6v10a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V9"/></>,
+                    <path key="c" d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/>,
+                    <path key="u" d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>,
+                  ].map((icon, i) => (
+                    <div key={i} style={{
+                      width: 32, height: 32, borderRadius: 8,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      color: i === 0 ? "#FF6B2B" : "var(--ed-text-muted)",
+                      background: i === 0 ? "var(--ed-orange-soft)" : "none",
+                      fontSize: ".8rem", cursor: "pointer",
+                    }}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">{icon}</svg>
+                    </div>
+                  ))}
                 </div>
-              </motion.div>
 
-              <motion.div
-                animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -bottom-10 -right-10 glass-card !p-5 !rounded-2xl border-primary/40 z-20 shadow-2xl"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white">
-                    <ArrowUpRight size={20} />
+                {/* Main Area */}
+                <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "10px 12px", gap: 10, overflow: "hidden" }}>
+                  {/* Top Bar */}
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <span style={{ fontSize: ".72rem", fontWeight: 600, color: "var(--ed-text-primary)", fontFamily: "var(--font-jakarta)" }}>EvoSolutions Dashboard</span>
+                    <span style={{
+                      display: "flex", alignItems: "center", gap: 5,
+                      fontSize: ".65rem", fontWeight: 600, color: "var(--ed-green)",
+                      background: "var(--ed-green-soft)", padding: "3px 8px", borderRadius: 9999,
+                    }}>
+                      <span className="live-dot" /> Live
+                    </span>
                   </div>
-                  <div className="text-xs font-black tracking-widest uppercase flex flex-col">
-                    <span>Revenue Surge</span>
-                    <span className="text-primary">+42%</span>
+
+                  {/* KPI Cards */}
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
+                    {[
+                      { label: "Active Products", val: "3", delta: "↑ 1", up: true, color: "orange" },
+                      { label: "Clients Served", val: "12+", delta: "↑ 4", up: true, color: "blue" },
+                      { label: "Uptime", val: "99.9%", delta: "Stable", up: true, color: "green" },
+                    ].map((k, i) => (
+                      <div key={i} style={{
+                        background: "rgba(255,255,255,.05)",
+                        borderRadius: 10, padding: "8px 10px",
+                        border: "1px solid var(--ed-border)",
+                        position: "relative", overflow: "hidden",
+                      }}>
+                        <div style={{
+                          position: "absolute", top: 0, left: 0, right: 0, height: 2,
+                          background: k.color === "orange" ? "linear-gradient(90deg,#FF6B2B,#FF8C42)"
+                            : k.color === "blue" ? "linear-gradient(90deg,#2563EB,#3B82F6)"
+                            : "linear-gradient(90deg,#22C55E,#4ade80)",
+                        }} />
+                        <div style={{ fontSize: ".78rem", fontWeight: 700, color: "#fff", fontFamily: "var(--font-jakarta)" }}>{k.val}</div>
+                        <div style={{ fontSize: ".58rem", color: "var(--ed-text-muted)", margin: "2px 0" }}>{k.label}</div>
+                        <div style={{ fontSize: ".6rem", fontWeight: 600, color: "var(--ed-green)" }}>{k.delta}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Product Status Rows */}
+                  <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 5 }}>
+                    <div style={{ fontSize: ".65rem", fontWeight: 600, color: "var(--ed-text-muted)", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 2 }}>Products</div>
+                    {[
+                      { name: "EvoDine", desc: "Restaurant Mgmt", status: "live" },
+                      { name: "EvoPos", desc: "POS & Billing", status: "dev" },
+                      { name: "EvoReservation", desc: "Booking System", status: "dev" },
+                    ].map((p, i) => (
+                      <div key={i} style={{
+                        display: "flex", alignItems: "center", gap: 6,
+                        padding: "6px 8px",
+                        background: "rgba(255,255,255,.04)",
+                        borderRadius: 7,
+                        border: "1px solid var(--ed-border)",
+                      }}>
+                        <span style={{ fontSize: ".65rem", fontWeight: 600, color: "var(--ed-text-secondary)", flex: 1, fontFamily: "var(--font-jakarta)" }}>{p.name}</span>
+                        <span style={{ fontSize: ".6rem", color: "var(--ed-text-muted)" }}>{p.desc}</span>
+                        <span className={`status-chip ${p.status}`}>{p.status === "live" ? "Live" : "In Dev"}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
-          </motion.div>
+
+            {/* Floating Notif Cards */}
+            <div className="float-notif fn-1">
+              <div className="fn-icon green">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <div>
+                <strong style={{ display: "block", fontSize: ".78rem", fontWeight: 600, color: "var(--ed-text-white)" }}>EvoDine Live</strong>
+                <span style={{ fontSize: ".68rem", color: "var(--ed-text-muted)" }}>System operational</span>
+              </div>
+            </div>
+            <div className="float-notif fn-2">
+              <div className="fn-icon blue">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              </div>
+              <div>
+                <strong style={{ display: "block", fontSize: ".78rem", fontWeight: 600, color: "var(--ed-text-white)" }}>New Project</strong>
+                <span style={{ fontSize: ".68rem", color: "var(--ed-text-muted)" }}>EvoPos in progress</span>
+              </div>
+            </div>
+            <div className="float-notif fn-3">
+              <div className="fn-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              </div>
+              <div>
+                <strong style={{ display: "block", fontSize: ".78rem", fontWeight: 600, color: "var(--ed-text-white)" }}>Demo Ready</strong>
+                <span style={{ fontSize: ".68rem", color: "var(--ed-text-muted)" }}>Book a session today</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* Scroll hint */}
+      <div className="hero-scroll-hint">
+        <span>Scroll to explore</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .hero-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+        }
+      `}</style>
     </section>
   );
 };

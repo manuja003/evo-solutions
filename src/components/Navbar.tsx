@@ -1,24 +1,22 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 
 const navLinks = [
-  { label: "Home", href: "home" },
-  { label: "Products", href: "products" },
-  { label: "Solutions", href: "solutions" },
-  { label: "Process", href: "process" },
-  { label: "Case Studies", href: "testimonials" },
+  { label: "Home",    href: "home" },
+  { label: "About",   href: "about" },
+  { label: "Products",href: "products" },
+  { label: "Why Us",  href: "why-us" },
+  { label: "Contact", href: "contact" },
 ];
 
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled]     = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
+  const location  = useLocation();
+  const navigate  = useNavigate();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -28,99 +26,208 @@ const Navbar = () => {
     if (location.pathname !== "/") {
       navigate(`/#${sectionId}`);
     } else {
-      const el = document.getElementById(sectionId);
-      el?.scrollIntoView({ behavior: "smooth" });
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-[100] transition-all duration-700 pt-4 px-4 md:px-8 pointer-events-none">
-      <div
-        className={`pointer-events-auto mx-auto max-w-[1400px] transition-all duration-1000 relative group ${scrolled
-            ? "bg-black/60 backdrop-blur-3xl border border-white/10 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.5)] py-6 px-12 rounded-[2.5rem]"
-            : "bg-transparent py-10 px-6 border border-transparent rounded-none"
-          }`}
-      >
-        {/* Subtle top glow line for 'Command Bridge' effect */}
-        <div className={`absolute top-0 left-10 right-10 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent transition-opacity duration-1000 ${scrolled ? 'opacity-100' : 'opacity-0'}`} />
+    <header
+      id="navbar"
+      style={{
+        position: "fixed",
+        top: 0, left: 0, right: 0,
+        zIndex: 1000,
+        padding: scrolled ? "12px 0" : "18px 0",
+        background: scrolled ? "rgba(4,12,24,.92)" : "transparent",
+        backdropFilter: scrolled ? "blur(20px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
+        borderBottom: scrolled ? "1px solid rgba(255,255,255,.08)" : "none",
+        boxShadow: scrolled ? "0 4px 32px rgba(0,0,0,.4)" : "none",
+        transition: "all .5s cubic-bezier(.4,0,.2,1)",
+      }}
+    >
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", gap: 32 }}>
 
-        <div className="flex items-center justify-between">
-          <button onClick={() => handleNavClick("home")} className="flex items-center gap-5 group/logo">
-            <div className="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center shadow-2xl shadow-primary/40 transition-all duration-1000 group-hover/logo:rotate-[360deg] group-hover/logo:scale-110 relative">
-              <span className="text-primary-foreground font-heading font-black text-2xl relative z-10">E</span>
-              <div className="absolute inset-0 bg-white/20 blur-xl opacity-0 group-hover/logo:opacity-100 transition-opacity" />
-            </div>
-            <div className="flex flex-col">
-              <div className="flex items-center gap-2">
-                <span className="font-heading font-black text-3xl tracking-tighter leading-none italic uppercase">
-                  EVO <span className="text-primary">SOLUTIONS</span>
-                </span>
-              </div>
-              <span className="text-[9px] font-black tracking-[0.5em] uppercase opacity-40 group-hover/logo:opacity-100 transition-all duration-700 italic">Core Mission Infrastructure</span>
-            </div>
-          </button>
-
-          <div className="hidden lg:flex items-center gap-10">
-            {navLinks.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => handleNavClick(link.href)}
-                className="relative group/link text-[13px] font-black uppercase tracking-[0.2em] text-foreground/50 hover:text-primary transition-all duration-300"
-              >
-                <span className="relative z-10">{link.label}</span>
-                <span className="absolute -bottom-2 left-0 w-0 h-px bg-primary transition-all duration-500 group-hover/link:w-full" />
-                <span className="absolute -top-1 -right-2 text-[6px] opacity-0 group-hover/link:opacity-40 transition-opacity text-primary">0{navLinks.indexOf(link) + 1}</span>
-              </button>
-            ))}
-
-            <div className="w-px h-8 bg-white/10 mx-2" />
-
-            <button
-              onClick={() => handleNavClick("contact")}
-              className="btn-primary-glow px-8 py-4 text-[13px] shadow-2xl shadow-primary/20 hover:shadow-primary/40"
-            >
-              Initialize Deep Dive
-            </button>
+        {/* Logo */}
+        <Link to="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", flexShrink: 0 }}>
+          <img
+            src="/icon.png"
+            alt="EvoSolutions"
+            style={{
+              width: 40, height: 40,
+              objectFit: "contain",
+              filter: "drop-shadow(0 0 10px rgba(255,107,43,.35))",
+              flexShrink: 0,
+            }}
+          />
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <span style={{
+              fontFamily: "var(--font-jakarta)",
+              fontWeight: 800,
+              fontSize: "1.25rem",
+              color: "#fff",
+              letterSpacing: "-.01em",
+              lineHeight: 1.1,
+            }}>
+              Evo<span style={{ color: "#FF6B2B" }}>Solutions</span>
+            </span>
+            <span style={{ fontSize: ".6rem", color: "rgba(148,163,184,.5)", fontWeight: 600, letterSpacing: ".12em", textTransform: "uppercase" }}>
+              TagTeam Engineering
+            </span>
           </div>
+        </Link>
 
+        {/* Desktop Nav Links */}
+        <ul style={{ display: "flex", alignItems: "center", gap: 4, flex: 1, margin: 0, padding: 0, listStyle: "none" }}
+          className="hidden lg:flex">
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <button
+                onClick={() => handleNavClick(link.href)}
+                style={{
+                  fontSize: ".9rem",
+                  fontWeight: 500,
+                  color: "rgba(148,163,184,.9)",
+                  padding: "7px 14px",
+                  borderRadius: 9999,
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  transition: "all .25s",
+                  fontFamily: "var(--font-jakarta)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.color = "#fff";
+                  (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,.07)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.color = "rgba(148,163,184,.9)";
+                  (e.currentTarget as HTMLButtonElement).style.background = "none";
+                }}
+              >
+                {link.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+
+        {/* CTA Buttons */}
+        <div style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }} className="hidden lg:flex">
           <button
-            className="lg:hidden text-foreground w-12 h-12 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
-            onClick={() => setMobileOpen(!mobileOpen)}
+            onClick={() => handleNavClick("contact")}
+            style={{
+              fontSize: ".875rem",
+              fontWeight: 600,
+              color: "rgba(148,163,184,.8)",
+              padding: "8px 18px",
+              border: "1px solid rgba(255,255,255,.08)",
+              borderRadius: 9999,
+              background: "none",
+              cursor: "pointer",
+              transition: "all .25s",
+              fontFamily: "var(--font-jakarta)",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.color = "#fff";
+              (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(148,163,184,.4)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.color = "rgba(148,163,184,.8)";
+              (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,.08)";
+            }}
           >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            Contact Us
+          </button>
+          <button
+            onClick={() => handleNavClick("contact")}
+            className="btn-primary-glow"
+            style={{ padding: "8px 20px", fontSize: ".875rem" }}
+          >
+            Get Started
           </button>
         </div>
+
+        {/* Hamburger */}
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="lg:hidden"
+          style={{
+            marginLeft: "auto",
+            width: 40, height: 40,
+            borderRadius: 10,
+            background: "rgba(255,255,255,.05)",
+            border: "1px solid rgba(255,255,255,.08)",
+            display: "flex", flexDirection: "column",
+            alignItems: "center", justifyContent: "center",
+            gap: 5, cursor: "pointer", padding: 8,
+          }}
+          aria-label="Menu"
+        >
+          {[0, 1, 2].map((i) => (
+            <span
+              key={i}
+              style={{
+                display: "block",
+                width: 22, height: 2,
+                background: "#F0F4FF",
+                borderRadius: 2,
+                transition: "all .3s",
+                transform: mobileOpen
+                  ? i === 0 ? "translateY(7px) rotate(45deg)"
+                  : i === 1 ? "scaleX(0)"
+                  : "translateY(-7px) rotate(-45deg)"
+                  : "none",
+                opacity: mobileOpen && i === 1 ? 0 : 1,
+              }}
+            />
+          ))}
+        </button>
       </div>
 
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.98 }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="pointer-events-auto lg:hidden absolute top-32 left-4 right-4 bg-black/90 backdrop-blur-3xl border border-white/10 rounded-[2.5rem] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8)] overflow-hidden"
+      {/* Mobile Menu */}
+      {mobileOpen && (
+        <div style={{
+          background: "rgba(4,12,24,.96)",
+          backdropFilter: "blur(20px)",
+          borderTop: "1px solid rgba(255,255,255,.08)",
+          padding: "20px 24px 24px",
+        }}
+          className="lg:hidden"
+        >
+          {navLinks.map((link) => (
+            <button
+              key={link.href}
+              onClick={() => handleNavClick(link.href)}
+              style={{
+                display: "block",
+                width: "100%",
+                textAlign: "left",
+                padding: "12px 16px",
+                borderRadius: 10,
+                color: "rgba(148,163,184,.9)",
+                fontSize: ".95rem",
+                fontWeight: 500,
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                fontFamily: "var(--font-jakarta)",
+                transition: "all .2s",
+              }}
+            >
+              {link.label}
+            </button>
+          ))}
+          <div style={{ height: 1, background: "rgba(255,255,255,.07)", margin: "12px 0" }} />
+          <button
+            onClick={() => handleNavClick("contact")}
+            className="btn-primary"
+            style={{ width: "100%", justifyContent: "center", marginTop: 8 }}
           >
-            <div className="flex flex-col p-8 gap-1">
-              {navLinks.map((link) => (
-                <button
-                  key={link.href}
-                  onClick={() => handleNavClick(link.href)}
-                  className="flex items-center justify-between text-lg font-black uppercase tracking-widest text-foreground/60 hover:text-primary hover:bg-white/5 rounded-2xl px-6 py-4 transition-all group"
-                >
-                  <span>{link.label}</span>
-                  <ArrowRight size={18} className="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-primary" />
-                </button>
-              ))}
-              <div className="h-px bg-white/10 my-4 mx-4" />
-              <button onClick={() => handleNavClick("contact")} className="btn-primary-glow w-full text-center mt-2 py-6 text-xs uppercase tracking-[0.3em] font-black shadow-primary/30">
-                Initialize Deep Dive
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+            Get Started
+          </button>
+        </div>
+      )}
+    </header>
   );
 };
 
