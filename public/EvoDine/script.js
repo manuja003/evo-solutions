@@ -494,7 +494,7 @@ function startKpiCounter(el) {
   window.addEventListener('resize', onResize);
 })();
 
-/* ── FORM VALIDATION & SUBMISSION ──────────────────────────── */
+/* ── FORM VALIDATION & SUBMISSION ─────────────────────────--─── */
 (function initForm() {
   const form       = document.getElementById('contactForm');
   if (!form) return;
