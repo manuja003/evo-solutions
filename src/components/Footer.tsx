@@ -16,20 +16,21 @@ const Footer = () => {
     <footer style={{ background: "var(--ed-bg-dark)", borderTop: "1px solid var(--ed-border)" }}>
       {/* Top */}
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "64px 24px 48px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 48 }}
-          className="footer-grid-cols">
+        <div className="footer-grid-cols">
 
           {/* Brand */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-              <div style={{
-                width: 40, height: 40, borderRadius: 10,
-                background: "linear-gradient(135deg,#FF6B2B,#E55A1F)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontWeight: 900, fontSize: "1rem", color: "#fff",
-                fontFamily: "var(--font-jakarta)",
-                boxShadow: "0 4px 16px rgba(255,107,43,.3)",
-              }}>E</div>
+              <img
+                src="/icon.png"
+                alt="EvoSolutions"
+                style={{
+                  width: 44, height: 44,
+                  objectFit: "contain",
+                  filter: "drop-shadow(0 0 10px rgba(255,107,43,.4))",
+                  flexShrink: 0,
+                }}
+              />
               <div>
                 <div style={{ fontFamily: "var(--font-jakarta)", fontWeight: 800, fontSize: "1.2rem", color: "#fff", lineHeight: 1.1 }}>
                   Evo<span style={{ color: "#FF6B2B" }}>Solutions</span>
@@ -185,14 +186,6 @@ const Footer = () => {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 768px) {
-          .footer-grid-cols { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
-        }
-        @media (max-width: 480px) {
-          .footer-grid-cols { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </footer>
   );
 };

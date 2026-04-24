@@ -1,4 +1,5 @@
 import { useReveal } from "@/hooks/use-reveal";
+import Preloader from "@/components/Preloader";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -12,6 +13,7 @@ const Index = () => {
 
   return (
     <div style={{ minHeight: "100vh", background: "var(--ed-bg-deep)" }}>
+      <Preloader />
       <Navbar />
       <Hero />
       <About />

@@ -1,41 +1,51 @@
 import { useNavigate } from "react-router-dom";
 
+/* Fixed bar height shared between the bar div and the iframe top offset */
+const BAR_H = 52;
+
 const EvoDinePage = () => {
   const navigate = useNavigate();
 
   return (
     <div style={{ position: "fixed", inset: 0, background: "#040C18", zIndex: 0 }}>
-      {/* Back Navigation Bar */}
+
+      {/* ── Overlay navigation bar ── */}
       <div style={{
         position: "fixed",
         top: 0, left: 0, right: 0,
         zIndex: 9999,
-        background: "rgba(4,12,24,.95)",
+        height: BAR_H,
+        background: "rgba(4,12,24,.97)",
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
         borderBottom: "1px solid rgba(255,255,255,.08)",
-        padding: "10px 24px",
+        boxShadow: "0 4px 24px rgba(0,0,0,.4)",
         display: "flex",
         alignItems: "center",
-        gap: 16,
-        boxShadow: "0 4px 24px rgba(0,0,0,.4)",
+        padding: "0 16px",
+        gap: 12,
+        overflow: "hidden",
       }}>
+
+        {/* Back button */}
         <button
           onClick={() => navigate("/")}
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 8,
+            gap: 6,
             color: "rgba(148,163,184,.85)",
             background: "rgba(255,255,255,.05)",
             border: "1px solid rgba(255,255,255,.08)",
             borderRadius: 9999,
-            padding: "6px 14px",
-            fontSize: ".82rem",
+            padding: "6px 12px",
+            fontSize: ".8rem",
             fontWeight: 600,
             cursor: "pointer",
             transition: "all .25s",
             fontFamily: "'Plus Jakarta Sans','Inter',sans-serif",
+            whiteSpace: "nowrap",
+            flexShrink: 0,
           }}
           onMouseEnter={(e) => {
             (e.currentTarget as HTMLButtonElement).style.color = "#FF6B2B";
@@ -46,50 +56,55 @@ const EvoDinePage = () => {
             (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,.08)";
           }}
         >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
           </svg>
-          Back to EvoSolutions
+          Back
         </button>
 
-        {/* Breadcrumb */}
-        <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: ".8rem", color: "rgba(148,163,184,.5)" }}>
-          <span>EvoSolutions</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        {/* Breadcrumb — hidden on very small screens via inline media-query workaround */}
+        <div className="evodine-breadcrumb" style={{
+          display: "flex", alignItems: "center", gap: 6,
+          fontSize: ".78rem", color: "rgba(148,163,184,.5)",
+          whiteSpace: "nowrap", overflow: "hidden",
+        }}>
+          <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>EvoSolutions</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <polyline points="9 18 15 12 9 6"/>
           </svg>
           <span style={{ color: "#FF6B2B", fontWeight: 600 }}>EvoDine</span>
         </div>
 
+        {/* Spacer */}
+        <div style={{ flex: 1 }} />
+
         {/* Logo */}
         <div style={{
-          marginLeft: "auto",
-          display: "flex", alignItems: "center", gap: 8,
+          display: "flex", alignItems: "center", gap: 7, flexShrink: 0,
           fontFamily: "'Plus Jakarta Sans','Inter',sans-serif",
-          fontWeight: 700, fontSize: ".95rem", color: "#fff",
+          fontWeight: 700, fontSize: ".9rem", color: "#fff",
         }}>
-          <div style={{
-            width: 28, height: 28, borderRadius: 7,
-            background: "linear-gradient(135deg,#FF6B2B,#E55A1F)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontWeight: 900, fontSize: ".7rem", color: "#fff",
-          }}>E</div>
-          Evo<span style={{ color: "#FF6B2B" }}>Solutions</span>
+          <img
+            src="/icon.png"
+            alt="EvoSolutions"
+            style={{ width: 26, height: 26, objectFit: "contain", filter: "drop-shadow(0 0 6px rgba(255,107,43,.4))" }}
+          />
+          <span className="evodine-logo-text">Evo<span style={{ color: "#FF6B2B" }}>Solutions</span></span>
         </div>
       </div>
 
-      {/* EvoDine HTML iframe */}
+      {/* EvoDine iframe — starts exactly below the bar */}
       <iframe
         src="/EvoDine/index.html"
         title="EvoDine — Smart Restaurant Management"
         style={{
           position: "absolute",
-          top: 49,
+          top: BAR_H,
           left: 0,
           right: 0,
           bottom: 0,
           width: "100%",
-          height: "calc(100% - 49px)",
+          height: `calc(100% - ${BAR_H}px)`,
           border: "none",
           background: "#040C18",
         }}

@@ -46,8 +46,7 @@ const About = () => {
       }} />
 
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 1 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 72, alignItems: "center" }}
-          className="about-grid-cols">
+        <div className="about-grid-cols">
 
           {/* Left: Card Stack */}
           <div style={{ position: "relative" }} data-reveal>
@@ -65,16 +64,18 @@ const About = () => {
                   marginBottom: i < cards.length - 1 ? 14 : 0,
                   marginLeft: i === 1 ? 24 : 0,
                   boxShadow: "0 4px 24px rgba(0,0,0,.2)",
-                  transition: "all .3s",
                 }}
-                className={`about-card-${i}`}
+                className={`about-card-hover`}
               >
-                <div style={{
-                  width: 40, height: 40, borderRadius: 10, flexShrink: 0,
-                  background: card.color === "orange" ? "var(--ed-orange-soft)" : "var(--ed-blue-soft)",
-                  color: card.color === "orange" ? "var(--ed-orange)" : "var(--ed-blue-light)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                }}>
+                <div
+                  className={`about-icon-wrap ${card.color}`}
+                  style={{
+                    width: 40, height: 40, borderRadius: 10, flexShrink: 0,
+                    background: card.color === "orange" ? "var(--ed-orange-soft)" : "var(--ed-blue-soft)",
+                    color: card.color === "orange" ? "var(--ed-orange)" : "var(--ed-blue-light)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                  }}
+                >
                   {card.icon}
                 </div>
                 <div>
@@ -172,11 +173,6 @@ const About = () => {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 768px) {
-          .about-grid-cols { grid-template-columns: 1fr !important; gap: 40px !important; }
-        }
-      `}</style>
     </section>
   );
 };

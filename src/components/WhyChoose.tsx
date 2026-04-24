@@ -78,8 +78,7 @@ const WhyChoose = () => {
         </div>
 
         {/* Benefits Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 20 }}
-          className="benefits-grid">
+        <div className="benefits-grid">
           {benefits.map((b, i) => (
             <div
               key={i}
@@ -108,13 +107,9 @@ const WhyChoose = () => {
         <div
           data-reveal
           data-delay="200"
+          className="stats-highlight-bar"
           style={{
             marginTop: 64,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 48,
-            flexWrap: "wrap",
             padding: "32px 40px",
             background: "rgba(255,107,43,.06)",
             border: "1px solid rgba(255,107,43,.15)",
@@ -145,14 +140,6 @@ const WhyChoose = () => {
 
       </div>
 
-      <style>{`
-        @media (max-width: 1000px) {
-          .benefits-grid { grid-template-columns: repeat(2,1fr) !important; }
-        }
-        @media (max-width: 540px) {
-          .benefits-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </section>
   );
 };

@@ -104,7 +104,7 @@
 @keyframes preloader-load { from { width: 0; } to { width: 100%; } }
 @keyframes preloader-pulse { 0%,100% { opacity: 1; } 50% { opacity: .7; } }
 @keyframes gradient-shift { to { background-position: 200% center; } }
-@keyframes spin-slow { to { transform: rotate(360deg); } }
+@keyframes spin-slow  { to { transform: rotate(360deg); } }
 @keyframes fade-up { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
 
 /* ── DATA-REVEAL SCROLL SYSTEM ──────────────────────────────── */
@@ -539,4 +539,430 @@
   .status-chip.live     { background: rgba(34,197,94,.15);  color: var(--ed-green); }
   .status-chip.dev      { background: rgba(37,99,235,.15);  color: var(--ed-blue-light); }
   .status-chip.soon     { background: rgba(255,193,7,.12);  color: #FFC107; }
+
+  /* ── ENHANCED HOVER EFFECTS (EvoDine style) ─────── */
+
+  /* Product cards */
+  .product-card { cursor: pointer; }
+  .product-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,107,43,.06) 0%, transparent 60%);
+    opacity: 0;
+    transition: var(--ed-transition);
+    pointer-events: none;
+    border-radius: inherit;
+  }
+  .product-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255,255,255,.06);
+  }
+  .product-card:hover::after { opacity: 1; }
+  .product-card.orange:hover {
+    border-color: rgba(255,107,43,.4);
+    box-shadow: 0 20px 60px rgba(0,0,0,.4), 0 0 40px rgba(255,107,43,.18);
+  }
+  .product-card.blue:hover {
+    border-color: rgba(37,99,235,.4);
+    box-shadow: 0 20px 60px rgba(0,0,0,.4), 0 0 40px rgba(37,99,235,.18);
+  }
+
+  /* Benefit items */
+  .benefit-item:hover {
+    background: rgba(255,255,255,.07);
+    border-color: rgba(255,107,43,.25);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0,0,0,.3);
+  }
+  .bi-icon { transition: var(--ed-transition); }
+  .benefit-item:hover .bi-icon.orange {
+    background: var(--ed-orange);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(255,107,43,.35);
+  }
+  .benefit-item:hover .bi-icon.blue {
+    background: var(--ed-blue);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(37,99,235,.35);
+  }
+
+  /* Feature cards (unused but kept for future) */
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--ed-orange-soft), transparent);
+    opacity: 0;
+    transition: var(--ed-transition);
+    border-radius: inherit;
+  }
+  .feature-card > * { position: relative; z-index: 1; }
+  .feature-card:hover {
+    border-color: rgba(255,107,43,.3);
+    background: rgba(255,255,255,.06);
+    transform: translateY(-4px);
+    box-shadow: 0 0 40px rgba(255,107,43,.20);
+  }
+  .feature-card:hover::before { opacity: 1; }
+  .feature-card:hover .fc-icon-wrap.orange { background: var(--ed-orange); color: #fff; box-shadow: 0 4px 16px rgba(255,107,43,.35); }
+  .feature-card:hover .fc-icon-wrap.blue   { background: var(--ed-blue);   color: #fff; box-shadow: 0 4px 16px rgba(37,99,235,.35); }
+
+  /* Glass cards */
+  .glass-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255,107,43,.25);
+    box-shadow: 0 0 40px rgba(255,107,43,.15);
+  }
+
+  /* About section cards */
+  .about-card-hover {
+    transition: var(--ed-transition);
+  }
+  .about-card-hover:hover {
+    border-color: rgba(255,107,43,.35) !important;
+    background: rgba(255,255,255,.07) !important;
+    transform: translateX(6px);
+    box-shadow: 0 4px 24px rgba(0,0,0,.2), 0 0 20px rgba(255,107,43,.08);
+  }
+  .about-card-hover:hover .about-icon-wrap.orange {
+    background: var(--ed-orange) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 16px rgba(255,107,43,.35);
+  }
+  .about-card-hover:hover .about-icon-wrap.blue {
+    background: var(--ed-blue) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 16px rgba(37,99,235,.35);
+  }
+  .about-icon-wrap { transition: var(--ed-transition); }
+}
+
+/* ── NAVBAR CLASSES ─────────────────────────────────────────── */
+
+/* Desktop nav links list */
+.nav-links-desktop {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Desktop CTA buttons row */
+.nav-cta-desktop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Hamburger button — hidden on desktop */
+.nav-hamburger {
+  display: none;
+  margin-left: auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  cursor: pointer;
+  padding: 8px;
+  flex-shrink: 0;
+}
+
+/* Nav link button (desktop) */
+.nav-link-btn {
+  font-size: .9rem;
+  font-weight: 500;
+  color: rgba(148,163,184,.9);
+  padding: 7px 14px;
+  border-radius: 9999px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all .25s;
+  font-family: var(--font-jakarta);
+  white-space: nowrap;
+}
+.nav-link-btn:hover { color: #fff; background: rgba(255,255,255,.07); }
+.nav-link-btn.nav-link-active { color: var(--ed-orange); background: rgba(255,107,43,.08); }
+
+/* Contact outline button (desktop) */
+.btn-outline-nav-main {
+  font-size: .875rem;
+  font-weight: 600;
+  color: rgba(148,163,184,.8);
+  padding: 8px 18px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 9999px;
+  background: none;
+  cursor: pointer;
+  transition: all .25s;
+  font-family: var(--font-jakarta);
+  white-space: nowrap;
+}
+.btn-outline-nav-main:hover { color: #fff; border-color: rgba(148,163,184,.4); }
+
+/* Mobile drawer — hidden by default */
+.nav-mobile-drawer {
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  background: rgba(4,12,24,.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding: 16px 20px 24px;
+}
+.nav-mobile-drawer.nav-mobile-open { display: flex; }
+
+/* Mobile nav link button */
+.nav-mobile-link {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 13px 16px;
+  border-radius: 10px;
+  color: rgba(148,163,184,.9);
+  font-size: 1rem;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-jakarta);
+  transition: all .2s;
+}
+.nav-mobile-link:hover { color: #fff; background: rgba(255,255,255,.06); }
+.nav-mobile-link.nav-mobile-active { color: var(--ed-orange); background: rgba(255,107,43,.08); }
+
+/* Preloader */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--ed-bg-deep);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  transition: opacity .6s ease, visibility .6s ease;
+}
+.preloader.preloader-hide { opacity: 0; visibility: hidden; pointer-events: none; }
+.preloader-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: preloader-pulse 1.5s ease infinite;
+}
+.preloader-bar-wrap {
+  width: 240px;
+  height: 3px;
+  background: var(--ed-border);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+.preloader-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--ed-orange), var(--ed-blue-accent));
+  border-radius: 9999px;
+  animation: preloader-load 1.8s cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes preloader-load { from { width: 0 } to { width: 100% } }
+@keyframes preloader-pulse { 0%,100% { opacity: 1 } 50% { opacity: .7 } }
+
+/* Show hamburger + hide desktop items on tablet/mobile */
+@media (max-width: 1024px) {
+  .nav-links-desktop { display: none; }
+  .nav-cta-desktop   { display: none; }
+  .nav-hamburger     { display: flex; }
+}
+
+/* EvoDine overlay bar responsive */
+@media (max-width: 480px) {
+  .evodine-breadcrumb { display: none; }
+  .evodine-logo-text  { display: none; }
+}
+
+/* ── RESPONSIVE: LAYOUT GRIDS ──────────────────────────────── */
+
+/* Hero grid */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+/* About grid */
+.about-grid-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+
+/* Products grid */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Benefits grid */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* Contact grid */
+.contact-grid-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+/* Footer grid */
+.footer-grid-cols {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+}
+
+/* Stats highlight bar */
+.stats-highlight-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+/* ── TABLET LANDSCAPE (max 1024px) ──────────────────────────── */
+@media (max-width: 1024px) {
+  .hero-grid { gap: 40px; }
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid-cols { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+
+/* ── TABLET PORTRAIT (max 768px) ────────────────────────────── */
+@media (max-width: 768px) {
+  /* Hero */
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .hero-mockup-col { display: none !important; }
+
+  /* About */
+  .about-grid-cols {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* Products */
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Benefits */
+  .benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  /* Contact */
+  .contact-grid-cols {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* Footer */
+  .footer-grid-cols {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  /* Contact form - collapse inner grid */
+  .form-row-2col {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Section padding */
+  .section-pad-mobile { padding: 64px 0 !important; }
+
+  /* Hero title size */
+  .hero-title-mobile {
+    font-size: clamp(2rem, 8vw, 3rem) !important;
+  }
+
+  /* Stats bar */
+  .stats-highlight-bar { gap: 24px; }
+
+  /* Section header */
+  .section-header { margin-bottom: 40px; }
+  .section-title { font-size: clamp(1.6rem, 5vw, 2.4rem); }
+}
+
+/* ── MOBILE (max 480px) ─────────────────────────────────────── */
+@media (max-width: 480px) {
+  /* Navigation */
+  .nav-inner-pad { padding: 0 16px !important; }
+
+  /* Hero */
+  .hero-inner-pad { padding: 100px 0 60px !important; }
+  .hero-cta-row { gap: 10px !important; }
+  .hero-stats-row { gap: 0 !important; }
+
+  /* Stats item */
+  .qs-item { padding: 0 14px !important; }
+
+  /* Benefits */
+  .benefits-grid { grid-template-columns: 1fr; }
+
+  /* Footer */
+  .footer-grid-cols { grid-template-columns: 1fr; }
+
+  /* Contact form grid */
+  .form-row-2col { grid-template-columns: 1fr !important; }
+
+  /* Product card padding */
+  .product-card { padding: 24px !important; }
+
+  /* Section padding */
+  section { padding-top: 56px !important; padding-bottom: 56px !important; }
+
+  /* Section header title */
+  .section-title { font-size: 1.75rem; }
+
+  /* Stats highlight bar */
+  .stats-highlight-bar { gap: 20px; padding: 24px 20px !important; }
+}
+
+/* ── GENERAL TOUCH IMPROVEMENTS ─────────────────────────────── */
+@media (hover: none) {
+  /* On touch devices, disable translateY hover (prevents sticky states) */
+  .product-card:hover,
+  .benefit-item:hover,
+  .feature-card:hover,
+  .glass-card:hover { transform: none; }
+  .btn-primary:hover,
+  .btn-ghost:hover,
+  .btn-primary-glow:hover { transform: none; }
+}
+
+/* ── SCROLLBAR ON MOBILE ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar { width: 3px; }
 }

@@ -80,8 +80,7 @@ const Products = () => {
         </div>
 
         {/* Product Cards Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}
-          className="products-grid">
+        <div className="products-grid">
           {products.map((p, i) => {
             const isOrange = p.variant === "orange";
             const cardContent = (
@@ -213,14 +212,6 @@ const Products = () => {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 900px) {
-          .products-grid { grid-template-columns: 1fr !important; }
-        }
-        @media (min-width: 901px) and (max-width: 1100px) {
-          .products-grid { grid-template-columns: repeat(2,1fr) !important; }
-        }
-      `}</style>
     </section>
   );
 };

@@ -73,8 +73,7 @@ const Hero = () => {
       <div className="hero-orb hero-orb-3" />
 
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 1, width: "100%" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}
-          className="hero-grid">
+        <div className="hero-grid">
 
           {/* Left: Content */}
           <div data-reveal>
@@ -153,7 +152,7 @@ const Hero = () => {
           </div>
 
           {/* Right: Browser Mockup */}
-          <div style={{ position: "relative" }} data-reveal data-delay="200" className="hidden lg:block">
+          <div style={{ position: "relative" }} data-reveal data-delay="200" className="hero-mockup-col">
             {/* Glow */}
             <div style={{
               position: "absolute", inset: -30,
@@ -181,13 +180,11 @@ const Hero = () => {
                   display: "flex", flexDirection: "column",
                   alignItems: "center", padding: "12px 0", gap: 6,
                 }}>
-                  <div style={{
-                    width: 28, height: 28, borderRadius: 7,
-                    background: "linear-gradient(135deg,#FF6B2B,#E55A1F)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    fontSize: ".65rem", fontWeight: 800, color: "#fff", marginBottom: 8,
-                    fontFamily: "var(--font-jakarta)",
-                  }}>ES</div>
+                  <img
+                    src="/icon.png"
+                    alt="EvoSolutions"
+                    style={{ width: 28, height: 28, objectFit: "contain", marginBottom: 8, filter: "drop-shadow(0 0 4px rgba(255,107,43,.3))" }}
+                  />
                   {[
                     <path key="g" d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>,
                     <><rect key="r1" x="9" y="9" width="6" height="6"/><path key="p1" d="M9 3H5a2 2 0 0 0-2 2v4m6 0h6m0 0h4a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-4m0 6v10a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V9"/></>,
@@ -309,11 +306,6 @@ const Hero = () => {
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
 
-      <style>{`
-        @media (max-width: 768px) {
-          .hero-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
-        }
-      `}</style>
     </section>
   );
 };

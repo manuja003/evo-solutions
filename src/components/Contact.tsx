@@ -3,17 +3,49 @@ import { useState, useRef } from "react";
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending]     = useState(false);
+  const [error, setError]         = useState("");
   const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const form = formRef.current;
+    if (!form) return;
+    setError("");
     setSending(true);
-    setTimeout(() => {
+
+    const get = (name: string) =>
+      (form.querySelector<HTMLInputElement | HTMLTextAreaElement>(`[name="${name}"]`)?.value || "").trim();
+
+    const payload = new FormData();
+    payload.append("_subject", `EvoSolutions Enquiry — ${get("company") || "New Lead"}`);
+    payload.append("_template", "table");
+    payload.append("_captcha", "false");
+    payload.append("Full Name",          get("from_name"));
+    payload.append("Company / Business", get("company"));
+    payload.append("Email Address",      get("reply_to"));
+    payload.append("Phone Number",       get("phone"));
+    payload.append("Product of Interest",get("product"));
+    payload.append("Message",            get("message"));
+
+    try {
+      const res  = await fetch("https://formsubmit.co/ajax/infotagteamengineering@gmail.com", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: payload,
+      });
+      const data = await res.json();
+      if (data.success === "true" || data.success === true) {
+        setSubmitted(true);
+        form.reset();
+        setTimeout(() => setSubmitted(false), 6000);
+      } else {
+        throw new Error("Submission failed");
+      }
+    } catch {
+      setError("Could not send message. Please email us directly at infotagteamengineering@gmail.com");
+    } finally {
       setSending(false);
-      setSubmitted(true);
-      formRef.current?.reset();
-      setTimeout(() => setSubmitted(false), 5000);
-    }, 1400);
+    }
   };
 
   return (
@@ -29,8 +61,7 @@ const Contact = () => {
       }} />
 
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 1 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}
-          className="contact-grid-cols">
+        <div className="contact-grid-cols">
 
           {/* Left: Contact Info */}
           <div data-reveal>
@@ -162,33 +193,33 @@ const Contact = () => {
                 </div>
               ) : (
                 <form ref={formRef} onSubmit={handleSubmit} noValidate>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
+                  <div className="form-row-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
                     <div className="form-group">
                       <label>Full Name <span style={{ color: "#FF6B2B" }}>*</span></label>
-                      <input type="text" placeholder="Your full name" required />
+                      <input name="from_name" type="text" placeholder="Your full name" required />
                     </div>
                     <div className="form-group">
                       <label>Company / Business <span style={{ color: "#FF6B2B" }}>*</span></label>
-                      <input type="text" placeholder="Your company name" required />
+                      <input name="company" type="text" placeholder="Your company name" required />
                     </div>
                   </div>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
+                  <div className="form-row-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
                     <div className="form-group">
                       <label>Email Address <span style={{ color: "#FF6B2B" }}>*</span></label>
-                      <input type="email" placeholder="your@email.com" required />
+                      <input name="reply_to" type="email" placeholder="your@email.com" required />
                     </div>
                     <div className="form-group">
                       <label>Phone Number</label>
-                      <input type="tel" placeholder="+94 XX XXX XXXX" />
+                      <input name="phone" type="tel" placeholder="+94 XX XXX XXXX" />
                     </div>
                   </div>
                   <div style={{ marginBottom: 16 }} className="form-group">
                     <label>Product of Interest</label>
-                    <input type="text" placeholder="e.g. EvoDine, EvoPos, Custom Solution" />
+                    <input name="product" type="text" placeholder="e.g. EvoDine, EvoPos, Custom Solution" />
                   </div>
                   <div style={{ marginBottom: 24 }} className="form-group">
                     <label>Message</label>
-                    <textarea rows={4} placeholder="Tell us about your business and what you're looking for..." style={{ resize: "vertical" }} />
+                    <textarea name="message" rows={4} placeholder="Tell us about your business and what you're looking for..." style={{ resize: "vertical" }} />
                   </div>
                   <button
                     type="submit"
@@ -212,6 +243,23 @@ const Contact = () => {
                       </>
                     )}
                   </button>
+
+                  {error && (
+                    <div style={{
+                      marginTop: 14,
+                      display: "flex", alignItems: "flex-start", gap: 10,
+                      padding: "12px 16px",
+                      background: "rgba(239,68,68,.08)",
+                      border: "1px solid rgba(239,68,68,.25)",
+                      borderRadius: 12,
+                      fontSize: ".82rem", color: "#FCA5A5", lineHeight: 1.5,
+                    }}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ flexShrink: 0, marginTop: 1 }}>
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                      </svg>
+                      {error}
+                    </div>
+                  )}
                 </form>
               )}
             </div>
@@ -220,12 +268,6 @@ const Contact = () => {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 768px) {
-          .contact-grid-cols { grid-template-columns: 1fr !important; gap: 40px !important; }
-        }
-        @keyframes spin-slow { to { transform: rotate(360deg); } }
-      `}</style>
     </section>
   );
 };
