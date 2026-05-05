@@ -249,7 +249,7 @@ const Hero = () => {
                     {[
                       { name: "EvoDine", desc: "Restaurant Mgmt", status: "live" },
                       { name: "EvoPos", desc: "POS & Billing", status: "dev" },
-                      { name: "EvoReservation", desc: "Booking System", status: "dev" },
+                      { name: "EvoInn", desc: "Booking System", status: "dev" },
                     ].map((p, i) => (
                       <div key={i} style={{
                         display: "flex", alignItems: "center", gap: 6,

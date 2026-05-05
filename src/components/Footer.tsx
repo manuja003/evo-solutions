@@ -83,7 +83,7 @@ const Footer = () => {
               {[
                 { label: "EvoDine", to: "/products/evodine" },
                 { label: "EvoPos", to: null, section: "contact" },
-                { label: "EvoReservation", to: null, section: "contact" },
+                { label: "EvoInn", to: null, section: "contact" },
               ].map((item) => (
                 <li key={item.label}>
                   {item.to ? (
