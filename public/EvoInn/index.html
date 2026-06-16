@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EvoInn — Hotel & Reservation Management System by EvoSolution</title>
+  <meta name="description" content="EvoInn is a complete hotel and reservation management platform covering reservations, room management, key handling, billing, and real-time analytics. Built by EvoSolution — TagTeam Engineering." />
+  <meta name="keywords" content="hotel management system, reservation system, hotel software, property management, room booking, billing system" />
+  <link rel="icon" type="image/png" href="../EvoDine/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="preloader-logo">
+      <img src="../EvoDine/icon.png" alt="EvoInn" class="preloader-icon" />
+      <span class="preloader-text">Evo<span>Inn</span></span>
+    </div>
+    <div class="preloader-bar"><div class="preloader-fill"></div></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header id="navbar">
+    <nav class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <img src="../EvoDine/icon.png" alt="EvoInn Logo" class="nav-logo-img" />
+        <span>Evo<span class="logo-accent">Inn</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#workflow">Workflow</a></li>
+        <li><a href="#why-choose">Benefits</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="#contact" class="btn-outline-nav">Contact Us</a>
+        <a href="#contact" class="btn-primary-nav">Request Demo</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="hero">
+    <canvas id="particleCanvas"></canvas>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <div class="container hero-inner">
+      <div class="hero-content" data-reveal>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Now Live — Complete Hotel Management Platform
+        </div>
+        <h1 class="hero-title">
+          Manage Your Hotel<br />
+          <span class="gradient-text">Smarter. Faster.</span><br />
+          Effortlessly.
+        </h1>
+        <p class="hero-subtitle">
+          EvoInn unifies reservations, room management, guest check-in/check-out,
+          key handling, billing, and live analytics into one seamless real-time
+          platform — purpose-built for modern hospitality operations.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary btn-lg">
+            <i class="fa-solid fa-calendar-check"></i> Request a Demo
+          </a>
+          <a href="#features" class="btn-ghost btn-lg">
+            <i class="fa-solid fa-compass"></i> Explore Features
+          </a>
+        </div>
+        <div class="hero-quick-stats">
+          <div class="qs-item"><strong>3</strong><span>User Roles</span></div>
+          <div class="qs-divider"></div>
+          <div class="qs-item"><strong>8</strong><span>KPI Cards</span></div>
+          <div class="qs-divider"></div>
+          <div class="qs-item"><strong>&lt;1s</strong><span>Real-Time</span></div>
+          <div class="qs-divider"></div>
+          <div class="qs-item"><strong>5</strong><span>Reservation Stages</span></div>
+        </div>
+      </div>
+
+      <!-- HERO DASHBOARD MOCKUP -->
+      <div class="hero-mockup" data-reveal data-delay="200">
+        <div class="mockup-glow"></div>
+        <div class="mockup-browser">
+          <div class="browser-topbar">
+            <div class="browser-dots">
+              <span class="bd-red"></span>
+              <span class="bd-yellow"></span>
+              <span class="bd-green"></span>
+            </div>
+            <div class="browser-url">
+              <i class="fa-solid fa-lock" style="font-size:10px;color:#4ade80;"></i>
+              app.evoinn.com / dashboard
+            </div>
+          </div>
+          <div class="dash-layout">
+            <div class="dash-sidebar">
+              <div class="ds-logo">EI</div>
+              <div class="ds-nav-item active"><i class="fa-solid fa-gauge"></i></div>
+              <div class="ds-nav-item"><i class="fa-solid fa-calendar-days"></i></div>
+              <div class="ds-nav-item"><i class="fa-solid fa-key"></i></div>
+              <div class="ds-nav-item"><i class="fa-solid fa-file-invoice"></i></div>
+              <div class="ds-nav-item"><i class="fa-solid fa-bed"></i></div>
+            </div>
+            <div class="dash-main">
+              <div class="dash-topbar">
+                <span class="dash-greeting">Hotel Dashboard</span>
+                <span class="live-indicator"><span class="live-dot-anim"></span> Live</span>
+              </div>
+              <div class="dash-kpis">
+                <div class="kpi-card kpi-purple">
+                  <div class="kpi-icon"><i class="fa-solid fa-bed"></i></div>
+                  <div class="kpi-val" data-count="42">0</div>
+                  <div class="kpi-lbl">Total Rooms</div>
+                  <div class="kpi-delta up">↑ 100%</div>
+                </div>
+                <div class="kpi-card kpi-blue">
+                  <div class="kpi-icon"><i class="fa-solid fa-person-walking-luggage"></i></div>
+                  <div class="kpi-val" data-count="8">0</div>
+                  <div class="kpi-lbl">Today Check-ins</div>
+                  <div class="kpi-delta up">↑ 3</div>
+                </div>
+                <div class="kpi-card kpi-green">
+                  <div class="kpi-icon"><i class="fa-solid fa-coins"></i></div>
+                  <div class="kpi-val" data-count="85400" data-prefix="Rs.">Rs. 0</div>
+                  <div class="kpi-lbl">Today Revenue</div>
+                  <div class="kpi-delta up">↑ 18%</div>
+                </div>
+              </div>
+              <div class="dash-rooms-mini">
+                <div class="drm-title">Room Status Grid</div>
+                <div class="room-grid-mini">
+                  <div class="rgm-tile occupied"></div>
+                  <div class="rgm-tile available"></div>
+                  <div class="rgm-tile occupied"></div>
+                  <div class="rgm-tile reserved"></div>
+                  <div class="rgm-tile available" data-cycle></div>
+                  <div class="rgm-tile occupied"></div>
+                  <div class="rgm-tile available"></div>
+                  <div class="rgm-tile reserved" data-cycle></div>
+                  <div class="rgm-tile occupied"></div>
+                  <div class="rgm-tile available"></div>
+                  <div class="rgm-tile occupied" data-cycle></div>
+                  <div class="rgm-tile reserved"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Floating notification cards -->
+        <div class="float-notif fn-1">
+          <div class="fn-icon"><i class="fa-solid fa-bell"></i></div>
+          <div class="fn-text">
+            <strong>New Reservation</strong>
+            <span>Room 204 — 3 nights</span>
+          </div>
+        </div>
+        <div class="float-notif fn-2">
+          <div class="fn-icon green"><i class="fa-solid fa-check-circle"></i></div>
+          <div class="fn-text">
+            <strong>Check-Out Complete</strong>
+            <span>Room 312 — Invoice settled</span>
+          </div>
+        </div>
+        <div class="float-notif fn-3">
+          <div class="fn-icon blue"><i class="fa-solid fa-key"></i></div>
+          <div class="fn-text">
+            <strong>Key Issued</strong>
+            <span>Room 108 — Guest checked in</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll to explore</span>
+      <div class="scroll-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual" data-reveal>
+          <div class="about-card-stack">
+            <div class="about-card ac-1">
+              <div class="ac-icon purple"><i class="fa-solid fa-bolt"></i></div>
+              <div class="ac-content">
+                <strong>Real-Time Room Updates</strong>
+                <span>Room status grid and KPI cards refresh in under 1 second via SignalR WebSocket technology.</span>
+              </div>
+            </div>
+            <div class="about-card ac-2">
+              <div class="ac-icon blue"><i class="fa-solid fa-shield-halved"></i></div>
+              <div class="ac-content">
+                <strong>Role-Based Access</strong>
+                <span>3 distinct roles — Receptionist, Cashier, and Admin — each with precisely defined access scopes.</span>
+              </div>
+            </div>
+            <div class="about-card ac-3">
+              <div class="ac-icon green"><i class="fa-solid fa-globe"></i></div>
+              <div class="ac-content">
+                <strong>Web-Based Platform</strong>
+                <span>Angular 17 SPA — runs on any browser, any device, anywhere on your network.</span>
+              </div>
+            </div>
+            <div class="about-brand-badge">
+              <img src="../EvoDine/icon.png" alt="EvoInn" />
+              <div>
+                <span>Built by</span>
+                <strong>EvoSolution</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-text" data-reveal data-delay="150">
+          <div class="section-eyebrow">About EvoInn</div>
+          <h2 class="section-title">One Platform.<br /><span class="gradient-text">Total Hotel Control.</span></h2>
+          <p class="section-desc">EvoInn is a modern, web-based hotel and reservation management platform that connects every department of your property — from the moment a guest makes a reservation to the instant they check out and the invoice is settled.</p>
+          <p class="section-desc" style="margin-top:12px;">Built on Angular 17 with Microsoft SignalR real-time technology, EvoInn eliminates manual booking processes, reduces front desk errors, accelerates guest check-in, and gives management live operational visibility from a single dashboard.</p>
+          <div class="about-tags">
+            <span><i class="fa-solid fa-check"></i> Reservation Management</span>
+            <span><i class="fa-solid fa-check"></i> Real-Time Room Status Grid</span>
+            <span><i class="fa-solid fa-check"></i> Key Issue & Return Tracking</span>
+            <span><i class="fa-solid fa-check"></i> Invoice & Payment Processing</span>
+            <span><i class="fa-solid fa-check"></i> Daily Cashier Closing</span>
+            <span><i class="fa-solid fa-check"></i> Live Dashboard Analytics</span>
+          </div>
+          <div class="about-company">
+            <div class="company-info">
+              <img src="../EvoDine/icon.png" alt="EvoSolution" class="company-logo" />
+              <div>
+                <strong>EvoSolution</strong>
+                <span>A Product by TagTeam Engineering</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE FEATURES SECTION -->
+  <section id="features">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <div class="section-eyebrow">Core Capabilities</div>
+        <h2 class="section-title">Everything Your Hotel Needs,<br /><span class="gradient-text">In One System</span></h2>
+        <p class="section-desc">From the first reservation to the final bill — EvoInn handles every operational touchpoint with precision and speed.</p>
+      </div>
+      <div class="features-grid">
+
+        <div class="feature-card" data-reveal>
+          <div class="fc-icon-wrap purple"><i class="fa-solid fa-calendar-days"></i></div>
+          <h3>Reservation Management</h3>
+          <p>Complete reservation lifecycle from enquiry to checkout. Create, edit, confirm, check-in, and check-out guests with a context-sensitive interface that adapts to every reservation stage.</p>
+          <div class="fc-tag">Reservations Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="80">
+          <div class="fc-icon-wrap blue"><i class="fa-solid fa-gauge-high"></i></div>
+          <h3>Live Management Dashboard</h3>
+          <p>Real-time command center with 8 KPI cards, occupancy donut chart, revenue trend, room status grid, upcoming reservations timeline, and service usage analytics — all refreshing via SignalR.</p>
+          <div class="fc-tag">Dashboard Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="160">
+          <div class="fc-icon-wrap purple"><i class="fa-solid fa-bed"></i></div>
+          <h3>Room Status Grid</h3>
+          <p>Color-coded room tile grid grouped by floor. Click any tile for room details and quick actions: Check In, Check Out, Mark Maintenance, Assign Service — updated in real time.</p>
+          <div class="fc-tag">Dashboard Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="240">
+          <div class="fc-icon-wrap blue"><i class="fa-solid fa-key"></i></div>
+          <h3>Key Handling</h3>
+          <p>Issue and return room keys with full timestamp tracking. Unreturned keys over 24 hours are flagged automatically. Real-time alerts notify management of key accountability issues.</p>
+          <div class="fc-tag">Key Handling Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal>
+          <div class="fc-icon-wrap purple"><i class="fa-solid fa-file-invoice"></i></div>
+          <h3>Billing & Invoices</h3>
+          <p>Comprehensive invoice management with room charges, services, meals, and extra charges. Add payments, view itemized breakdowns, print formatted invoices, and track balance due.</p>
+          <div class="fc-tag">Billing Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="80">
+          <div class="fc-icon-wrap blue"><i class="fa-solid fa-cash-register"></i></div>
+          <h3>Daily Cashier Closing</h3>
+          <p>End-of-day financial reconciliation with a full summary of cash, card, and online collections, refunds issued, net revenue, and formal day-close confirmation with audit record.</p>
+          <div class="fc-tag">Cashier Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="160">
+          <div class="fc-icon-wrap purple"><i class="fa-solid fa-sliders"></i></div>
+          <h3>Room & Rate Administration</h3>
+          <p>Complete admin panel for room categories, facilities, room configurations (floor, status, facility assignments), rate plans (Daily, Seasonal, Special) with meal plan options.</p>
+          <div class="fc-tag">Admin Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="240">
+          <div class="fc-icon-wrap blue"><i class="fa-solid fa-concierge-bell"></i></div>
+          <h3>Additional Services</h3>
+          <p>Manage chargeable services like laundry, spa, meals, and transport with Fixed, Hourly, or Per-Usage pricing. Add services to reservations at any point during the guest stay.</p>
+          <div class="fc-tag">Services Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal>
+          <div class="fc-icon-wrap purple"><i class="fa-solid fa-triangle-exclamation"></i></div>
+          <h3>Live Alerts Panel</h3>
+          <p>Scrollable real-time alert feed covering pending checkouts, unpaid invoices, unreturned keys, and overbooking situations — each with direct navigation to the relevant record.</p>
+          <div class="fc-tag">Dashboard Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="80">
+          <div class="fc-icon-wrap blue"><i class="fa-solid fa-chart-line"></i></div>
+          <h3>Revenue Analytics</h3>
+          <p>Daily revenue area chart, grouped bar chart showing room vs service vs meal revenue, occupancy donut, and service usage breakdown — across selectable date ranges.</p>
+          <div class="fc-tag">Analytics Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="160">
+          <div class="fc-icon-wrap purple"><i class="fa-solid fa-credit-card"></i></div>
+          <h3>Multi-Method Payments</h3>
+          <p>Record payments via Cash, Card, or Online transfer. Capture card type, reference number, and payment date. Track partial payments and outstanding balance to final settlement.</p>
+          <div class="fc-tag">Billing Module</div>
+        </div>
+
+        <div class="feature-card feature-card-cta" data-reveal data-delay="240">
+          <div class="fcc-content">
+            <div class="fcc-icon"><i class="fa-solid fa-rocket"></i></div>
+            <h3>Ready to See It Live?</h3>
+            <p>Schedule a personalised demo and see EvoInn running in action for your property.</p>
+            <a href="#contact" class="btn-primary">Book Your Demo <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKFLOW SECTION -->
+  <section id="workflow">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <div class="section-eyebrow">How It Works</div>
+        <h2 class="section-title">The Complete Reservation<br /><span class="gradient-text">Lifecycle — Step by Step</span></h2>
+        <p class="section-desc">Watch how a guest journey flows from reservation to checkout across every module in real time.</p>
+      </div>
+
+      <!-- ANIMATED WORKFLOW PIPELINE -->
+      <div class="workflow-pipeline" data-reveal>
+        <div class="pipeline-track">
+          <div class="pipeline-progress" id="pipelineProgress"></div>
+        </div>
+        <div class="pipeline-stages">
+          <div class="ps-stage" data-stage="0">
+            <div class="ps-node purple"><i class="fa-solid fa-phone"></i></div>
+            <div class="ps-label">Reservation<br />Created</div>
+            <div class="ps-actor">Receptionist</div>
+          </div>
+          <div class="ps-connector"><i class="fa-solid fa-chevron-right"></i></div>
+          <div class="ps-stage" data-stage="1">
+            <div class="ps-node blue"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="ps-label">Confirmed</div>
+            <div class="ps-actor">Management</div>
+          </div>
+          <div class="ps-connector"><i class="fa-solid fa-chevron-right"></i></div>
+          <div class="ps-stage" data-stage="2">
+            <div class="ps-node purple"><i class="fa-solid fa-person-walking-luggage"></i></div>
+            <div class="ps-label">Check-In</div>
+            <div class="ps-actor">Receptionist</div>
+          </div>
+          <div class="ps-connector"><i class="fa-solid fa-chevron-right"></i></div>
+          <div class="ps-stage" data-stage="3">
+            <div class="ps-node blue"><i class="fa-solid fa-concierge-bell"></i></div>
+            <div class="ps-label">In-Stay<br />Services</div>
+            <div class="ps-actor">Guest Stay</div>
+          </div>
+          <div class="ps-connector"><i class="fa-solid fa-chevron-right"></i></div>
+          <div class="ps-stage" data-stage="4">
+            <div class="ps-node purple"><i class="fa-solid fa-file-invoice"></i></div>
+            <div class="ps-label">Invoice<br />Generated</div>
+            <div class="ps-actor">System Auto</div>
+          </div>
+          <div class="ps-connector"><i class="fa-solid fa-chevron-right"></i></div>
+          <div class="ps-stage" data-stage="5">
+            <div class="ps-node blue"><i class="fa-solid fa-cash-register"></i></div>
+            <div class="ps-label">Payment<br />Settled</div>
+            <div class="ps-actor">Cashier</div>
+          </div>
+          <div class="ps-connector"><i class="fa-solid fa-chevron-right"></i></div>
+          <div class="ps-stage" data-stage="6">
+            <div class="ps-node green"><i class="fa-solid fa-door-open"></i></div>
+            <div class="ps-label">Check-Out</div>
+            <div class="ps-actor">Room Freed</div>
+          </div>
+        </div>
+        <div class="pipeline-realtime">
+          <i class="fa-solid fa-bolt"></i>
+          All stage transitions broadcast to every connected screen in under <strong>1 second</strong> via SignalR WebSocket
+        </div>
+      </div>
+
+      <!-- UNIQUE FEATURES GRID -->
+      <div class="unique-grid">
+
+        <div class="uf-card" data-reveal>
+          <div class="uf-number">01</div>
+          <div class="uf-icon-wrap">
+            <div class="uf-icon pulse-purple"><i class="fa-solid fa-bolt"></i></div>
+          </div>
+          <h3>Real-Time Room Status</h3>
+          <p>Every room status change — check-in, check-out, maintenance — updates the room grid and KPI cards instantly across all connected screens via SignalR.</p>
+          <div class="uf-highlight">
+            <span class="uh-val">&lt; 1s</span>
+            <span class="uh-lbl">Update latency</span>
+          </div>
+        </div>
+
+        <div class="uf-card" data-reveal data-delay="100">
+          <div class="uf-number">02</div>
+          <div class="uf-icon-wrap">
+            <div class="uf-icon pulse-blue"><i class="fa-solid fa-calendar-check"></i></div>
+          </div>
+          <h3>5-Stage Reservation Lifecycle</h3>
+          <p>Every reservation moves through a structured pipeline — Pending, Confirmed, Checked In, Checked Out, Cancelled — with context-sensitive actions at every stage.</p>
+          <div class="status-pills">
+            <span class="s-pending">Pending</span>
+            <span class="s-confirm">Confirmed</span>
+            <span class="s-checkin">Checked In</span>
+            <span class="s-checkout">Checked Out</span>
+            <span class="s-cancel">Cancelled</span>
+          </div>
+        </div>
+
+        <div class="uf-card" data-reveal data-delay="200">
+          <div class="uf-number">03</div>
+          <div class="uf-icon-wrap">
+            <div class="uf-icon pulse-purple"><i class="fa-solid fa-users-gear"></i></div>
+          </div>
+          <h3>3-Role Permission System</h3>
+          <p>Granular access control ensures each staff member sees exactly what they need — protecting guest data, financial records, and operational controls at every level.</p>
+          <div class="role-pills">
+            <span>Admin / Manager</span>
+            <span>Receptionist</span>
+            <span>Cashier</span>
+          </div>
+        </div>
+
+        <div class="uf-card" data-reveal>
+          <div class="uf-number">04</div>
+          <div class="uf-icon-wrap">
+            <div class="uf-icon pulse-blue"><i class="fa-solid fa-credit-card"></i></div>
+          </div>
+          <h3>Multi-Method Payment</h3>
+          <p>Cash, credit card, debit card, and online transfer payments. Track partial payments, deposits, and refunds — with outstanding balance clearly visible at all times.</p>
+          <div class="payment-methods">
+            <span><i class="fa-solid fa-money-bill-wave"></i> Cash</span>
+            <span><i class="fa-solid fa-credit-card"></i> Card</span>
+            <span><i class="fa-solid fa-globe"></i> Online</span>
+          </div>
+        </div>
+
+        <div class="uf-card" data-reveal data-delay="100">
+          <div class="uf-number">05</div>
+          <div class="uf-icon-wrap">
+            <div class="uf-icon pulse-purple"><i class="fa-solid fa-gauge-high"></i></div>
+          </div>
+          <h3>8-Card Live Dashboard</h3>
+          <p>Management sees total rooms, occupancy, available rooms, reserved rooms, today's check-ins/check-outs, revenue, and pending payments — all live.</p>
+          <div class="kpi-mini-list">
+            <span>Total Rooms</span><span>Available</span><span>Occupied</span>
+            <span>Reserved</span><span>Check-ins</span><span>Check-outs</span>
+            <span>Revenue</span><span>Pending</span>
+          </div>
+        </div>
+
+        <div class="uf-card" data-reveal data-delay="200">
+          <div class="uf-number">06</div>
+          <div class="uf-icon-wrap">
+            <div class="uf-icon pulse-blue"><i class="fa-solid fa-key"></i></div>
+          </div>
+          <h3>Full Key Accountability</h3>
+          <p>Issue keys with precise timestamps, track returns, and get automatic alerts for keys unreturned beyond 24 hours. Complete key audit trail per room and reservation.</p>
+          <div class="audit-flow">
+            <span>Issue</span>
+            <i class="fa-solid fa-arrow-right"></i>
+            <span>Track</span>
+            <i class="fa-solid fa-arrow-right"></i>
+            <span>Return</span>
+            <i class="fa-solid fa-arrow-right"></i>
+            <span class="audit-recorded">Recorded</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE SECTION -->
+  <section id="why-choose">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <div class="section-eyebrow">Why EvoInn</div>
+        <h2 class="section-title">Built for Hotels That<br /><span class="gradient-text">Refuse to Stand Still</span></h2>
+        <p class="section-desc">From boutique guesthouses to large multi-floor hotels — EvoInn scales with your property and ambitions.</p>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-item" data-reveal>
+          <div class="bi-icon purple"><i class="fa-solid fa-gauge-high"></i></div>
+          <h4>Faster Guest Processing</h4>
+          <p>Digital check-in and check-out cuts front desk processing time dramatically. Staff spend zero time with paperwork — every action is precise and instantly recorded.</p>
+        </div>
+        <div class="benefit-item" data-reveal data-delay="80">
+          <div class="bi-icon blue"><i class="fa-solid fa-circle-check"></i></div>
+          <h4>Zero Overbooking</h4>
+          <p>Real-time room availability ensures no room is double-booked. The availability check runs live against current reservations the moment a booking is created.</p>
+        </div>
+        <div class="benefit-item" data-reveal data-delay="160">
+          <div class="bi-icon purple"><i class="fa-solid fa-face-smile"></i></div>
+          <h4>Superior Guest Experience</h4>
+          <p>Professional invoices, seamless service billing, and fast payment processing leave every guest with a lasting positive impression of your property's operations.</p>
+        </div>
+        <div class="benefit-item" data-reveal data-delay="240">
+          <div class="bi-icon blue"><i class="fa-solid fa-people-group"></i></div>
+          <h4>Staff Coordination</h4>
+          <p>Receptionists, cashiers, and management operate from one unified system — responsibilities are clear, handoffs are automatic, and information is always current.</p>
+        </div>
+        <div class="benefit-item" data-reveal>
+          <div class="bi-icon purple"><i class="fa-solid fa-sliders"></i></div>
+          <h4>Centralised Control</h4>
+          <p>Manage room categories, rate plans, surcharges, facilities, and services from one administration panel. Changes take effect system-wide immediately.</p>
+        </div>
+        <div class="benefit-item" data-reveal data-delay="80">
+          <div class="bi-icon blue"><i class="fa-solid fa-scale-balanced"></i></div>
+          <h4>Scales With Your Property</h4>
+          <p>Whether you manage 10 rooms or 200 — EvoInn's role-based and module architecture scales to your exact operational size without complexity.</p>
+        </div>
+        <div class="benefit-item" data-reveal data-delay="160">
+          <div class="bi-icon purple"><i class="fa-solid fa-eye"></i></div>
+          <h4>Live Operational Visibility</h4>
+          <p>Management sees everything in real time: occupancy, room status, pending check-outs, revenue, alerts, and upcoming arrivals — from any device on the network.</p>
+        </div>
+        <div class="benefit-item" data-reveal data-delay="240">
+          <div class="bi-icon blue"><i class="fa-solid fa-lock"></i></div>
+          <h4>Security & Accountability</h4>
+          <p>Role-based access prevents unauthorized actions. Full audit trails on reservations, payments, key issuance, and day-close decisions protect your property.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS SECTION -->
+  <section id="stats">
+    <div class="stats-bg-pattern"></div>
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item" data-reveal>
+          <div class="stat-number"><span class="counter" data-target="3">0</span></div>
+          <div class="stat-label">User Roles</div>
+          <div class="stat-desc">Granular access control</div>
+        </div>
+        <div class="stat-item" data-reveal data-delay="100">
+          <div class="stat-number"><span class="counter" data-target="8">0</span></div>
+          <div class="stat-label">KPI Cards</div>
+          <div class="stat-desc">Live management metrics</div>
+        </div>
+        <div class="stat-item" data-reveal data-delay="200">
+          <div class="stat-number"><span class="counter" data-target="5">0</span></div>
+          <div class="stat-label">Reservation Stages</div>
+          <div class="stat-desc">Full lifecycle visibility</div>
+        </div>
+        <div class="stat-item" data-reveal data-delay="300">
+          <div class="stat-number"><span>&lt; 1s</span></div>
+          <div class="stat-label">Real-Time Updates</div>
+          <div class="stat-desc">SignalR WebSocket technology</div>
+        </div>
+        <div class="stat-item" data-reveal data-delay="400">
+          <div class="stat-number"><span class="counter" data-target="6">0</span></div>
+          <div class="stat-label">Revenue Charts</div>
+          <div class="stat-desc">Analytics modules on dashboard</div>
+        </div>
+        <div class="stat-item" data-reveal data-delay="500">
+          <div class="stat-number"><span class="counter" data-target="100">0</span><span>%</span></div>
+          <div class="stat-label">Web-Based</div>
+          <div class="stat-desc">No installation required</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info" data-reveal>
+          <div class="section-eyebrow">Get In Touch</div>
+          <h2 class="section-title">Let's Get Your<br /><span class="gradient-text">Hotel Moving</span></h2>
+          <p>Ready to see EvoInn in action? Fill in your details and our team will reach out within one business day to schedule your personalised demo.</p>
+          <div class="contact-details">
+            <div class="cd-item">
+              <div class="cd-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div>
+                <strong>Email Us</strong>
+                <span>infotagteamengineering@gmail.com</span>
+              </div>
+            </div>
+            <div class="cd-item">
+              <div class="cd-icon"><i class="fa-solid fa-building"></i></div>
+              <div>
+                <strong>Built by</strong>
+                <span>EvoSolution — TagTeam Engineering</span>
+              </div>
+            </div>
+            <div class="cd-item">
+              <div class="cd-icon"><i class="fa-solid fa-clock"></i></div>
+              <div>
+                <strong>Response Time</strong>
+                <span>Within 1 business day</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-promise">
+            <div class="cp-item"><i class="fa-solid fa-check"></i> Free personalised demo</div>
+            <div class="cp-item"><i class="fa-solid fa-check"></i> No commitment required</div>
+            <div class="cp-item"><i class="fa-solid fa-check"></i> Expert onboarding support</div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap" data-reveal data-delay="200">
+          <div class="contact-form-card">
+            <div class="cfc-header">
+              <h3>Request a Demo</h3>
+              <p>Complete the form below and we'll be in touch shortly.</p>
+            </div>
+            <form id="contactForm" novalidate>
+              <input type="text" name="_honey" style="display:none" />
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fullName">Full Name <span class="req">*</span></label>
+                  <input type="text" id="fullName" name="fullName" placeholder="Your full name" autocomplete="name" />
+                  <span class="field-error" id="err-fullName"></span>
+                </div>
+                <div class="form-group">
+                  <label for="company">Hotel / Company Name <span class="req">*</span></label>
+                  <input type="text" id="company" name="company" placeholder="Your hotel name" />
+                  <span class="field-error" id="err-company"></span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">Email Address <span class="req">*</span></label>
+                  <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" />
+                  <span class="field-error" id="err-email"></span>
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone Number <span class="req">*</span></label>
+                  <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900" autocomplete="tel" />
+                  <span class="field-error" id="err-phone"></span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="location">Country / City <span class="req">*</span></label>
+                  <input type="text" id="location" name="location" placeholder="e.g. Colombo, Sri Lanka" />
+                  <span class="field-error" id="err-location"></span>
+                </div>
+                <div class="form-group">
+                  <label for="demoDate">Preferred Demo Date</label>
+                  <input type="date" id="demoDate" name="demoDate" />
+                </div>
+              </div>
+              <div class="form-group form-group-full">
+                <label for="message">Additional Message</label>
+                <textarea id="message" name="message" rows="4" placeholder="Tell us about your hotel, number of rooms, or any specific requirements..."></textarea>
+              </div>
+              <div class="form-submit">
+                <button type="submit" id="submitBtn" class="form-submit-btn">
+                  <span class="btn-text"><i class="fa-solid fa-paper-plane"></i> Send Message</span>
+                  <span class="btn-loading"><span class="btn-spinner"></span> Sending...</span>
+                </button>
+              </div>
+              <div class="form-success" id="formSuccess">
+                <i class="fa-solid fa-circle-check" style="font-size:1.2rem"></i>
+                <div><strong>Message sent successfully!</strong><br /><span style="font-size:.82rem">We'll be in touch within 1 business day to schedule your demo.</span></div>
+              </div>
+              <div class="form-error" id="formError">
+                <i class="fa-solid fa-circle-exclamation" style="font-size:1.2rem"></i>
+                <div><strong>Something went wrong.</strong><br /><span style="font-size:.82rem">Please email us directly at infotagteamengineering@gmail.com</span></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="../EvoDine/icon.png" alt="EvoSolution" />
+          <span>Evo<em>Inn</em></span>
+        </div>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#features">Features</a>
+          <a href="#workflow">Workflow</a>
+          <a href="#why-choose">Benefits</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 <a href="#hero">EvoSolution</a> — TagTeam Engineering. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <button id="backToTop" aria-label="Back to top">
+    <i class="fa-solid fa-chevron-up"></i>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>

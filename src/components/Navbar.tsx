@@ -1,20 +1,28 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useTheme } from "next-themes";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { label: "Home",     href: "home" },
   { label: "About",    href: "about" },
   { label: "Products", href: "products" },
   { label: "Why Us",   href: "why-us" },
+  { label: "Pricing",  href: "pricing", route: "/pricing" },
   { label: "Contact",  href: "contact" },
 ];
 
 const Navbar = () => {
-  const [scrolled, setScrolled]         = useState(false);
-  const [mobileOpen, setMobileOpen]     = useState(false);
+  const [scrolled, setScrolled]           = useState(false);
+  const [mobileOpen, setMobileOpen]       = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const location = useLocation();
-  const navigate = useNavigate();
+  const [themeMounted, setThemeMounted]   = useState(false);
+  const location  = useLocation();
+  const navigate  = useNavigate();
+  const { theme } = useTheme();
+
+  useEffect(() => { setThemeMounted(true); }, []);
+  const isDark = !themeMounted || theme === "dark";
 
   /* Scroll → glassmorphism */
   useEffect(() => {
@@ -47,8 +55,12 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", close);
   }, [mobileOpen]);
 
-  const handleNavClick = (sectionId: string) => {
+  const handleNavClick = (sectionId: string, route?: string) => {
     setMobileOpen(false);
+    if (route) {
+      navigate(route);
+      return;
+    }
     if (location.pathname !== "/") {
       navigate(`/#${sectionId}`);
     } else {
@@ -64,11 +76,17 @@ const Navbar = () => {
         top: 0, left: 0, right: 0,
         zIndex: 1000,
         padding: scrolled ? "12px 0" : "18px 0",
-        background: scrolled ? "rgba(4,12,24,.92)" : "transparent",
+        background: scrolled
+          ? (isDark ? "rgba(4,12,24,.92)" : "rgba(238,242,251,.95)")
+          : "transparent",
         backdropFilter: scrolled ? "blur(20px)" : "none",
         WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(255,255,255,.08)" : "none",
-        boxShadow: scrolled ? "0 4px 32px rgba(0,0,0,.4)" : "none",
+        borderBottom: scrolled
+          ? `1px solid ${isDark ? "rgba(255,255,255,.08)" : "rgba(0,0,0,.08)"}`
+          : "none",
+        boxShadow: scrolled
+          ? (isDark ? "0 4px 32px rgba(0,0,0,.4)" : "0 4px 24px rgba(0,0,0,.08)")
+          : "none",
         transition: "all .5s cubic-bezier(.4,0,.2,1)",
       }}
     >
@@ -82,10 +100,10 @@ const Navbar = () => {
             style={{ width: 40, height: 40, objectFit: "contain", filter: "drop-shadow(0 0 10px rgba(255,107,43,.35))" }}
           />
           <div>
-            <div style={{ fontFamily: "var(--font-jakarta)", fontWeight: 800, fontSize: "1.25rem", color: "#fff", letterSpacing: "-.01em", lineHeight: 1.1 }}>
+            <div style={{ fontFamily: "var(--font-jakarta)", fontWeight: 800, fontSize: "1.25rem", color: isDark ? "#fff" : "#0F172A", letterSpacing: "-.01em", lineHeight: 1.1 }}>
               Evo<span style={{ color: "#FF6B2B" }}>Solutions</span>
             </div>
-            <div style={{ fontSize: ".6rem", color: "rgba(148,163,184,.5)", fontWeight: 600, letterSpacing: ".12em", textTransform: "uppercase" }}>
+            <div style={{ fontSize: ".6rem", color: isDark ? "rgba(148,163,184,.5)" : "rgba(71,85,105,.5)", fontWeight: 600, letterSpacing: ".12em", textTransform: "uppercase" }}>
               TagTeam Engineering
             </div>
           </div>
@@ -96,8 +114,8 @@ const Navbar = () => {
           {navLinks.map((link) => (
             <li key={link.href}>
               <button
-                onClick={() => handleNavClick(link.href)}
-                className={`nav-link-btn${activeSection === link.href ? " nav-link-active" : ""}`}
+                onClick={() => handleNavClick(link.href, link.route)}
+                className={`nav-link-btn${location.pathname === (link.route ?? "") || activeSection === link.href ? " nav-link-active" : ""}`}
               >
                 {link.label}
               </button>
@@ -119,6 +137,9 @@ const Navbar = () => {
           </button>
         </div>
 
+        {/* Theme toggle — always visible */}
+        <ThemeToggle />
+
         {/* Hamburger — shown only on mobile/tablet via CSS */}
         <button
           onClick={() => setMobileOpen((o) => !o)}
@@ -127,16 +148,16 @@ const Navbar = () => {
           aria-expanded={mobileOpen}
         >
           <span style={{
-            display: "block", width: 22, height: 2, background: "#F0F4FF", borderRadius: 2, transition: "all .3s",
+            display: "block", width: 22, height: 2, background: isDark ? "#F0F4FF" : "#1E293B", borderRadius: 2, transition: "all .3s",
             transform: mobileOpen ? "translateY(7px) rotate(45deg)" : "none",
           }} />
           <span style={{
-            display: "block", width: 22, height: 2, background: "#F0F4FF", borderRadius: 2, transition: "all .3s",
+            display: "block", width: 22, height: 2, background: isDark ? "#F0F4FF" : "#1E293B", borderRadius: 2, transition: "all .3s",
             transform: mobileOpen ? "scaleX(0)" : "none",
             opacity: mobileOpen ? 0 : 1,
           }} />
           <span style={{
-            display: "block", width: 22, height: 2, background: "#F0F4FF", borderRadius: 2, transition: "all .3s",
+            display: "block", width: 22, height: 2, background: isDark ? "#F0F4FF" : "#1E293B", borderRadius: 2, transition: "all .3s",
             transform: mobileOpen ? "translateY(-7px) rotate(-45deg)" : "none",
           }} />
         </button>
@@ -147,20 +168,23 @@ const Navbar = () => {
         {navLinks.map((link) => (
           <button
             key={link.href}
-            onClick={() => handleNavClick(link.href)}
-            className={`nav-mobile-link${activeSection === link.href ? " nav-mobile-active" : ""}`}
+            onClick={() => handleNavClick(link.href, link.route)}
+            className={`nav-mobile-link${location.pathname === (link.route ?? "") || activeSection === link.href ? " nav-mobile-active" : ""}`}
           >
             {link.label}
           </button>
         ))}
-        <div style={{ height: 1, background: "rgba(255,255,255,.07)", margin: "8px 0" }} />
-        <button
-          onClick={() => handleNavClick("contact")}
-          className="btn-primary"
-          style={{ width: "100%", justifyContent: "center", marginTop: 4 }}
-        >
-          Get Started
-        </button>
+        <div style={{ height: 1, background: isDark ? "rgba(255,255,255,.07)" : "rgba(0,0,0,.07)", margin: "8px 0" }} />
+        <div style={{ display: "flex", gap: 10, alignItems: "center", marginTop: 4 }}>
+          <button
+            onClick={() => handleNavClick("contact")}
+            className="btn-primary"
+            style={{ flex: 1, justifyContent: "center" }}
+          >
+            Get Started
+          </button>
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );

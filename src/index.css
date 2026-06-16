@@ -966,3 +966,172 @@
 @media (max-width: 768px) {
   ::-webkit-scrollbar { width: 3px; }
 }
+
+/* ── LIGHT MODE ─────────────────────────────────────────────────
+   Overrides every CSS variable and hardcoded dark color
+   when next-themes adds class="light" to <html>.
+─────────────────────────────────────────────────────────────────*/
+html.light {
+  /* shadcn / Tailwind tokens */
+  --background:          210 40% 98%;
+  --foreground:          222 47% 11%;
+  --card:                0 0% 100%;
+  --card-foreground:     222 47% 11%;
+  --popover:             0 0% 100%;
+  --popover-foreground:  222 47% 11%;
+  --secondary:           210 40% 95%;
+  --secondary-foreground:222 47% 11%;
+  --muted:               210 40% 95%;
+  --muted-foreground:    215 16% 47%;
+  --border:              214 32% 88%;
+  --input:               214 32% 88%;
+
+  /* EvoSolutions design tokens – light palette */
+  --ed-bg-deep:          #EEF2FB;
+  --ed-bg-dark:          #E3E9F6;
+  --ed-bg-card:          rgba(255,255,255,.90);
+  --ed-border:           rgba(100,116,139,.14);
+  --ed-border-hover:     rgba(255,107,43,.45);
+  --ed-text-white:       #0F172A;
+  --ed-text-primary:     #1E293B;
+  --ed-text-secondary:   #475569;
+  --ed-text-muted:       #94A3B8;
+  --ed-shadow-card:      0 4px 24px rgba(0,0,0,.07);
+  --ed-shadow-glow-o:    0 0 40px rgba(255,107,43,.12);
+  --ed-shadow-glow-b:    0 0 40px rgba(37,99,235,.12);
+}
+
+html.light body {
+  background: var(--ed-bg-deep);
+  color: var(--ed-text-primary);
+}
+
+/* scrollbar */
+html.light ::-webkit-scrollbar-track { background: var(--ed-bg-dark); }
+
+/* ── cards ── */
+html.light .glass-card {
+  background: rgba(255,255,255,.85);
+  box-shadow: 0 4px 24px rgba(0,0,0,.06);
+}
+html.light .glass-card:hover {
+  background: rgba(255,255,255,.97);
+  box-shadow: 0 8px 40px rgba(0,0,0,.10);
+}
+
+html.light .product-card {
+  background: rgba(255,255,255,.88);
+}
+html.light .product-card:hover {
+  background: rgba(255,255,255,.98);
+  box-shadow: 0 20px 60px rgba(0,0,0,.10), 0 0 40px rgba(255,107,43,.10);
+}
+html.light .product-card.orange:hover { box-shadow: 0 20px 60px rgba(0,0,0,.10), 0 0 32px rgba(255,107,43,.18); }
+html.light .product-card.blue:hover   { box-shadow: 0 20px 60px rgba(0,0,0,.10), 0 0 32px rgba(37,99,235,.18); }
+
+html.light .feature-card {
+  background: rgba(255,255,255,.88);
+}
+html.light .feature-card:hover {
+  background: rgba(255,255,255,.98);
+  box-shadow: 0 0 40px rgba(255,107,43,.08);
+}
+
+html.light .benefit-item {
+  background: rgba(255,255,255,.88);
+}
+html.light .benefit-item:hover {
+  background: rgba(255,255,255,.98);
+  box-shadow: 0 8px 32px rgba(0,0,0,.07);
+}
+
+/* ── contact form ── */
+html.light .contact-form-card {
+  background: rgba(255,255,255,.85);
+}
+html.light .form-group input,
+html.light .form-group textarea {
+  background: rgba(255,255,255,.95);
+  color: var(--ed-text-white);
+  border-color: rgba(100,116,139,.18);
+}
+html.light .form-group input::placeholder,
+html.light .form-group textarea::placeholder { color: var(--ed-text-muted); }
+
+/* ── footer social links ── */
+html.light .footer-social a {
+  background: rgba(0,0,0,.04);
+}
+
+/* ── ghost / outline buttons ── */
+html.light .btn-ghost,
+html.light .btn-outline-hero {
+  background: rgba(0,0,0,.04);
+  border-color: rgba(0,0,0,.10);
+  color: var(--ed-text-primary);
+}
+
+/* ── nav desktop link buttons ── */
+html.light .nav-link-btn {
+  color: rgba(51,65,85,.85);
+}
+html.light .nav-link-btn:hover {
+  color: #0F172A;
+  background: rgba(0,0,0,.05);
+}
+html.light .nav-link-btn.nav-link-active {
+  color: var(--ed-orange);
+  background: rgba(255,107,43,.08);
+}
+
+/* nav CTA outline button */
+html.light .btn-outline-nav-main {
+  color: rgba(71,85,105,.85);
+  border-color: rgba(0,0,0,.10);
+}
+html.light .btn-outline-nav-main:hover {
+  color: #0F172A;
+  border-color: rgba(0,0,0,.25);
+}
+
+/* ── hamburger button ── */
+html.light .nav-hamburger {
+  background: rgba(0,0,0,.05);
+  border-color: rgba(0,0,0,.08);
+}
+
+/* ── mobile drawer ── */
+html.light .nav-mobile-drawer {
+  background: rgba(238,242,251,.98);
+  border-top-color: rgba(0,0,0,.07);
+}
+html.light .nav-mobile-link {
+  color: rgba(51,65,85,.9);
+}
+html.light .nav-mobile-link:hover {
+  color: #0F172A;
+  background: rgba(0,0,0,.04);
+}
+html.light .nav-mobile-link.nav-mobile-active {
+  color: var(--ed-orange);
+  background: rgba(255,107,43,.07);
+}
+
+/* ── preloader ── */
+html.light .preloader { background: var(--ed-bg-deep); }
+
+/* ── browser mockup (hero) ── */
+html.light .mockup-browser {
+  background: rgba(248,250,255,.96);
+  border-color: rgba(0,0,0,.10);
+  box-shadow: 0 32px 80px rgba(0,0,0,.12), 0 0 0 1px rgba(0,0,0,.06);
+}
+html.light .browser-topbar { background: rgba(0,0,0,.03); }
+html.light .browser-url    { background: rgba(0,0,0,.04); color: var(--ed-text-muted); }
+
+/* ── floating notification cards ── */
+html.light .float-notif {
+  background: rgba(248,250,255,.95);
+  border-color: rgba(0,0,0,.08);
+  box-shadow: 0 4px 20px rgba(0,0,0,.08);
+}

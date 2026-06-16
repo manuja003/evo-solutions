@@ -1,33 +1,122 @@
-import { Boxes } from "lucide-react";
-import ProductDetailLayout from "@/components/ProductDetailLayout";
-import inventoryDashboard from "@/assets/banking-dashboard.jpg"; // Reusing the asset for now
+import { useNavigate } from "react-router-dom";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
-const EvoInventoryPage = () => (
-  <ProductDetailLayout
-    name="EvoInventory"
-    tagline="Strategic Supply Chain Intelligence"
-    description="A mission-critical inventory management ecosystem engineered for zero-loss operations and peak logistics velocity. Built for enterprises that demand absolute precision."
-    icon={<Boxes size={32} className="text-primary-foreground" />}
-    color="from-primary to-accent"
-    screenshots={[inventoryDashboard]}
-    screenshotAlts={["EvoInventory Operations Dashboard"]}
-    features={[
-      { title: "Real-time Asset Telemetry", description: "Architected for 100% visibility into every SKU, moving through your ecosystem with sub-second synchronization." },
-      { title: "Predictive Stock Intelligence", description: "Leverage advanced heuristics to forecast demand and automate rebalancing before bottlenecks occur." },
-      { title: "Automated Fulfillment Engine", description: "Zero-latency orchestration of orders, pick-lists, and shipping protocols engineered for maximum throughput." },
-      { title: "Multi-Node Synchronization", description: "Manage complex logistics across international warehouse clusters from a single, high-availability control plane." },
-      { title: "Immutable Audit Trails", description: "Leverage secure, tamper-proof logging for every asset movement to ensure total accountability and compliance." },
-      { title: "API-First Infrastructure", description: "Seamlessly integrate with ERPs, POS systems, and logistics providers via our robust, low-latency REST hooks." },
-    ]}
-    benefits={[
-      { text: "Architected for 99.99% uptime in mission-critical logistics environments" },
-      { text: "Achieve 99.9% inventory accuracy with real-time telemetry and validation" },
-      { text: "Reduce carrying costs by 30% through strategic predictive scaling" },
-      { text: "Scale from a single storeroom to global distribution networks without data degradation" },
-      { text: "Enterprise-grade security and role-based access control for all logistics data" },
-      { text: "Engineered to handle 10,000+ asset movements per minute with zero latency" },
-    ]}
-  />
-);
+const BAR_H = 52;
+
+const EvoInventoryPage = () => {
+  const navigate = useNavigate();
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+  const isDark = !mounted || theme === "dark";
+
+  return (
+    <div style={{ position: "fixed", inset: 0, background: isDark ? "#040C18" : "#EEF2FB", zIndex: 0 }}>
+
+      {/* ── Overlay navigation bar ── */}
+      <div style={{
+        position: "fixed",
+        top: 0, left: 0, right: 0,
+        zIndex: 9999,
+        height: BAR_H,
+        background: isDark ? "rgba(4,12,24,.97)" : "rgba(238,242,251,.97)",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        borderBottom: isDark ? "1px solid rgba(255,255,255,.08)" : "1px solid rgba(0,0,0,.08)",
+        boxShadow: isDark ? "0 4px 24px rgba(0,0,0,.4)" : "0 4px 24px rgba(0,0,0,.08)",
+        display: "flex",
+        alignItems: "center",
+        padding: "0 16px",
+        gap: 12,
+        overflow: "hidden",
+      }}>
+
+        {/* Back button */}
+        <button
+          onClick={() => navigate("/")}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 6,
+            color: isDark ? "rgba(148,163,184,.85)" : "rgba(71,85,105,.85)",
+            background: isDark ? "rgba(255,255,255,.05)" : "rgba(0,0,0,.04)",
+            border: isDark ? "1px solid rgba(255,255,255,.08)" : "1px solid rgba(0,0,0,.08)",
+            borderRadius: 9999,
+            padding: "6px 12px",
+            fontSize: ".8rem",
+            fontWeight: 600,
+            cursor: "pointer",
+            transition: "all .25s",
+            fontFamily: "'Plus Jakarta Sans','Inter',sans-serif",
+            whiteSpace: "nowrap",
+            flexShrink: 0,
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLButtonElement).style.color = "#10B981";
+            (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(16,185,129,.35)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLButtonElement).style.color = isDark ? "rgba(148,163,184,.85)" : "rgba(71,85,105,.85)";
+            (e.currentTarget as HTMLButtonElement).style.borderColor = isDark ? "rgba(255,255,255,.08)" : "rgba(0,0,0,.08)";
+          }}
+        >
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+          </svg>
+          Back
+        </button>
+
+        {/* Breadcrumb */}
+        <div style={{
+          display: "flex", alignItems: "center", gap: 6,
+          fontSize: ".78rem", color: isDark ? "rgba(148,163,184,.5)" : "rgba(71,85,105,.5)",
+          whiteSpace: "nowrap", overflow: "hidden",
+        }}>
+          <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>EvoSolutions</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+          <span style={{ color: "#10B981", fontWeight: 600 }}>EvoPOS</span>
+        </div>
+
+        {/* Spacer */}
+        <div style={{ flex: 1 }} />
+
+        {/* Logo */}
+        <div style={{
+          display: "flex", alignItems: "center", gap: 7, flexShrink: 0,
+          fontFamily: "'Plus Jakarta Sans','Inter',sans-serif",
+          fontWeight: 700, fontSize: ".9rem", color: isDark ? "#fff" : "#0F172A",
+        }}>
+          <img
+            src="/icon.png"
+            alt="EvoSolutions"
+            style={{ width: 26, height: 26, objectFit: "contain", filter: "drop-shadow(0 0 6px rgba(16,185,129,.4))" }}
+          />
+          <span>Evo<span style={{ color: "#10B981" }}>Solutions</span></span>
+        </div>
+      </div>
+
+      {/* EvoPOS iframe — starts exactly below the bar */}
+      <iframe
+        src="/EvoPOS/index.html"
+        title="EvoPOS — Inventory & POS Management System"
+        style={{
+          position: "absolute",
+          top: BAR_H,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: "100%",
+          height: `calc(100% - ${BAR_H}px)`,
+          border: "none",
+          background: "#040C18",
+        }}
+        allow="autoplay"
+      />
+    </div>
+  );
+};
 
 export default EvoInventoryPage;

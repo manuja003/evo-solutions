@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EvoPOS — Inventory & POS Management System by EvoSolution</title>
+  <meta name="description" content="EvoPOS is a configurable inventory and point-of-sale management platform for retail, pharmacy, supermarket, and wholesale businesses. Multi-branch, barcode POS, loyalty, and more. Built by EvoSolution — TagTeam Engineering." />
+  <meta name="keywords" content="inventory management system, POS software, point of sale, barcode inventory, retail software, pharmacy management, stock management" />
+  <link rel="icon" type="image/png" href="../EvoDine/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="preloader-logo">
+      <img src="../EvoDine/icon.png" alt="EvoPOS" class="preloader-icon" />
+      <span class="preloader-text">Evo<span>POS</span></span>
+    </div>
+    <div class="preloader-bar"><div class="preloader-fill"></div></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header id="navbar">
+    <nav class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <img src="../EvoDine/icon.png" alt="EvoPOS Logo" class="nav-logo-img" />
+        <span>Evo<span class="logo-accent">POS</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#workflow">Workflow</a></li>
+        <li><a href="#why-choose">Benefits</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="#contact" class="btn-outline-nav">Contact Us</a>
+        <a href="#contact" class="btn-primary-nav">Request Demo</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="hero">
+    <canvas id="particleCanvas"></canvas>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <div class="container hero-inner">
+      <div class="hero-content" data-reveal>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Configurable for Any Retail or Wholesale Business
+        </div>
+        <h1 class="hero-title">
+          Inventory & POS<br />
+          <span class="gradient-text">Reimagined for</span><br />
+          Modern Business.
+        </h1>
+        <p class="hero-subtitle">
+          EvoPOS delivers a fully configurable inventory and point-of-sale
+          platform — supporting barcode scanning, multi-branch operations,
+          loyalty programs, expiry tracking, and deep analytics out of the box.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary btn-lg">
+            <i class="fa-solid fa-calendar-check"></i> Request a Demo
+          </a>
+          <a href="#features" class="btn-ghost btn-lg">
+            <i class="fa-solid fa-compass"></i> Explore Features
+          </a>
+        </div>
+        <div class="hero-quick-stats">
+          <div class="qs-item"><strong>12</strong><span>Modules</span></div>
+          <div class="qs-divider"></div>
+          <div class="qs-item"><strong>5+</strong><span>Industry Types</span></div>
+          <div class="qs-divider"></div>
+          <div class="qs-item"><strong>5</strong><span>Category Levels</span></div>
+          <div class="qs-divider"></div>
+          <div class="qs-item"><strong>Multi</strong><span>Branch</span></div>
+        </div>
+      </div>
+
+      <!-- HERO DASHBOARD MOCKUP -->
+      <div class="hero-mockup" data-reveal data-delay="200">
+        <div class="mockup-glow"></div>
+        <div class="mockup-browser">
+          <div class="browser-topbar">
+            <div class="browser-dots">
+              <span class="bd-red"></span>
+              <span class="bd-yellow"></span>
+              <span class="bd-green"></span>
+            </div>
+            <div class="browser-url">
+              <i class="fa-solid fa-lock" style="font-size:10px;color:#4ade80;"></i>
+              app.evopos.com / dashboard
+            </div>
+          </div>
+          <div class="dash-layout">
+            <div class="dash-sidebar">
+              <div class="ds-logo">EP</div>
+              <div class="ds-nav-item active"><i class="fa-solid fa-gauge"></i></div>
+              <div class="ds-nav-item"><i class="fa-solid fa-barcode"></i></div>
+              <div class="ds-nav-item"><i class="fa-solid fa-boxes-stacked"></i></div>
+              <div class="ds-nav-item"><i class="fa-solid fa-chart-bar"></i></div>
+              <div class="ds-nav-item"><i class="fa-solid fa-building"></i></div>
+            </div>
+            <div class="dash-main">
+              <div class="dash-topbar">
+                <span class="dash-greeting">Inventory Dashboard</span>
+                <span class="live-indicator"><span class="live-dot-anim"></span> Live</span>
+              </div>
+              <div class="dash-kpis">
+                <div class="kpi-card kpi-green">
+                  <div class="kpi-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+                  <div class="kpi-val" data-count="2847">0</div>
+                  <div class="kpi-lbl">Total Products</div>
+                  <div class="kpi-delta up">↑ 12%</div>
+                </div>
+                <div class="kpi-card kpi-blue">
+                  <div class="kpi-icon"><i class="fa-solid fa-receipt"></i></div>
+                  <div class="kpi-val" data-count="138">0</div>
+                  <div class="kpi-lbl">Today's Sales</div>
+                  <div class="kpi-delta up">↑ 8%</div>
+                </div>
+                <div class="kpi-card kpi-amber">
+                  <div class="kpi-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                  <div class="kpi-val" data-count="14">0</div>
+                  <div class="kpi-lbl">Low Stock</div>
+                  <div class="kpi-delta warn">! Alert</div>
+                </div>
+              </div>
+              <div class="dash-chart">
+                <div class="chart-label">Sales — Last 10 Days</div>
+                <div class="chart-bars">
+                  <div class="chart-bar"></div>
+                  <div class="chart-bar"></div>
+                  <div class="chart-bar"></div>
+                  <div class="chart-bar"></div>
+                  <div class="chart-bar"></div>
+                  <div class="chart-bar"></div>
+                  <div class="chart-bar"></div>
+                  <div class="chart-bar"></div>
+                  <div class="chart-bar"></div>
+                  <div class="chart-bar"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Floating notification cards -->
+        <div class="float-notif fn-1">
+          <div class="fn-icon"><i class="fa-solid fa-barcode"></i></div>
+          <div class="fn-text">
+            <strong>Item Scanned</strong>
+            <span>SKU #4891 — 2 units sold</span>
+          </div>
+        </div>
+        <div class="float-notif fn-2">
+          <div class="fn-icon amber"><i class="fa-solid fa-triangle-exclamation"></i></div>
+          <div class="fn-text">
+            <strong>Low Stock Alert</strong>
+            <span>Paracetamol 500mg — 3 left</span>
+          </div>
+        </div>
+        <div class="float-notif fn-3">
+          <div class="fn-icon blue"><i class="fa-solid fa-star"></i></div>
+          <div class="fn-text">
+            <strong>Loyalty Points Added</strong>
+            <span>Customer #1042 — 120 pts</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll to explore</span>
+      <div class="scroll-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual" data-reveal>
+          <div class="about-card-stack">
+            <div class="about-card ac-1">
+              <div class="ac-icon green"><i class="fa-solid fa-toggle-on"></i></div>
+              <div class="ac-content">
+                <strong>12 Configurable Modules</strong>
+                <span>Enable only what your business needs — barcode, loyalty, multi-branch, expiry tracking, pricing rules, and more — all configurable per deployment.</span>
+              </div>
+            </div>
+            <div class="about-card ac-2">
+              <div class="ac-icon blue"><i class="fa-solid fa-building"></i></div>
+              <div class="ac-content">
+                <strong>Multi-Branch Ready</strong>
+                <span>Manage stock transfers, separate ledgers, and branch-level analytics across multiple store locations from a single admin panel.</span>
+              </div>
+            </div>
+            <div class="about-card ac-3">
+              <div class="ac-icon amber"><i class="fa-solid fa-layer-group"></i></div>
+              <div class="ac-content">
+                <strong>5-Level Product Categories</strong>
+                <span>Build deep hierarchical product taxonomies perfect for supermarkets, pharmacies, and wholesalers with complex catalogues.</span>
+              </div>
+            </div>
+            <div class="about-brand-badge">
+              <img src="../EvoDine/icon.png" alt="EvoPOS" />
+              <div>
+                <span>Built by</span>
+                <strong>EvoSolution</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-text" data-reveal data-delay="150">
+          <div class="section-eyebrow">About EvoPOS</div>
+          <h2 class="section-title">One Platform.<br /><span class="gradient-text">Every Business Type.</span></h2>
+          <p class="section-desc">EvoPOS is a modular inventory and point-of-sale management system built on .NET Core 8 and SQL Server — engineered to serve retail shops, pharmacies, supermarkets, hardware stores, and wholesalers with equal precision.</p>
+          <p class="section-desc" style="margin-top:12px;">With 12 independently configurable feature modules, businesses activate only what they need — eliminating complexity while unlocking industry-specific power features like expiry/batch tracking for pharmacies, loyalty for retail, and multi-level categories for large-scale distributors.</p>
+          <div class="about-tags">
+            <span><i class="fa-solid fa-check"></i> Barcode POS Scanning</span>
+            <span><i class="fa-solid fa-check"></i> GRN Stock Management</span>
+            <span><i class="fa-solid fa-check"></i> Expiry &amp; Batch Tracking</span>
+            <span><i class="fa-solid fa-check"></i> Customer Loyalty Program</span>
+            <span><i class="fa-solid fa-check"></i> Multi-Branch Operations</span>
+            <span><i class="fa-solid fa-check"></i> Advanced Pricing Rules</span>
+          </div>
+          <div class="about-company">
+            <div class="company-info">
+              <img src="../EvoDine/icon.png" alt="EvoSolution" class="company-logo" />
+              <div>
+                <strong>EvoSolution</strong>
+                <span>A Product by TagTeam Engineering</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE FEATURES SECTION -->
+  <section id="features">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <div class="section-eyebrow">Core Capabilities</div>
+        <h2 class="section-title">12 Powerful Modules,<br /><span class="gradient-text">One Unified System</span></h2>
+        <p class="section-desc">Every module is independently configurable — activate exactly what your business needs and grow from there.</p>
+      </div>
+      <div class="features-grid">
+
+        <div class="feature-card" data-reveal>
+          <div class="fc-icon-wrap green"><i class="fa-solid fa-barcode"></i></div>
+          <h3>Barcode POS</h3>
+          <p>High-speed barcode scanning at the point of sale. Scan items to populate invoices instantly, support multiple barcode formats, and process sales with minimal keystrokes.</p>
+          <div class="fc-tag">BARCODE Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="80">
+          <div class="fc-icon-wrap blue"><i class="fa-solid fa-truck-ramp-box"></i></div>
+          <h3>GRN & Stock Management</h3>
+          <p>Goods Received Notes, supplier-linked purchase orders, stock-in workflows, and real-time stock level updates per product and branch. Full inventory lifecycle tracking.</p>
+          <div class="fc-tag">Supply Chain Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="160">
+          <div class="fc-icon-wrap green"><i class="fa-solid fa-calendar-xmark"></i></div>
+          <h3>Expiry &amp; Batch Tracking</h3>
+          <p>Track product batches with manufacture/expiry dates. Near-expiry alerts, FEFO selling order enforcement, and batch-level traceability — critical for pharmacies and food retail.</p>
+          <div class="fc-tag">BATCH_EXPIRY Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="240">
+          <div class="fc-icon-wrap blue"><i class="fa-solid fa-star"></i></div>
+          <h3>Customer Loyalty</h3>
+          <p>Points-based loyalty program with configurable earn rates, reward tiers, and redemption rules. Track customer purchase history, lifetime value, and segment by loyalty tier.</p>
+          <div class="fc-tag">LOYALTY Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal>
+          <div class="fc-icon-wrap green"><i class="fa-solid fa-building"></i></div>
+          <h3>Multi-Branch Management</h3>
+          <p>Manage multiple store locations with centralised product masters, branch-specific stock levels, inter-branch transfers, and separate financial reporting per branch.</p>
+          <div class="fc-tag">MULTI_BRANCH Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="80">
+          <div class="fc-icon-wrap blue"><i class="fa-solid fa-tags"></i></div>
+          <h3>Advanced Pricing Rules</h3>
+          <p>Flexible pricing engine supporting quantity discounts, customer group pricing, promotional rates, seasonal pricing, and supplier cost-based margin rules.</p>
+          <div class="fc-tag">PRICING_RULES Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="160">
+          <div class="fc-icon-wrap green"><i class="fa-solid fa-layer-group"></i></div>
+          <h3>5-Level Product Categories</h3>
+          <p>Hierarchical category trees with up to 5 levels — ideal for supermarkets (Beverages → Soft Drinks → Carbonated → Cola → 500ml) and complex product catalogues.</p>
+          <div class="fc-tag">Core Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="240">
+          <div class="fc-icon-wrap blue"><i class="fa-solid fa-rotate-left"></i></div>
+          <h3>Returns Management</h3>
+          <p>Handle customer returns and supplier return-to-vendor workflows with automatic stock adjustments, credit note generation, and full audit trail per returned item.</p>
+          <div class="fc-tag">RETURNS Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal>
+          <div class="fc-icon-wrap green"><i class="fa-solid fa-sliders"></i></div>
+          <h3>Product Attributes</h3>
+          <p>Custom product attributes like colour, size, weight, and formulation — enabling product variants, filtered search at POS, and detailed specification management.</p>
+          <div class="fc-tag">PRODUCT_ATTRIBUTES Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="80">
+          <div class="fc-icon-wrap blue"><i class="fa-solid fa-chart-bar"></i></div>
+          <h3>Advanced Reports</h3>
+          <p>Sales, stock movement, purchase, profit & loss, supplier, and customer reports with date range filters, branch filters, and exportable formats for finance teams.</p>
+          <div class="fc-tag">REPORTS Module</div>
+        </div>
+
+        <div class="feature-card" data-reveal data-delay="160">
+          <div class="fc-icon-wrap green"><i class="fa-solid fa-user-tag"></i></div>
+          <h3>Brand &amp; Supplier Management</h3>
+          <p>Organise products by brand, link suppliers to products and purchase orders, track supplier pricing history, and manage supplier contact and payment terms centrally.</p>
+          <div class="fc-tag">BRAND / SUPPLIER Modules</div>
+        </div>
+
+        <div class="feature-card feature-card-cta" data-reveal data-delay="240">
+          <div class="fcc-content">
+            <div class="fcc-icon"><i class="fa-solid fa-rocket"></i></div>
+            <h3>Ready to See It Live?</h3>
+            <p>Schedule a personalised demo matched to your business type — retail, pharmacy, or wholesale.</p>
+            <a href="#contact" class="btn-primary">Book Your Demo <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKFLOW SECTION -->
+  <section id="workflow">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <div class="section-eyebrow">How It Works</div>
+        <h2 class="section-title">From Stock Arrival<br /><span class="gradient-text">to Sale — Seamlessly</span></h2>
+        <p class="section-desc">Follow the complete flow of a product from receiving stock to the moment it reaches the customer at the POS counter.</p>
+      </div>
+
+      <!-- ANIMATED WORKFLOW PIPELINE -->
+      <div class="workflow-pipeline" data-reveal>
+        <div class="pipeline-track">
+          <div class="pipeline-progress" id="pipelineProgress"></div>
+        </div>
+        <div class="pipeline-stages">
+          <div class="ps-stage" data-stage="0">
+            <div class="ps-node green"><i class="fa-solid fa-truck-ramp-box"></i></div>
+            <div class="ps-label">Stock<br />Received</div>
+            <div class="ps-actor">GRN Entry</div>
+          </div>
+          <div class="ps-connector"><i class="fa-solid fa-chevron-right"></i></div>
+          <div class="ps-stage" data-stage="1">
+            <div class="ps-node blue"><i class="fa-solid fa-barcode"></i></div>
+            <div class="ps-label">Barcode<br />Assigned</div>
+            <div class="ps-actor">Product Setup</div>
+          </div>
+          <div class="ps-connector"><i class="fa-solid fa-chevron-right"></i></div>
+          <div class="ps-stage" data-stage="2">
+            <div class="ps-node green"><i class="fa-solid fa-tags"></i></div>
+            <div class="ps-label">Pricing<br />Applied</div>
+            <div class="ps-actor">Price Rules</div>
+          </div>
+          <div class="ps-connector"><i class="fa-solid fa-chevron-right"></i></div>
+          <div class="ps-stage" data-stage="3">
+            <div class="ps-node blue"><i class="fa-solid fa-boxes-stacked"></i></div>
+            <div class="ps-label">Stock<br />Available</div>
+            <div class="ps-actor">Inventory</div>
+          </div>
+          <div class="ps-connector"><i class="fa-solid fa-chevron-right"></i></div>
+          <div class="ps-stage" data-stage="4">
+            <div class="ps-node green"><i class="fa-solid fa-cash-register"></i></div>
+            <div class="ps-label">POS<br />Sale</div>
+            <div class="ps-actor">Cashier</div>
+          </div>
+          <div class="ps-connector"><i class="fa-solid fa-chevron-right"></i></div>
+          <div class="ps-stage" data-stage="5">
+            <div class="ps-node blue"><i class="fa-solid fa-receipt"></i></div>
+            <div class="ps-label">Invoice<br />Printed</div>
+            <div class="ps-actor">Customer</div>
+          </div>
+          <div class="ps-connector"><i class="fa-solid fa-chevron-right"></i></div>
+          <div class="ps-stage" data-stage="6">
+            <div class="ps-node green"><i class="fa-solid fa-chart-line"></i></div>
+            <div class="ps-label">Analytics<br />Updated</div>
+            <div class="ps-actor">Reports</div>
+          </div>
+        </div>
+        <div class="pipeline-realtime">
+          <i class="fa-solid fa-bolt"></i>
+          Stock levels and sales analytics update in real time across all connected screens and branches
+        </div>
+      </div>
+
+      <!-- UNIQUE FEATURES GRID -->
+      <div class="unique-grid">
+
+        <div class="uf-card" data-reveal>
+          <div class="uf-number">01</div>
+          <div class="uf-icon-wrap">
+            <div class="uf-icon pulse-green"><i class="fa-solid fa-toggle-on"></i></div>
+          </div>
+          <h3>Fully Configurable Modules</h3>
+          <p>12 feature modules that can be independently enabled or disabled per deployment. Only pay for and use what your specific business type requires.</p>
+          <div class="module-pills">
+            <span>BARCODE</span><span>LOYALTY</span><span>BATCH_EXPIRY</span>
+            <span>MULTI_BRANCH</span><span>RETURNS</span><span>REPORTS</span>
+          </div>
+        </div>
+
+        <div class="uf-card" data-reveal data-delay="100">
+          <div class="uf-number">02</div>
+          <div class="uf-icon-wrap">
+            <div class="uf-icon pulse-blue"><i class="fa-solid fa-store"></i></div>
+          </div>
+          <h3>Built for 5 Industry Types</h3>
+          <p>Pre-configured industry profiles optimise module selection and default settings for each business type — getting you live faster with fewer configuration steps.</p>
+          <div class="industry-badges">
+            <span>Retail</span>
+            <span>Pharmacy</span>
+            <span>Supermarket</span>
+            <span>Hardware</span>
+            <span>Wholesale</span>
+          </div>
+        </div>
+
+        <div class="uf-card" data-reveal data-delay="200">
+          <div class="uf-number">03</div>
+          <div class="uf-icon-wrap">
+            <div class="uf-icon pulse-green"><i class="fa-solid fa-barcode"></i></div>
+          </div>
+          <h3>Lightning-Fast Barcode POS</h3>
+          <p>Scan-to-invoice barcode workflow at the POS counter. Multi-format barcode support, partial payment, and split tendering for maximum cashier efficiency.</p>
+          <div class="pos-steps">
+            <span>Scan Barcode</span>
+            <span>Auto-populate Item + Price</span>
+            <span>Calculate Total</span>
+            <span>Process Payment</span>
+            <span>Print Invoice</span>
+          </div>
+        </div>
+
+        <div class="uf-card" data-reveal>
+          <div class="uf-number">04</div>
+          <div class="uf-icon-wrap">
+            <div class="uf-icon pulse-blue"><i class="fa-solid fa-calendar-xmark"></i></div>
+          </div>
+          <h3>Expiry & Batch Intelligence</h3>
+          <p>Automatic near-expiry alerts, first-expired-first-out (FEFO) enforcement at POS, batch-level stock tracking, and expired stock flagging for compliance.</p>
+          <div class="uf-highlight">
+            <span class="uh-val">FEFO</span>
+            <span class="uh-lbl">Enforced at POS automatically</span>
+          </div>
+        </div>
+
+        <div class="uf-card" data-reveal data-delay="100">
+          <div class="uf-number">05</div>
+          <div class="uf-icon-wrap">
+            <div class="uf-icon pulse-green"><i class="fa-solid fa-building"></i></div>
+          </div>
+          <h3>True Multi-Branch Control</h3>
+          <p>Each branch has its own stock ledger, POS configuration, and financial reports — while management sees a consolidated view across all locations in real time.</p>
+          <div class="feature-flags">
+            <span>Branch Stock</span>
+            <span>Transfer Orders</span>
+            <span>Consolidated Reports</span>
+            <span>Per-Branch Pricing</span>
+          </div>
+        </div>
+
+        <div class="uf-card" data-reveal data-delay="200">
+          <div class="uf-number">06</div>
+          <div class="uf-icon-wrap">
+            <div class="uf-icon pulse-blue"><i class="fa-solid fa-chart-bar"></i></div>
+          </div>
+          <h3>Comprehensive Analytics</h3>
+          <p>Sales trends, best-selling products, supplier performance, profit margins, stock movement, customer purchase behaviour, and loyalty redemption analytics.</p>
+          <div class="uf-highlight">
+            <span class="uh-val">12+</span>
+            <span class="uh-lbl">Report types available</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE SECTION -->
+  <section id="why-choose">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <div class="section-eyebrow">Why EvoPOS</div>
+        <h2 class="section-title">Built for Businesses That<br /><span class="gradient-text">Want More Control</span></h2>
+        <p class="section-desc">From a single pharmacy counter to a multi-location supermarket chain — EvoPOS adapts to your operational reality.</p>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-item" data-reveal>
+          <div class="bi-icon green"><i class="fa-solid fa-bolt"></i></div>
+          <h4>Faster Checkout Experience</h4>
+          <p>Barcode scanning at POS reduces transaction time dramatically. No manual product searching — scan, total, pay, print. Customers are in and out faster.</p>
+        </div>
+        <div class="benefit-item" data-reveal data-delay="80">
+          <div class="bi-icon blue"><i class="fa-solid fa-triangle-exclamation"></i></div>
+          <h4>Zero Stock Surprises</h4>
+          <p>Real-time inventory tracking ensures you always know stock levels. Low-stock alerts, automatic reorder suggestions, and accurate count at every branch.</p>
+        </div>
+        <div class="benefit-item" data-reveal data-delay="160">
+          <div class="bi-icon green"><i class="fa-solid fa-scale-balanced"></i></div>
+          <h4>Compliance-Ready</h4>
+          <p>Batch and expiry tracking keeps pharmacies and food retailers compliant. FEFO enforcement, expired stock lockouts, and batch traceability reports are built in.</p>
+        </div>
+        <div class="benefit-item" data-reveal data-delay="240">
+          <div class="bi-icon blue"><i class="fa-solid fa-star"></i></div>
+          <h4>Customer Retention Built In</h4>
+          <p>Integrated loyalty program turns one-time buyers into repeat customers. Points, tiers, and targeted rewards are configured to match your retention strategy.</p>
+        </div>
+        <div class="benefit-item" data-reveal>
+          <div class="bi-icon green"><i class="fa-solid fa-toggle-on"></i></div>
+          <h4>Pay for What You Use</h4>
+          <p>Module-based architecture means you only activate — and pay for — the features your business needs. No bloated feature sets, no unnecessary complexity.</p>
+        </div>
+        <div class="benefit-item" data-reveal data-delay="80">
+          <div class="bi-icon blue"><i class="fa-solid fa-chart-line"></i></div>
+          <h4>Data-Driven Decisions</h4>
+          <p>12+ report types give managers the sales, stock, and supplier intelligence needed to make purchasing, pricing, and staffing decisions with confidence.</p>
+        </div>
+        <div class="benefit-item" data-reveal data-delay="160">
+          <div class="bi-icon green"><i class="fa-solid fa-building"></i></div>
+          <h4>Scales With Your Growth</h4>
+          <p>Add branches, products, users, and modules as your business grows — without changing systems. EvoPOS grows with you from one shop to an enterprise chain.</p>
+        </div>
+        <div class="benefit-item" data-reveal data-delay="240">
+          <div class="bi-icon blue"><i class="fa-solid fa-lock"></i></div>
+          <h4>Enterprise-Grade Security</h4>
+          <p>.NET Core 8 backend with SQL Server — industry-standard security, audit trails, and role-based access control protecting every transaction and data record.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS SECTION -->
+  <section id="stats">
+    <div class="stats-bg-pattern"></div>
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item" data-reveal>
+          <div class="stat-number"><span class="counter" data-target="12">0</span></div>
+          <div class="stat-label">Feature Modules</div>
+          <div class="stat-desc">Independently configurable</div>
+        </div>
+        <div class="stat-item" data-reveal data-delay="100">
+          <div class="stat-number"><span class="counter" data-target="5">0</span><span>+</span></div>
+          <div class="stat-label">Industry Types</div>
+          <div class="stat-desc">Retail, Pharmacy, and more</div>
+        </div>
+        <div class="stat-item" data-reveal data-delay="200">
+          <div class="stat-number"><span class="counter" data-target="5">0</span></div>
+          <div class="stat-label">Category Levels</div>
+          <div class="stat-desc">Deep hierarchical taxonomy</div>
+        </div>
+        <div class="stat-item" data-reveal data-delay="300">
+          <div class="stat-number"><span>Multi</span></div>
+          <div class="stat-label">Branch Support</div>
+          <div class="stat-desc">Centralised control</div>
+        </div>
+        <div class="stat-item" data-reveal data-delay="400">
+          <div class="stat-number"><span class="counter" data-target="12">0</span><span>+</span></div>
+          <div class="stat-label">Report Types</div>
+          <div class="stat-desc">Sales, stock, profit & more</div>
+        </div>
+        <div class="stat-item" data-reveal data-delay="500">
+          <div class="stat-number"><span>FEFO</span></div>
+          <div class="stat-label">Enforced at POS</div>
+          <div class="stat-desc">Expiry-first selling order</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info" data-reveal>
+          <div class="section-eyebrow">Get In Touch</div>
+          <h2 class="section-title">Let's Transform Your<br /><span class="gradient-text">Inventory Operations</span></h2>
+          <p>Ready to see EvoPOS in action? Fill in your details and our team will reach out within one business day to schedule your personalised demo matched to your industry type.</p>
+          <div class="contact-details">
+            <div class="cd-item">
+              <div class="cd-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div>
+                <strong>Email Us</strong>
+                <span>infotagteamengineering@gmail.com</span>
+              </div>
+            </div>
+            <div class="cd-item">
+              <div class="cd-icon"><i class="fa-solid fa-building"></i></div>
+              <div>
+                <strong>Built by</strong>
+                <span>EvoSolution — TagTeam Engineering</span>
+              </div>
+            </div>
+            <div class="cd-item">
+              <div class="cd-icon"><i class="fa-solid fa-clock"></i></div>
+              <div>
+                <strong>Response Time</strong>
+                <span>Within 1 business day</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-promise">
+            <div class="cp-item"><i class="fa-solid fa-check"></i> Free personalised demo</div>
+            <div class="cp-item"><i class="fa-solid fa-check"></i> Industry-specific configuration</div>
+            <div class="cp-item"><i class="fa-solid fa-check"></i> Expert onboarding support</div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap" data-reveal data-delay="200">
+          <div class="contact-form-card">
+            <div class="cfc-header">
+              <h3>Request a Demo</h3>
+              <p>Complete the form below and we'll be in touch shortly.</p>
+            </div>
+            <form id="contactForm" novalidate>
+              <input type="text" name="_honey" style="display:none" />
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fullName">Full Name <span class="req">*</span></label>
+                  <input type="text" id="fullName" name="fullName" placeholder="Your full name" autocomplete="name" />
+                  <span class="field-error" id="err-fullName"></span>
+                </div>
+                <div class="form-group">
+                  <label for="company">Company / Business Name <span class="req">*</span></label>
+                  <input type="text" id="company" name="company" placeholder="Your business name" />
+                  <span class="field-error" id="err-company"></span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">Email Address <span class="req">*</span></label>
+                  <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" />
+                  <span class="field-error" id="err-email"></span>
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone Number <span class="req">*</span></label>
+                  <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900" autocomplete="tel" />
+                  <span class="field-error" id="err-phone"></span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="location">Country / City <span class="req">*</span></label>
+                  <input type="text" id="location" name="location" placeholder="e.g. Colombo, Sri Lanka" />
+                  <span class="field-error" id="err-location"></span>
+                </div>
+                <div class="form-group">
+                  <label for="industry">Business Type</label>
+                  <select id="industry" name="industry">
+                    <option value="">Select your industry</option>
+                    <option value="Retail">Retail Shop</option>
+                    <option value="Pharmacy">Pharmacy / Medical</option>
+                    <option value="Supermarket">Supermarket / Grocery</option>
+                    <option value="Hardware">Hardware / Building Materials</option>
+                    <option value="Wholesale">Wholesale / Distribution</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="demoDate">Preferred Demo Date</label>
+                  <input type="date" id="demoDate" name="demoDate" />
+                </div>
+                <div class="form-group">
+                  <!-- intentionally empty for layout balance -->
+                </div>
+              </div>
+              <div class="form-group form-group-full">
+                <label for="message">Additional Message</label>
+                <textarea id="message" name="message" rows="4" placeholder="Tell us about your business, number of branches, products, or any specific requirements..."></textarea>
+              </div>
+              <div class="form-submit">
+                <button type="submit" id="submitBtn" class="form-submit-btn">
+                  <span class="btn-text"><i class="fa-solid fa-paper-plane"></i> Send Message</span>
+                  <span class="btn-loading"><span class="btn-spinner"></span> Sending...</span>
+                </button>
+              </div>
+              <div class="form-success" id="formSuccess">
+                <i class="fa-solid fa-circle-check" style="font-size:1.2rem"></i>
+                <div><strong>Message sent successfully!</strong><br /><span style="font-size:.82rem">We'll be in touch within 1 business day to schedule your demo.</span></div>
+              </div>
+              <div class="form-error" id="formError">
+                <i class="fa-solid fa-circle-exclamation" style="font-size:1.2rem"></i>
+                <div><strong>Something went wrong.</strong><br /><span style="font-size:.82rem">Please email us directly at infotagteamengineering@gmail.com</span></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="../EvoDine/icon.png" alt="EvoSolution" />
+          <span>Evo<em>POS</em></span>
+        </div>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#features">Features</a>
+          <a href="#workflow">Workflow</a>
+          <a href="#why-choose">Benefits</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 <a href="#hero">EvoSolution</a> — TagTeam Engineering. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <button id="backToTop" aria-label="Back to top">
+    <i class="fa-solid fa-chevron-up"></i>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>

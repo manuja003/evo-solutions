@@ -1,13 +1,19 @@
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 /* Fixed bar height shared between the bar div and the iframe top offset */
 const BAR_H = 52;
 
 const EvoDinePage = () => {
   const navigate = useNavigate();
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+  const isDark = !mounted || theme === "dark";
 
   return (
-    <div style={{ position: "fixed", inset: 0, background: "#040C18", zIndex: 0 }}>
+    <div style={{ position: "fixed", inset: 0, background: isDark ? "#040C18" : "#EEF2FB", zIndex: 0 }}>
 
       {/* ── Overlay navigation bar ── */}
       <div style={{
@@ -15,11 +21,11 @@ const EvoDinePage = () => {
         top: 0, left: 0, right: 0,
         zIndex: 9999,
         height: BAR_H,
-        background: "rgba(4,12,24,.97)",
+        background: isDark ? "rgba(4,12,24,.97)" : "rgba(238,242,251,.97)",
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
-        borderBottom: "1px solid rgba(255,255,255,.08)",
-        boxShadow: "0 4px 24px rgba(0,0,0,.4)",
+        borderBottom: isDark ? "1px solid rgba(255,255,255,.08)" : "1px solid rgba(0,0,0,.08)",
+        boxShadow: isDark ? "0 4px 24px rgba(0,0,0,.4)" : "0 4px 24px rgba(0,0,0,.08)",
         display: "flex",
         alignItems: "center",
         padding: "0 16px",
@@ -34,9 +40,9 @@ const EvoDinePage = () => {
             display: "flex",
             alignItems: "center",
             gap: 6,
-            color: "rgba(148,163,184,.85)",
-            background: "rgba(255,255,255,.05)",
-            border: "1px solid rgba(255,255,255,.08)",
+            color: isDark ? "rgba(148,163,184,.85)" : "rgba(71,85,105,.85)",
+            background: isDark ? "rgba(255,255,255,.05)" : "rgba(0,0,0,.04)",
+            border: isDark ? "1px solid rgba(255,255,255,.08)" : "1px solid rgba(0,0,0,.08)",
             borderRadius: 9999,
             padding: "6px 12px",
             fontSize: ".8rem",
@@ -65,7 +71,7 @@ const EvoDinePage = () => {
         {/* Breadcrumb — hidden on very small screens via inline media-query workaround */}
         <div className="evodine-breadcrumb" style={{
           display: "flex", alignItems: "center", gap: 6,
-          fontSize: ".78rem", color: "rgba(148,163,184,.5)",
+          fontSize: ".78rem", color: isDark ? "rgba(148,163,184,.5)" : "rgba(71,85,105,.5)",
           whiteSpace: "nowrap", overflow: "hidden",
         }}>
           <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>EvoSolutions</span>
@@ -82,7 +88,7 @@ const EvoDinePage = () => {
         <div style={{
           display: "flex", alignItems: "center", gap: 7, flexShrink: 0,
           fontFamily: "'Plus Jakarta Sans','Inter',sans-serif",
-          fontWeight: 700, fontSize: ".9rem", color: "#fff",
+          fontWeight: 700, fontSize: ".9rem", color: isDark ? "#fff" : "#0F172A",
         }}>
           <img
             src="/icon.png"
