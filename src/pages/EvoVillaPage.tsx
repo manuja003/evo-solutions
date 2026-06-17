@@ -1,18 +1,25 @@
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 
 const BAR_H = 52;
 
 const EvoVillaPage = () => {
   const navigate = useNavigate();
-  const { theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); }, []);
-  const isDark = !mounted || theme === "dark";
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
+
+  const barBg       = isDark ? "rgba(4,12,24,.97)"       : "rgba(255,255,255,.97)";
+  const barBorder   = isDark ? "rgba(255,255,255,.08)"   : "rgba(0,0,0,.08)";
+  const barShadow   = isDark ? "0 4px 24px rgba(0,0,0,.35)" : "0 4px 24px rgba(0,0,0,.08)";
+  const btnColor    = isDark ? "rgba(240,244,255,.85)"   : "rgba(71,85,105,.85)";
+  const btnBg       = isDark ? "rgba(255,255,255,.07)"   : "rgba(0,0,0,.04)";
+  const btnBorder   = isDark ? "rgba(255,255,255,.10)"   : "rgba(0,0,0,.08)";
+  const crumbColor  = isDark ? "rgba(240,244,255,.4)"    : "rgba(71,85,105,.5)";
+  const logoColor   = isDark ? "#F0F4FF"                 : "#0F172A";
+  const pageBg      = isDark ? "#040C18"                 : "#FFFFFF";
 
   return (
-    <div style={{ position: "fixed", inset: 0, background: isDark ? "#040C18" : "#EEF2FB", zIndex: 0 }}>
+    <div style={{ position: "fixed", inset: 0, background: pageBg, zIndex: 0 }}>
 
       {/* ── Overlay navigation bar ── */}
       <div style={{
@@ -20,16 +27,17 @@ const EvoVillaPage = () => {
         top: 0, left: 0, right: 0,
         zIndex: 9999,
         height: BAR_H,
-        background: isDark ? "rgba(4,12,24,.97)" : "rgba(238,242,251,.97)",
+        background: barBg,
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
-        borderBottom: isDark ? "1px solid rgba(255,255,255,.08)" : "1px solid rgba(0,0,0,.08)",
-        boxShadow: isDark ? "0 4px 24px rgba(0,0,0,.4)" : "0 4px 24px rgba(0,0,0,.08)",
+        borderBottom: `1px solid ${barBorder}`,
+        boxShadow: barShadow,
         display: "flex",
         alignItems: "center",
         padding: "0 16px",
         gap: 12,
         overflow: "hidden",
+        transition: "background .3s, border-color .3s",
       }}>
 
         {/* Back button */}
@@ -39,9 +47,9 @@ const EvoVillaPage = () => {
             display: "flex",
             alignItems: "center",
             gap: 6,
-            color: isDark ? "rgba(148,163,184,.85)" : "rgba(71,85,105,.85)",
-            background: isDark ? "rgba(255,255,255,.05)" : "rgba(0,0,0,.04)",
-            border: isDark ? "1px solid rgba(255,255,255,.08)" : "1px solid rgba(0,0,0,.08)",
+            color: btnColor,
+            background: btnBg,
+            border: `1px solid ${btnBorder}`,
             borderRadius: 9999,
             padding: "6px 12px",
             fontSize: ".8rem",
@@ -57,8 +65,8 @@ const EvoVillaPage = () => {
             (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(124,58,237,.35)";
           }}
           onMouseLeave={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.color = isDark ? "rgba(148,163,184,.85)" : "rgba(71,85,105,.85)";
-            (e.currentTarget as HTMLButtonElement).style.borderColor = isDark ? "rgba(255,255,255,.08)" : "rgba(0,0,0,.08)";
+            (e.currentTarget as HTMLButtonElement).style.color = btnColor;
+            (e.currentTarget as HTMLButtonElement).style.borderColor = btnBorder;
           }}
         >
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -70,7 +78,7 @@ const EvoVillaPage = () => {
         {/* Breadcrumb */}
         <div style={{
           display: "flex", alignItems: "center", gap: 6,
-          fontSize: ".78rem", color: isDark ? "rgba(148,163,184,.5)" : "rgba(71,85,105,.5)",
+          fontSize: ".78rem", color: crumbColor,
           whiteSpace: "nowrap", overflow: "hidden",
         }}>
           <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>EvoSolutions</span>
@@ -87,20 +95,21 @@ const EvoVillaPage = () => {
         <div style={{
           display: "flex", alignItems: "center", gap: 7, flexShrink: 0,
           fontFamily: "'Plus Jakarta Sans','Inter',sans-serif",
-          fontWeight: 700, fontSize: ".9rem", color: isDark ? "#fff" : "#0F172A",
+          fontWeight: 700, fontSize: ".9rem", color: logoColor,
+          transition: "color .3s",
         }}>
           <img
             src="/icon.png"
             alt="EvoSolutions"
-            style={{ width: 26, height: 26, objectFit: "contain", filter: "drop-shadow(0 0 6px rgba(124,58,237,.4))" }}
+            style={{ width: 26, height: 26, objectFit: "contain", filter: "drop-shadow(0 0 6px rgba(255,107,43,.4))" }}
           />
-          <span>Evo<span style={{ color: "#7C3AED" }}>Solutions</span></span>
+          <span>Evo<span style={{ color: "#FF6B2B" }}>Solutions</span></span>
         </div>
       </div>
 
-      {/* EvoInn iframe — starts exactly below the bar */}
+      {/* EvoInn iframe — passes current theme so it can style accordingly */}
       <iframe
-        src="/EvoInn/index.html"
+        src={`/EvoInn/index.html?theme=${resolvedTheme ?? "light"}`}
         title="EvoInn — Hotel & Reservation Management System"
         style={{
           position: "absolute",
@@ -111,7 +120,7 @@ const EvoVillaPage = () => {
           width: "100%",
           height: `calc(100% - ${BAR_H}px)`,
           border: "none",
-          background: "#040C18",
+          background: pageBg,
         }}
         allow="autoplay"
       />

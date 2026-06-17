@@ -32,7 +32,7 @@ const Footer = () => {
                 }}
               />
               <div>
-                <div style={{ fontFamily: "var(--font-jakarta)", fontWeight: 800, fontSize: "1.2rem", color: "#fff", lineHeight: 1.1 }}>
+                <div style={{ fontFamily: "var(--font-jakarta)", fontWeight: 800, fontSize: "1.2rem", color: "var(--ed-text-white)", lineHeight: 1.1 }}>
                   Evo<span style={{ color: "#FF6B2B" }}>Solutions</span>
                 </div>
                 <div style={{ fontSize: ".6rem", color: "rgba(148,163,184,.4)", fontWeight: 600, letterSpacing: ".12em", textTransform: "uppercase" }}>
@@ -82,8 +82,8 @@ const Footer = () => {
             <ul style={{ display: "flex", flexDirection: "column", gap: 12, margin: 0, padding: 0, listStyle: "none" }}>
               {[
                 { label: "EvoDine", to: "/products/evodine" },
-                { label: "EvoPos", to: null, section: "contact" },
-                { label: "EvoInn", to: null, section: "contact" },
+                { label: "EvoStock", to: "/products/evoinventory" },
+                { label: "EvoInn", to: "/products/evovilla" },
               ].map((item) => (
                 <li key={item.label}>
                   {item.to ? (

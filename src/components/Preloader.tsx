@@ -28,7 +28,7 @@ const Preloader = () => {
           fontFamily: "var(--font-jakarta)",
           fontSize: "2rem",
           fontWeight: 800,
-          color: "#fff",
+          color: "var(--ed-text-white)",
         }}>
           Evo<span style={{ color: "#FF6B2B" }}>Solutions</span>
         </span>

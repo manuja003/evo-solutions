@@ -3,6 +3,12 @@
    JavaScript v1.0 | EvoSolution / TagTeam Engineering
    ============================================================ */
 
+/* Apply theme from URL param before any paint — covered by preloader */
+(function () {
+  var t = new URLSearchParams(location.search).get('theme');
+  if (t === 'light') document.documentElement.classList.add('light');
+})();
+
 'use strict';
 
 /* ── PRELOADER ─────────────────────────────────────────────── */

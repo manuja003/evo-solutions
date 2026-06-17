@@ -1,6 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 
 const BAR_H = 52;
 
@@ -108,17 +106,12 @@ const addons = [
 /* ── component ── */
 const PricingPage = () => {
   const navigate = useNavigate();
-  const { theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); }, []);
-  const isDark = !mounted || theme === "dark";
-
-  const bg = isDark ? "#040C18" : "#EEF2FB";
-  const textPrimary = isDark ? "#F0F4FF" : "#0F172A";
-  const textSecondary = isDark ? "#94A3B8" : "#475569";
-  const textMuted = isDark ? "#4E6080" : "#94A3B8";
-  const cardBg = isDark ? "rgba(255,255,255,.04)" : "rgba(0,0,0,.03)";
-  const cardBorder = isDark ? "rgba(255,255,255,.08)" : "rgba(0,0,0,.08)";
+  const bg = "#EEF2FB";
+  const textPrimary = "#0F172A";
+  const textSecondary = "#475569";
+  const textMuted = "#94A3B8";
+  const cardBg = "rgba(0,0,0,.03)";
+  const cardBorder = "rgba(0,0,0,.08)";
 
   return (
     <div style={{ minHeight: "100vh", background: bg, color: textPrimary, fontFamily: "var(--font-body)" }}>
@@ -127,10 +120,10 @@ const PricingPage = () => {
       <div style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 9999,
         height: BAR_H,
-        background: isDark ? "rgba(4,12,24,.97)" : "rgba(238,242,251,.97)",
+        background: "rgba(238,242,251,.97)",
         backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
         borderBottom: `1px solid ${cardBorder}`,
-        boxShadow: isDark ? "0 4px 24px rgba(0,0,0,.4)" : "0 4px 24px rgba(0,0,0,.08)",
+        boxShadow: "0 4px 24px rgba(0,0,0,.08)",
         display: "flex", alignItems: "center", padding: "0 20px", gap: 12,
       }}>
         <button
@@ -196,11 +189,11 @@ const PricingPage = () => {
 
         {/* ── EvoDine section ── */}
         <SectionLabel color="#FF6B2B" icon="🍽️" label="EvoDine" sub="Smart Restaurant Management" />
-        <PlanGrid plans={evoDinePlans} isDark={isDark} textPrimary={textPrimary} textSecondary={textSecondary} cardBg={cardBg} cardBorder={cardBorder} />
+        <PlanGrid plans={evoDinePlans} textPrimary={textPrimary} textSecondary={textSecondary} cardBg={cardBg} cardBorder={cardBorder} />
 
         {/* ── EvoInn section ── */}
         <SectionLabel color="#3B82F6" icon="🏨" label="EvoInn" sub="Smart Hospitality Management" style={{ marginTop: 80 }} />
-        <PlanGrid plans={evoInnPlans} isDark={isDark} textPrimary={textPrimary} textSecondary={textSecondary} cardBg={cardBg} cardBorder={cardBorder} />
+        <PlanGrid plans={evoInnPlans} textPrimary={textPrimary} textSecondary={textSecondary} cardBg={cardBg} cardBorder={cardBorder} />
 
         {/* ── Add-ons ── */}
         <div style={{ marginTop: 80 }}>
@@ -218,7 +211,7 @@ const PricingPage = () => {
                   {a.integrations.map((int) => (
                     <span key={int} style={{
                       display: "inline-flex", alignItems: "center", gap: 6,
-                      background: isDark ? "rgba(255,255,255,.06)" : "rgba(0,0,0,.05)",
+                      background: "rgba(0,0,0,.05)",
                       border: `1px solid ${a.border}`, borderRadius: 9999,
                       padding: "5px 14px", fontSize: ".8rem", fontWeight: 600,
                       color: a.color, fontFamily: "var(--font-jakarta)",
@@ -228,8 +221,8 @@ const PricingPage = () => {
                     </span>
                   ))}
                 </div>
-                <p style={{ fontSize: ".85rem", color: isDark ? "#94A3B8" : "#475569", lineHeight: 1.65 }}>{a.note}</p>
-                <div style={{ marginTop: 18, fontSize: ".78rem", color: isDark ? "#4E6080" : "#94A3B8", fontStyle: "italic" }}>
+                <p style={{ fontSize: ".85rem", color: "#475569", lineHeight: 1.65 }}>{a.note}</p>
+                <div style={{ marginTop: 18, fontSize: ".78rem", color: "#94A3B8", fontStyle: "italic" }}>
                   Pricing on request — contact us for a quote.
                 </div>
               </div>
@@ -240,47 +233,141 @@ const PricingPage = () => {
         {/* ── EvoStock standalone ── */}
         <div style={{ marginTop: 80 }}>
           <SectionLabel color="#22C55E" icon="📦" label="EvoStock" sub="Standalone Inventory & Stock Management System" />
-          <div style={{
-            background: isDark ? "rgba(34,197,94,.06)" : "rgba(34,197,94,.04)",
-            border: "1px solid rgba(34,197,94,.2)",
-            borderRadius: 24, padding: "40px 40px",
-            display: "flex", flexWrap: "wrap", alignItems: "center", gap: 32,
-          }}>
-            <div style={{ flex: 1, minWidth: 200 }}>
-              <div style={{ fontSize: ".7rem", fontWeight: 700, letterSpacing: ".1em", textTransform: "uppercase", color: "#22C55E", marginBottom: 10, fontFamily: "var(--font-jakarta)" }}>
+
+          {/* Two-tier cards */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24, alignItems: "stretch" }}>
+
+            {/* Essential */}
+            <div style={{
+              background: cardBg, border: `1px solid ${cardBorder}`,
+              borderRadius: 24, padding: "36px 32px",
+              position: "relative", display: "flex", flexDirection: "column",
+            }}>
+              <div style={{ fontFamily: "var(--font-jakarta)", fontWeight: 800, fontSize: "1.2rem", color: textPrimary, marginBottom: 6 }}>
+                EvoStock Essential
+              </div>
+              <div style={{
+                display: "inline-block", marginBottom: 20,
+                background: "rgba(34,197,94,.12)", border: "1px solid rgba(34,197,94,.2)",
+                color: "#22C55E", borderRadius: 8, padding: "3px 10px",
+                fontSize: ".7rem", fontWeight: 700, fontFamily: "var(--font-jakarta)",
+              }}>
+                Single Location
+              </div>
+              <div style={{ fontSize: ".7rem", fontWeight: 700, letterSpacing: ".1em", textTransform: "uppercase", color: "#22C55E", marginBottom: 8, fontFamily: "var(--font-jakarta)" }}>
                 One-Time Investment
               </div>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
-                <span style={{ fontFamily: "var(--font-jakarta)", fontWeight: 900, fontSize: "clamp(2rem, 4vw, 2.8rem)", color: "#22C55E" }}>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 24 }}>
+                <span style={{ fontFamily: "var(--font-jakarta)", fontWeight: 900, fontSize: "clamp(1.8rem, 4vw, 2.4rem)", color: "#22C55E" }}>
                   LKR 40,000
                 </span>
-                <span style={{ fontSize: ".9rem", color: isDark ? "#94A3B8" : "#475569" }}>and upwards</span>
+                <span style={{ fontSize: ".88rem", color: textSecondary }}>and upwards</span>
               </div>
-              <p style={{ fontSize: ".88rem", color: isDark ? "#94A3B8" : "#475569", marginTop: 10, lineHeight: 1.65, maxWidth: 420 }}>
-                A dedicated inventory management system for businesses that need powerful stock control without the full POS or hospitality suite. Pricing scales with your operation size and customization needs.
-              </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: 12, flex: 1 }}>
+                {["Real-Time Asset Tracking", "Predictive Stock Intelligence", "Automated Fulfillment", "Stock Adjustment & GRN", "Basic Reporting & Analytics", "Barcode POS Billing"].map((f) => (
+                  <div key={f} style={{ display: "flex", alignItems: "center", gap: 12, fontSize: ".88rem", color: textSecondary }}>
+                    <div style={{ width: 20, height: 20, borderRadius: 6, flexShrink: 0, background: "rgba(34,197,94,.12)", border: "1px solid rgba(34,197,94,.2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    {f}
+                  </div>
+                ))}
+              </div>
+              <button
+                onClick={() => window.location.href = "/#contact"}
+                style={{
+                  marginTop: 32, width: "100%", padding: "13px 0",
+                  borderRadius: 12, fontSize: ".88rem", fontWeight: 700,
+                  background: "transparent", color: "#22C55E",
+                  border: "1.5px solid #22C55E",
+                  cursor: "pointer", fontFamily: "var(--font-jakarta)", transition: "all .25s",
+                }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,197,94,.12)"; (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "transparent"; (e.currentTarget as HTMLButtonElement).style.transform = "none"; }}
+              >
+                Get a Quote →
+              </button>
             </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10, minWidth: 200 }}>
-              {["Real-Time Asset Tracking", "Predictive Stock Intelligence", "Automated Fulfillment", "Multi-Warehouse Sync", "Immutable Audit Trails", "API-First Integration"].map((f) => (
-                <div key={f} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: ".84rem", color: isDark ? "#94A3B8" : "#475569" }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  {f}
-                </div>
-              ))}
+
+            {/* Enterprise */}
+            <div style={{
+              background: "rgba(0,0,0,.04)", border: "1.5px solid #22C55E",
+              borderRadius: 24, padding: "36px 32px",
+              position: "relative", display: "flex", flexDirection: "column",
+              boxShadow: "0 0 40px rgba(34,197,94,.12)",
+            }}>
+              <div style={{
+                position: "absolute", top: -14, left: "50%", transform: "translateX(-50%)",
+                background: "#22C55E", color: "#fff", borderRadius: 9999,
+                padding: "4px 18px", fontSize: ".72rem", fontWeight: 700,
+                letterSpacing: ".08em", textTransform: "uppercase", fontFamily: "var(--font-jakarta)",
+                whiteSpace: "nowrap", boxShadow: "0 4px 16px rgba(34,197,94,.25)",
+              }}>
+                Most Popular
+              </div>
+              <div style={{ fontFamily: "var(--font-jakarta)", fontWeight: 800, fontSize: "1.2rem", color: textPrimary, marginBottom: 6 }}>
+                EvoStock Enterprise
+              </div>
+              <div style={{
+                display: "inline-block", marginBottom: 20,
+                background: "rgba(34,197,94,.12)", border: "1px solid rgba(34,197,94,.3)",
+                color: "#22C55E", borderRadius: 8, padding: "3px 10px",
+                fontSize: ".7rem", fontWeight: 700, fontFamily: "var(--font-jakarta)",
+              }}>
+                Multi-Location + API
+              </div>
+              <div style={{ fontSize: ".7rem", fontWeight: 700, letterSpacing: ".1em", textTransform: "uppercase", color: "#22C55E", marginBottom: 8, fontFamily: "var(--font-jakarta)" }}>
+                Custom Pricing
+              </div>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 24 }}>
+                <span style={{ fontFamily: "var(--font-jakarta)", fontWeight: 900, fontSize: "clamp(1.8rem, 4vw, 2.4rem)", color: "#22C55E" }}>
+                  Contact Us
+                </span>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 12, flex: 1 }}>
+                {["Everything in Essential", "Multi-Warehouse Sync", "Immutable Audit Trails", "API-First Integration", "Advanced Reporting Suite", "Priority Support & Onboarding"].map((f) => (
+                  <div key={f} style={{ display: "flex", alignItems: "center", gap: 12, fontSize: ".88rem", color: textSecondary }}>
+                    <div style={{ width: 20, height: 20, borderRadius: 6, flexShrink: 0, background: "rgba(34,197,94,.12)", border: "1px solid rgba(34,197,94,.2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    {f}
+                  </div>
+                ))}
+              </div>
+              <button
+                onClick={() => window.location.href = "/#contact"}
+                style={{
+                  marginTop: 32, width: "100%", padding: "13px 0",
+                  borderRadius: 12, fontSize: ".88rem", fontWeight: 700,
+                  background: "#22C55E", color: "#fff",
+                  border: "1.5px solid #22C55E",
+                  cursor: "pointer", fontFamily: "var(--font-jakarta)", transition: "all .25s",
+                  boxShadow: "0 0 24px rgba(34,197,94,.25)",
+                }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 36px rgba(34,197,94,.4)"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "none"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 24px rgba(34,197,94,.25)"; }}
+              >
+                Contact for Pricing →
+              </button>
             </div>
-            <button
-              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              style={{
-                padding: "14px 28px", borderRadius: 12, fontSize: ".88rem", fontWeight: 700,
-                background: "rgba(34,197,94,.15)", border: "1px solid rgba(34,197,94,.3)",
-                color: "#22C55E", cursor: "pointer", fontFamily: "var(--font-jakarta)",
-                transition: "all .25s", flexShrink: 0, alignSelf: "flex-start",
-              }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,197,94,.25)"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(34,197,94,.15)"; }}
-            >
-              Get a Quote →
-            </button>
+          </div>
+
+          {/* Industry tags */}
+          <div style={{ marginTop: 24, display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center" }}>
+            <span style={{ fontSize: ".72rem", fontWeight: 700, color: textSecondary, letterSpacing: ".06em", textTransform: "uppercase", fontFamily: "var(--font-jakarta)", marginRight: 4 }}>
+              Perfect for:
+            </span>
+            {["Retail Shops", "Pharmacies", "Supermarkets", "Hardware Stores", "Wholesalers"].map((ind) => (
+              <span key={ind} style={{
+                display: "inline-flex", alignItems: "center", gap: 6,
+                background: "rgba(34,197,94,.08)", border: "1px solid rgba(34,197,94,.2)",
+                color: "#22C55E", borderRadius: 9999,
+                padding: "5px 14px", fontSize: ".78rem", fontWeight: 600,
+                fontFamily: "var(--font-jakarta)",
+              }}>
+                {ind}
+              </span>
+            ))}
           </div>
         </div>
 
@@ -288,7 +375,7 @@ const PricingPage = () => {
         <div style={{
           marginTop: 80, textAlign: "center",
           padding: "60px 40px",
-          background: isDark ? "rgba(255,255,255,.03)" : "rgba(0,0,0,.02)",
+          background: "rgba(0,0,0,.02)",
           border: `1px solid ${cardBorder}`, borderRadius: 28,
         }}>
           <h2 style={{ fontFamily: "var(--font-jakarta)", fontWeight: 900, fontSize: "clamp(1.6rem, 3.5vw, 2.6rem)", letterSpacing: "-.02em", marginBottom: 14, color: textPrimary }}>
@@ -354,22 +441,19 @@ interface Plan {
 
 interface PlanGridProps {
   plans: Plan[];
-  isDark: boolean;
   textPrimary: string;
   textSecondary: string;
   cardBg: string;
   cardBorder: string;
 }
 
-const PlanGrid = ({ plans, isDark, textPrimary, textSecondary, cardBg, cardBorder }: PlanGridProps) => (
+const PlanGrid = ({ plans, textPrimary, textSecondary, cardBg, cardBorder }: PlanGridProps) => (
   <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24, alignItems: "stretch" }}>
     {plans.map((plan) => {
       const save = savePct(plan.orig, plan.price);
       return (
         <div key={plan.name} style={{
-          background: plan.popular
-            ? (isDark ? "rgba(255,255,255,.06)" : "rgba(0,0,0,.04)")
-            : cardBg,
+          background: plan.popular ? "rgba(0,0,0,.04)" : cardBg,
           border: plan.popular
             ? `1.5px solid ${plan.color}`
             : `1px solid ${cardBorder}`,

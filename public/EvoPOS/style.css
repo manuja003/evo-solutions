@@ -1,5 +1,5 @@
 /* ============================================================
-   EVOPOS — Inventory & POS Management Product Website
+   EVOSTOCK — Inventory & Stock Management Product Website
    Stylesheet v1.0 | EvoSolution / TagTeam Engineering
    ============================================================ */
 
@@ -555,3 +555,153 @@ footer { background: var(--bg-surface); border-top: 1px solid var(--border); pad
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .benefits-grid { grid-template-columns: 1fr; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   LIGHT MODE — applied when html.light class set via ?theme=light
+═══════════════════════════════════════════════════════════════ */
+html.light {
+  --bg-base:    #FFFFFF;
+  --bg-surface: #F8FAFC;
+  --bg-card:    #FFFFFF;
+  --bg-card2:   #F8FAFC;
+  --border:     rgba(0,0,0,.08);
+  --border-hover: rgba(16,185,129,.40);
+  --text-primary: #1E293B;
+  --text-muted:   rgba(30,41,59,.60);
+  --text-subtle:  rgba(30,41,59,.40);
+  --shadow-card:  0 2px 16px rgba(0,0,0,.08), 0 1px 0 rgba(0,0,0,.04);
+}
+html.light body { background: #FFFFFF; color: #1E293B; }
+
+/* ── Preloader ── */
+html.light #preloader { background: #FFFFFF; }
+html.light .preloader-text { color: #0F172A; }
+html.light .preloader-bar { background: rgba(0,0,0,.08); }
+
+/* ── Navbar ── */
+html.light #navbar.scrolled {
+  background: rgba(255,255,255,.97);
+  border-bottom-color: rgba(0,0,0,.08);
+  box-shadow: 0 4px 24px rgba(0,0,0,.08);
+}
+html.light .nav-logo { color: #0F172A; }
+html.light .nav-links a { color: #475569; }
+html.light .nav-links a:hover, html.light .nav-links a.active { color: var(--green); background: rgba(16,185,129,.07); }
+html.light .btn-outline-nav { color: #475569; border-color: rgba(0,0,0,.12); }
+html.light .btn-outline-nav:hover { color: #0F172A; border-color: rgba(0,0,0,.25); }
+html.light .hamburger span { background: #0F172A; }
+
+/* ── Hero ── */
+html.light #hero { background: linear-gradient(160deg, #FFFFFF 0%, #ECFDF5 55%, #F8FAFC 100%); }
+html.light .hero-orb { opacity: 0.14; }
+html.light .hero-badge { background: rgba(16,185,129,.07); border-color: rgba(16,185,129,.18); color: var(--green); }
+html.light .hero-title { color: #0F172A; }
+html.light .hero-subtitle { color: #475569; }
+html.light .hero-scroll-hint span { color: #94A3B8; }
+
+/* ── Mockup browser ── */
+html.light .mockup-browser { background: #F8FAFC; border-color: rgba(0,0,0,.10); box-shadow: 0 24px 64px rgba(0,0,0,.12); }
+html.light .browser-topbar { background: rgba(0,0,0,.04); }
+html.light .browser-url { background: rgba(0,0,0,.05); color: #64748B; }
+html.light .dash-sidebar { background: #1E293B; }
+html.light .dash-main { background: #F8FAFC; }
+html.light .dash-topbar { background: #FFFFFF; border-bottom: 1px solid rgba(0,0,0,.06); color: #0F172A; }
+html.light .dash-greeting { color: #0F172A; }
+
+/* ── Float notifications ── */
+html.light .float-notif { background: rgba(255,255,255,.97); border-color: rgba(0,0,0,.08); box-shadow: 0 4px 20px rgba(0,0,0,.08); color: #1E293B; }
+html.light .fn-text strong { color: #0F172A; }
+html.light .fn-text span { color: #64748B; }
+
+/* ── Section alternation ── */
+html.light #about, html.light #workflow, html.light #contact { background: #F8FAFC; }
+html.light #features, html.light #why-choose { background: #FFFFFF; }
+html.light #stats { background: linear-gradient(135deg, #ECFDF5 0%, #F8FAFC 100%); }
+
+/* ── Shared typography ── */
+html.light .section-title { color: #0F172A; }
+html.light .section-desc { color: #475569; }
+html.light .section-eyebrow { color: var(--green); }
+
+/* ── About / info cards ── */
+html.light .about-card, html.light .ac-1, html.light .ac-2, html.light .ac-3 { background: #FFFFFF; border-color: rgba(0,0,0,.07); box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+html.light .ac-content strong { color: #0F172A; }
+html.light .ac-content span { color: #475569; }
+html.light .about-brand-badge { background: #FFFFFF; border-color: rgba(0,0,0,.08); }
+html.light .about-brand-badge strong { color: #0F172A; }
+html.light .about-tags span { background: rgba(0,0,0,.04); border-color: rgba(0,0,0,.08); color: #1E293B; }
+html.light .company-info strong { color: #0F172A; }
+html.light .company-info span { color: #64748B; }
+
+/* ── Feature cards ── */
+html.light .feature-card { background: #FFFFFF; border-color: rgba(0,0,0,.07); box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+html.light .feature-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.10); }
+html.light .feature-card h3 { color: #0F172A; }
+html.light .feature-card p { color: #475569; }
+html.light .feature-card-cta { background: linear-gradient(135deg, rgba(16,185,129,.07), rgba(37,99,235,.04)); border-color: rgba(16,185,129,.15); }
+html.light .fc-tag { background: rgba(0,0,0,.05); color: #64748B; border-color: rgba(0,0,0,.08); }
+
+/* ── Workflow ── */
+html.light .pipeline-track { background: rgba(0,0,0,.08); }
+html.light .ps-label { color: #0F172A; }
+html.light .ps-actor { color: #64748B; }
+html.light .ps-connector { color: #94A3B8; }
+html.light .pipeline-realtime { background: rgba(16,185,129,.06); border-color: rgba(16,185,129,.15); color: #475569; }
+
+/* ── Unique feature (uf) cards ── */
+html.light .uf-card { background: #FFFFFF; border-color: rgba(0,0,0,.07); box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+html.light .uf-card h3 { color: #0F172A; }
+html.light .uf-card p { color: #475569; }
+html.light .uf-number { color: rgba(0,0,0,.06); }
+html.light .module-pills span, html.light .pos-steps span, html.light .feature-flags span, html.light .industry-badges span {
+  background: rgba(0,0,0,.05); border-color: rgba(0,0,0,.08); color: #334155;
+}
+html.light .uh-val { color: var(--green); }
+html.light .uh-lbl { color: #64748B; }
+
+/* ── Benefits ── */
+html.light .benefit-item { background: #FFFFFF; border-color: rgba(0,0,0,.07); box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+html.light .benefit-item:hover { box-shadow: 0 8px 32px rgba(0,0,0,.10); }
+html.light .benefit-item h4 { color: #0F172A; }
+html.light .benefit-item p { color: #475569; }
+
+/* ── Stats ── */
+html.light .stat-number { color: var(--green); }
+html.light .stat-label { color: #0F172A; }
+html.light .stat-desc { color: #64748B; }
+html.light .stat-item { border-color: rgba(0,0,0,.07); }
+
+/* ── Contact ── */
+html.light .contact-info h2, html.light .contact-info h3 { color: #0F172A; }
+html.light .contact-info p { color: #475569; }
+html.light .cd-item strong { color: #0F172A; }
+html.light .cd-item span { color: #475569; }
+html.light .cd-icon { background: rgba(16,185,129,.08); border-color: rgba(16,185,129,.15); }
+html.light .contact-promise .cp-item { color: #475569; }
+html.light .contact-form-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,.08); box-shadow: 0 4px 32px rgba(0,0,0,.07); }
+html.light .cfc-header h3 { color: #0F172A; }
+html.light .cfc-header p { color: #475569; }
+html.light label { color: #334155; }
+html.light input, html.light textarea, html.light select { background: #F8FAFC; color: #0F172A; border-color: rgba(0,0,0,.12); }
+html.light input:focus, html.light textarea:focus, html.light select:focus { border-color: rgba(16,185,129,.50); background: #FFFFFF; }
+html.light input::placeholder, html.light textarea::placeholder { color: #94A3B8; }
+html.light .form-success { background: rgba(34,197,94,.07); border-color: rgba(34,197,94,.20); color: #15803D; }
+html.light .form-error { background: rgba(239,68,68,.07); border-color: rgba(239,68,68,.20); color: #B91C1C; }
+
+/* ── KPI cards in mockup ── */
+html.light .kpi-card { background: #FFFFFF; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+html.light .kpi-val { color: #0F172A; }
+html.light .kpi-lbl { color: #64748B; }
+
+/* ── Footer ── */
+html.light footer { background: #E2E8F0; border-top: 1px solid rgba(0,0,0,.08); }
+html.light .footer-inner { border-bottom-color: rgba(0,0,0,.08); }
+html.light .footer-brand span { color: #0F172A; }
+html.light .footer-links a { color: #475569; }
+html.light .footer-links a:hover { color: var(--green); }
+html.light .footer-bottom p { color: #64748B; }
+html.light .footer-bottom a:hover { color: var(--green); }
+
+/* ── Back to top ── */
+html.light #backToTop { background: #FFFFFF; border-color: rgba(0,0,0,.10); color: #475569; box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+html.light #backToTop:hover { color: var(--green); border-color: rgba(16,185,129,.30); }

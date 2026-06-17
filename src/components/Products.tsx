@@ -23,13 +23,13 @@ const products = [
         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
       </svg>
     ),
-    name: "EVOVilla",
+    name: "EvoInn",
     tagline: "Smart Hospitality Management",
     description: "A high-performance property and guest management platform for hotels, villas, and boutique properties — streamline bookings, operations, and guest experiences.",
     features: ["Guest Profiles & Concierge", "Real-Time Room Dashboard", "Dynamic Pricing Engine", "Unified Booking System", "Automated Workflows", "Revenue Analytics"],
     link: "/products/evovilla",
     status: "live" as const,
-    cta: "Explore EVOVilla",
+    cta: "Explore EvoInn",
   },
   {
     variant: "orange",
@@ -38,13 +38,13 @@ const products = [
         <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>
       </svg>
     ),
-    name: "EvoInventory",
+    name: "EvoStock",
     tagline: "Supply Chain Intelligence",
     description: "A mission-critical inventory management platform for zero-loss operations — real-time asset tracking, predictive stock management, and automated fulfillment.",
     features: ["Real-Time Asset Tracking", "Predictive Stock Intelligence", "Automated Fulfillment", "Multi-Warehouse Sync", "Immutable Audit Trails", "API-First Integration"],
     link: "/products/evoinventory",
     status: "live" as const,
-    cta: "Explore EvoInventory",
+    cta: "Explore EvoStock",
   },
 ];
 

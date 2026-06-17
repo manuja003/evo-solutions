@@ -215,7 +215,7 @@ const Contact = () => {
                   </div>
                   <div style={{ marginBottom: 16 }} className="form-group">
                     <label>Product of Interest</label>
-                    <input name="product" type="text" placeholder="e.g. EvoDine, EvoPos, Custom Solution" />
+                    <input name="product" type="text" placeholder="e.g. EvoDine, EvoInn, EvoStock, Custom Solution" />
                   </div>
                   <div style={{ marginBottom: 24 }} className="form-group">
                     <label>Message</label>

@@ -987,16 +987,16 @@ html.light {
   --input:               214 32% 88%;
 
   /* EvoSolutions design tokens – light palette */
-  --ed-bg-deep:          #EEF2FB;
-  --ed-bg-dark:          #E3E9F6;
-  --ed-bg-card:          rgba(255,255,255,.90);
-  --ed-border:           rgba(100,116,139,.14);
+  --ed-bg-deep:          #FFFFFF;
+  --ed-bg-dark:          #F1F5F9;
+  --ed-bg-card:          rgba(255,255,255,1);
+  --ed-border:           rgba(100,116,139,.16);
   --ed-border-hover:     rgba(255,107,43,.45);
   --ed-text-white:       #0F172A;
   --ed-text-primary:     #1E293B;
   --ed-text-secondary:   #475569;
-  --ed-text-muted:       #94A3B8;
-  --ed-shadow-card:      0 4px 24px rgba(0,0,0,.07);
+  --ed-text-muted:       #64748B;
+  --ed-shadow-card:      0 2px 16px rgba(0,0,0,.08), 0 1px 0 rgba(0,0,0,.04);
   --ed-shadow-glow-o:    0 0 40px rgba(255,107,43,.12);
   --ed-shadow-glow-b:    0 0 40px rgba(37,99,235,.12);
 }
@@ -1102,7 +1102,7 @@ html.light .nav-hamburger {
 
 /* ── mobile drawer ── */
 html.light .nav-mobile-drawer {
-  background: rgba(238,242,251,.98);
+  background: rgba(255,255,255,.99);
   border-top-color: rgba(0,0,0,.07);
 }
 html.light .nav-mobile-link {
@@ -1134,4 +1134,73 @@ html.light .float-notif {
   background: rgba(248,250,255,.95);
   border-color: rgba(0,0,0,.08);
   box-shadow: 0 4px 20px rgba(0,0,0,.08);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   LIGHT MODE — SECTION ALTERNATION & VISUAL RHYTHM
+   Alternating white / slate-100 gives each section clear separation
+───────────────────────────────────────────────────────────────────*/
+
+/* White sections */
+html.light #home,
+html.light #products,
+html.light #pricing {
+  background: #FFFFFF;
+}
+
+/* Slate-100 alternate sections */
+html.light #about,
+html.light #why-us,
+html.light #contact {
+  background: #F1F5F9;
+}
+
+/* Footer — distinctly darker than any section */
+html.light footer {
+  background: #E2E8F0;
+  border-top: 1px solid rgba(0,0,0,.07);
+}
+
+/* Subtle top-border separators between sections */
+html.light section + section {
+  border-top: 1px solid rgba(0,0,0,.05);
+}
+
+/* ── Card elevation: lifted from page in light mode ── */
+html.light .glass-card,
+html.light .product-card,
+html.light .feature-card,
+html.light .benefit-item {
+  box-shadow: 0 2px 12px rgba(0,0,0,.07), 0 1px 0 rgba(0,0,0,.04);
+}
+html.light .glass-card:hover,
+html.light .product-card:hover,
+html.light .feature-card:hover,
+html.light .benefit-item:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,.10), 0 1px 0 rgba(0,0,0,.04);
+}
+
+/* ── Hero background in light mode — subtle gradient instead of flat white ── */
+html.light #home {
+  background: linear-gradient(160deg, #FFFFFF 0%, #F0F4FF 60%, #EEF2FB 100%);
+}
+
+/* ── Background orbs — less intense in light mode ── */
+html.light .bg-orb,
+html.light [class*="orb"] {
+  opacity: 0.18;
+}
+
+/* ── Contact form card — stronger border in light mode ── */
+html.light .contact-form-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 4px 32px rgba(0,0,0,.07);
+}
+
+/* ── Select dropdowns in contact form ── */
+html.light .form-group select {
+  background: rgba(255,255,255,.95);
+  color: var(--ed-text-white);
+  border-color: rgba(100,116,139,.18);
 }

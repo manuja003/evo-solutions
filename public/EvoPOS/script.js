@@ -2,6 +2,13 @@
    EVOPOS — Inventory & POS Management Product Website
    JavaScript v1.0 | EvoSolution / TagTeam Engineering
    ============================================================ */
+
+/* Apply theme from URL param before any paint — covered by preloader */
+(function () {
+  var t = new URLSearchParams(location.search).get('theme');
+  if (t === 'light') document.documentElement.classList.add('light');
+})();
+
 'use strict';
 
 /* ── PRELOADER ─────────────────────────────────────────────── */
@@ -263,7 +270,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     if (!validateAll()) { const firstErr = form.querySelector('.error'); if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
     setLoading(true);
     const payload = new FormData();
-    payload.append('_subject', 'EvoPOS Demo Request — ' + fields.company.el.value.trim());
+    payload.append('_subject', 'EvoStock Demo Request — ' + fields.company.el.value.trim());
     payload.append('_template', 'table'); payload.append('_captcha', 'false');
     payload.append('Full Name', fields.fullName.el.value.trim());
     payload.append('Company / Business', fields.company.el.value.trim());

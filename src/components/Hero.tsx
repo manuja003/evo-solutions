@@ -248,8 +248,8 @@ const Hero = () => {
                     <div style={{ fontSize: ".65rem", fontWeight: 600, color: "var(--ed-text-muted)", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 2 }}>Products</div>
                     {[
                       { name: "EvoDine", desc: "Restaurant Mgmt", status: "live" },
-                      { name: "EvoPos", desc: "POS & Billing", status: "dev" },
-                      { name: "EvoInn", desc: "Booking System", status: "dev" },
+                      { name: "EvoStock", desc: "Inventory & Stock", status: "live" },
+                      { name: "EvoInn", desc: "Booking System", status: "live" },
                     ].map((p, i) => (
                       <div key={i} style={{
                         display: "flex", alignItems: "center", gap: 6,
@@ -284,7 +284,7 @@ const Hero = () => {
               </div>
               <div>
                 <strong style={{ display: "block", fontSize: ".78rem", fontWeight: 600, color: "var(--ed-text-white)" }}>New Project</strong>
-                <span style={{ fontSize: ".68rem", color: "var(--ed-text-muted)" }}>EvoPos in progress</span>
+                <span style={{ fontSize: ".68rem", color: "var(--ed-text-muted)" }}>EvoStock & EvoInn Live</span>
               </div>
             </div>
             <div className="float-notif fn-3">
